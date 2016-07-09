@@ -29,6 +29,3 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <button class="btn m-b-xs btn-info btn-addon">
-                                    <i class="fa fa-database"></i> Archived Payments
-                                    </button>
