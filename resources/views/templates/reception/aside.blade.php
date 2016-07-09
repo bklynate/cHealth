@@ -61,7 +61,8 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12 b-r">
-                        <h4 class="m-t-none m-b font-thin"><i class="fa fa-user"></i> Search for a patient below:</h4>
+
+                        <h4 class="m-t-none m-b font-thin"><i class="fa fa-user"></i> Search for a patient below: <button type="button" class="close" data-dismiss="modal">&times;</button></h4> 
                         {!! Form::open(array('route' => 'search')) !!}
                             <div class="form-group">
                                 <div class="input-group m-b">
