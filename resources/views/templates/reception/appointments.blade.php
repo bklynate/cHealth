@@ -22,6 +22,5 @@
 
 @section('scripts')
 	@include('templates.main.scripts')
-
 @stop
 
