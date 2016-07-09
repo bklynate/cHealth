@@ -48,7 +48,7 @@ class AppointmentsController extends Controller
                 'medId'               => $patientMedId, 
                 'patient'             => $patientName,
                 'doctor'              => $request->input('doctor'),
-                'status'              => 'payment',
+                'status'              => 'Payment',
                 'createdBy'           => $createdBy,
             ]);
         return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
