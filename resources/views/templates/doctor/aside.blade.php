@@ -35,14 +35,14 @@
               <span class="">Consultations</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="{{route('doctor-calendar')}}">
               <span class="pull-right text-muted">
               </span>
               <i class="fa fa-calendar"></i>
               <span class="">Calendar</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- nav -->
