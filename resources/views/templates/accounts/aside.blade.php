@@ -41,14 +41,14 @@
                                         <span class="">Insurance</span>
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="{{ route('accounts-reports') }}">
                                         <span class="pull-right text-muted">
                                         </span>
                                         <i class="fa fa-file-text-o"></i>
                                         <span class="">Reports</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </nav>
                         <!-- nav -->
