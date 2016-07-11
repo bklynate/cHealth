@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Accounts;
 use App\Http\Controllers\Controller;
-
+use App\Payment;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,8 +17,9 @@ class AccountsController extends Controller
 
     //GET PAYMENTS
     public function getPayments()
-    {
-        return view('templates.accounts.payments');
+    {   
+        $payments = Payment::paginate(10);
+        return view('templates.accounts.payments', compact('payments'));
     }
 
     //GET EXPENSES

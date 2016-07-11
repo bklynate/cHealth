@@ -19,7 +19,6 @@ class AppointmentsController extends Controller
     }
 
     public function getAppointments(){
-        //$appointments = DB::table('appointments')->paginate(15);
     	$appointments = Appointment::paginate(10);
         return view('templates.reception.appointments', compact('appointments'));
     }
