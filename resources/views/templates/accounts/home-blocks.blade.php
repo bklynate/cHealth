@@ -7,9 +7,9 @@
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">
-                                                <a href="{{ route('accounts-expenses') }}" class="block panel padder-v bg-info item dker">
+                                                <a href="{{ route('accounts-services') }}" class="block panel padder-v bg-info item dker">
                                                     <span class="text-white font-thin h1 block"><i class="fa fa-minus"></i></span>
-                                                    <span class="text-muted text-xs">Expenses</span>
+                                                    <span class="text-muted text-xs">Services</span>
                                                 </a>
                                             </div>
                                             <div class="col-xs-6">

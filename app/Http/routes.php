@@ -40,7 +40,7 @@ Route::delete('/reception-appointments/{id}','Reception\AppointmentsController@c
 
 Route::get('/accounts',           ['uses' => 'Accounts\AccountsController@getHome','as' => 'accounts-home']);
 Route::get('/accounts-payments',  ['uses' => 'Accounts\AccountsController@getPayments','as' => 'accounts-payments']);
-Route::get('/accounts-expenses',  ['uses' => 'Accounts\AccountsController@getExpenses','as' => 'accounts-expenses']);
+Route::get('/accounts-services',  ['uses' => 'Accounts\AccountsController@getServices','as' => 'accounts-services']);
 Route::get('/accounts-insurance', ['uses' => 'Accounts\AccountsController@getInsurance','as' => 'accounts-insurance']);
 Route::get('/accounts-reports',   ['uses' => 'Accounts\AccountsController@getReports','as' => 'accounts-reports']);
 

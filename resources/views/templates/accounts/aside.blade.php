@@ -26,11 +26,11 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('accounts-expenses') }}">
+                                    <a href="{{ route('accounts-services') }}">
                                         <span class="pull-right text-muted">
                                         </span>
-                                        <i class="fa fa-minus"></i>
-                                        <span class="">Expenses</span>
+                                        <i class="fa fa-medkit" aria-hidden="true"></i>
+                                        <span class="">Services</span>
                                     </a>
                                 </li>
                                 <li>
