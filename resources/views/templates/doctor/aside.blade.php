@@ -24,15 +24,28 @@
               <span class="pull-right text-muted">
               </span>
               <i class="fa fa-file-text-o"></i>
-              <span class="">Appointments</span>
+              <span>Appointments</span>
+              @if(count($appointments)!=0)
+                <b class="badge bg-info pull-right"> 
+                  {{ count($appointments) }}
+                </b>
+              @endif
+            </a>
+          </li>
+          <li>
+            <a href="{{route('medical-profile')}}">
+              <span class="pull-right text-muted">
+              </span>
+              <i class="fa fa-stethoscope"></i>
+              <span class="">Consultation</span>
             </a>
           </li>
           <li>
             <a href="{{route('doctor-consultations')}}">
               <span class="pull-right text-muted">
               </span>
-              <i class="fa fa-stethoscope"></i>
-              <span class="">Consultations</span>
+              <i class="fa fa-database"></i>
+              <span class="">History</span>
             </a>
           </li>
           <!-- <li>

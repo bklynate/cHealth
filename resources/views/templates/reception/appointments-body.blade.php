@@ -12,7 +12,7 @@
         {!! Form::open(array('route' => 'search-appointment', 'class'=>'form-inline text-right')) !!}
             <div class="form-group">
                 <div class="input-group">
-                    <input placeholder="Search Appointments" name="search" class="form-control" type="text">
+                    <input placeholder="Search Appointments" name="search" class="form-control" type="text" required>
                     <div class="input-group-btn"><button class="btn btn-info" type="submit">Search</button></div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                         {{ $appointment->patient }}
                     </td>
                     <td>
-                        {{ $appointment->doctor }}
+                        {{ $appointment->serviceType }}
                     </td>
                     <td>
                         {{ Carbon\Carbon::parse($appointment->created_at)->diffForHumans() }}

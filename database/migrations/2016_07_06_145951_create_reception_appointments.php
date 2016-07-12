@@ -16,7 +16,8 @@ class CreateReceptionAppointments extends Migration
             $table->increments('id');
             $table->string('medId');
             $table->string('patient');
-            $table->string('doctor');
+            $table->string('serviceType');
+            $table->string('staffId');
             $table->string('status');
             $table->string('createdBy');
             $table->timestamps();

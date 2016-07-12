@@ -46,8 +46,9 @@ class AppointmentsController extends Controller
         Appointment::create([
                 'medId'               => $patientMedId, 
                 'patient'             => $patientName,
-                'doctor'              => $request->input('doctor'),
-                'status'              => 'Payment',
+                'serviceType'         => $request->input('doctor'),
+                'staffId'             => '123422', //To be sorted
+                'status'              => 'Awaiting Consultation',
                 'createdBy'           => $createdBy,
             ]);
         return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
@@ -60,6 +61,6 @@ class AppointmentsController extends Controller
 
         $appointment->delete();
 
-        return redirect()->route('reception-appointments')->with('info', 'You have cancelled successfully the appointment for '.$patientName .'.');
+        return redirect()->route('reception-appointments')->with('info', 'You have canceled successfully the appointment for '.$patientName .'.');
     }
 }

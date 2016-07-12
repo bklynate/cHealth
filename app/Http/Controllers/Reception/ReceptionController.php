@@ -63,7 +63,7 @@ class ReceptionController extends Controller
 
         $query = $request->input('search');
         $appointments = DB::table('appointments')->where('patient', 'LIKE', '%' . $query . '%')
-                                        ->orWhere('doctor', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('serviceType', 'LIKE', '%' . $query . '%')
                                         ->orWhere('createdBy', 'LIKE', '%' . $query . '%')
                                         ->orWhere('created_at', 'LIKE', '%' . $query . '%')
                                         ->paginate(10);
