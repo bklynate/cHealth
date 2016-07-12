@@ -73,7 +73,7 @@ class DoctorController extends Controller
         $patientMedId = $appointment->medId;
 
         //Get patients record
-        $patient = DB::table('patients')->where('medId', $patientMedId); 
+        $patient = DB::table('patients')->where('medId', $patientMedId)->first(); 
 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
