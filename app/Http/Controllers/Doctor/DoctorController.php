@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 use App\Appointment;
+use App\Patient;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -55,15 +56,29 @@ class DoctorController extends Controller
     }
 
     //CONSULT PATIENT
-    public function consultPatient($id)
+    public function consultPatient($id, $medId)
     {
-       /* $appointment = Appointment::find($id)->where('status','Awaiting Consultation');
-        $appointment->status = 'Consultation';
-        $appointment->save();
-*/
+        //Update the appointment status field
         Appointment::where('id', $id)
           ->update(['status' => "Consultation"]);
-          
-        return redirect()->route('medical-profile');
+
+        //Get current user staff Id
+        $staffId = Auth::user()->staffId;
+
+        //get appointment
+        $appointment = DB::table('appointments')->where('staffId', $staffId)
+                                                ->where('status', "Consultation");
+
+        //Get medId, based on the appointments table 
+        $patientMedId = $appointment->medId;
+
+        //Get patients record
+        $patient = DB::table('patients')->where('medId', $patientMedId); 
+
+        //Get appointments for the navigation
+        $appointments  = DB::table('appointments')->where('staffId', $staffId)
+                                                    ->where('status','Awaiting Consultation');
+
+        return view('templates.medical.home', compact('appointments', 'patient'));
     }
 }

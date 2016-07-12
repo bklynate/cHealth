@@ -11,8 +11,8 @@
                                                 <img src="http://newtricks.com/wp-content/uploads/2011/06/unknown-128.jpg" class="img-circle"></span>
                                             </span>
                                             <p>
-                                                <h4>Valentine Mwangi</h4> ID. No: 2323322
-                                                <br> Age: 12 years
+                                                <h4>{{ $patient->firstName }} {{ $patient->middleName }} {{ $patient->lastName }}</h4> ID. No: {{ $patient->identification }}
+                                                <br> Age: {{ Carbon\Carbon::parse($patient->dateOfBirth)->age }} years
                                                 <br>
                                             </p>
                                         </div>
@@ -39,77 +39,61 @@
                                             <div role="tabpanel" class="tab-pane active b-l b-r b-b wrapper" id="demographics">
                                                 <button class="btn btn-default btn-xs pull-right"><i class="fa fa-pencil"></i> Update Demographics</button>
                                                 <div class="row col-md-12">
-                                                    <h1 class="h6 m-b-sm m-t-sm">Primary Details</h1>
+                                                    <h1 class="h6 m-b-sm m-t-sm text-muted">Primary Details</h1>
                                                     <div class="col-md-6">
                                                         <small class="m-t-xs">
-                                                        <p class="text-muted h6 m">
-                                                            First Name:
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">First Name:</span> {{ $patient->firstName }}
                                                         </p>
-                                                        <p class="text-muted h6 m">
-                                                            Middle Name:<br>
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">Middle Name:</span> {{ $patient->middleName }}<br>
                                                         </p>
-                                                        <p class="text-muted h6 m">
-                                                            Last Name:<br>
-                                                        </p>
-                                                        <p class="text-muted h6 m">
-                                                            Date of Birth:<br>
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">Last Name:</span> {{ $patient->lastName }}<br>
                                                         </p>
                                                         </small>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <small class="m-t-xs">
                                                         <p class="text-muted h6 m">
-                                                            Gender:<br>
+                                                            <span class="text-muted">Gender:</span> {{ $patient->gender }}<br>
                                                         </p>
-                                                        <p class="text-muted h6 m">
-                                                            Marital Status:<br>
-                                                        </p>
-                                                        <p class="text-muted h6 m">
-                                                            Blood Group:<br>
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">Date of Birth:</span> {{ $patient->dateOfBirth }}<br>
                                                         </p>
                                                         </small>
                                                     </div>
                                                 </div>
                                                 <div class="row col-md-12">
-                                                    <h1 class="h6 m-b-sm m-t-sm">Contact Details</h1>
+                                                    <h1 class="text-muted h6 m-b-sm m-t-sm">Contact Details</h1>
                                                     <div class="col-md-6">
                                                         <small class="m-t-xs">
-                                                        <p class="text-muted h6 m">
-                                                            Phone:
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">Patient Phone: </span> {{ $patient->patientPhone }}
                                                         </p>
-                                                        <p class="text-muted h6 m">
-                                                            Email:<br>
-                                                        </p>
-                                                        <p class="text-muted h6 m">
-                                                            Address:<br>
-                                                        </p>
-                                                        <p class="text-muted h6 m">
-                                                            Postal Code:<br>
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">Email:</span> {{ $patient->email }}<br>
                                                         </p>
                                                         </small>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <small class="m-t-xs">
-                                                        <p class="text-muted h6 m">
-                                                            Residence:<br>
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">Residence:</span> {{ $patient->residence }}<br>
                                                         </p>
-                                                        <p class="text-muted h6 m">
-                                                            City:<br>
+                                                        <p class="h6 m">
+                                                            <span class="text-muted">County:</span> {{ $patient->county }}<br>
                                                         </p>
-                                                        <p class="text-muted h6 m">
-                                                            Country:<br>
+                                                        <p class="h6 m">
+                                                             <span class="text-muted">Country:</span> {{ $patient->countryOrigin }}<br>
                                                         </p>
                                                         </small>
                                                     </div>
                                                 </div>
                                                 <div class="">
-                                                    <h1 class="h6 m-b-sm m-t-sm">Emergency Contact Details</h1>
-                                                    <p class="text-muted h6 m">
-                                                        Contact name:
-                                                        <br>
-                                                    </p>
-                                                    <p class="text-muted h6 m">
-                                                        Contact number:
+                                                    <h1 class="text-muted h6 m-b-sm m-t-sm">Emergency Contact Details</h1>
+                                                    <p class="h6 m">
+                                                        <span class="text-muted">Phone:</span> {{ $patient->kinPhone }}
                                                         <br>
                                                     </p>
                                                 </div>

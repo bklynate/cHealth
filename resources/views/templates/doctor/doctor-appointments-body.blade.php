@@ -46,7 +46,7 @@
                         <div class="btn-group btn-group-justified">
                        
                                 <!-- <a href="{{ route('consultPatient',$appointment->id ) }}" class="btn btn-xs btn-success">Consult</a> -->
-                                {!!Form::open(['method'=>'PUT','action'=>['Doctor\DoctorController@consultPatient',$appointment->id]])!!}
+                                {!!Form::open(['method'=>'PUT','action'=>['Doctor\DoctorController@consultPatient',$appointment->id, $appointment->medId]])!!}
                                 {!! Form::submit('Consult', ['class' => 'btn btn-danger btn-sm pull-right']) !!}
                                 {!!Form::close()!!}
                                 
