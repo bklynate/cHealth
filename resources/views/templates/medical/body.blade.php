@@ -5,18 +5,17 @@
         @endforeach
     </div>
 @endif
-@if(Session::has('flash_message'))
-    <div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        {{ Session::get('flash_message') }}
-    </div>
+@if (Session::has('info'))
+<div class="alert alert-info text-center btn-close" role="alert">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{ Session::get('info') }}
+</div>
 @endif
 <div class="panel panel-default">
     <div class="h5 panel-heading bg-light lt">
         Medical Profile
     </div>
     <div class="panel-body">
-        <form class="" role="form">
             <div class="form-group">
                 <div class="col-sm-12">
                     <div class="col-md-8">
@@ -71,9 +70,22 @@
                                 <p class="h6 m">
                                     <span class="text-muted">Gender:</span> {{ $patient->gender }}<br>
                                 </p>
+                                @if($patient->dateOfBirth=="")
                                 <p class="h6 m">
-                                    <span class="text-muted">Date of Birth:</span> {{ $patient->dateOfBirth }}<br>
+                                    <span class="text-muted">Date of Birth:</span> N/A<br>
                                 </p>
+                                @else
+                                  <p class="h6 m">
+                                    <span class="text-muted">Date of Birth:</span> {{ $patient->dateOfBirth }}<br>
+                                </p>  
+                                @endif
+                                @if($patient->estimatedAge=="")
+                                <p class="h6 m">
+                                    <span class="text-muted">Estimated Age:</span> N/A<br>
+                                </p>
+                                @else
+                                    <span class="text-muted">Estimated Age:</span> {{ $patient->estimatedAge }}<br>
+                                @endif
                                 </small>
                             </div>
                         </div>
@@ -140,6 +152,27 @@
                                                 <div class="input-group m-b col-md-12">
                                                     <input type="text" class="form-control" name="estimatedAge" placeholder="or Estimated age" value="{{ $patient->estimatedAge }}">
                                                 </div>
+                                                @if($patient->gender === "Male")
+                                                <div class="form-group col-md-12">
+                                                    <label>
+                                                        Gender:
+                                                    </label>
+                                                    <div class="radio">
+                                                        <label class="i-checks">
+                                                            <input type="radio" name="gender" value="Male" checked>
+                                                            <i></i>
+                                                            Male
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label class="i-checks">
+                                                            <input type="radio" name="gender" value="Female">
+                                                            <i></i>
+                                                            Female
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                @else
                                                 <div class="form-group col-md-12">
                                                     <label>
                                                         Gender:
@@ -153,12 +186,13 @@
                                                     </div>
                                                     <div class="radio">
                                                         <label class="i-checks">
-                                                            <input type="radio" name="gender" value="Female">
+                                                            <input type="radio" name="gender" value="Female" checked>
                                                             <i></i>
                                                             Female
                                                         </label>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Contact Details</label>
@@ -192,8 +226,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer bg-light lt">
-                                            
-
+                                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Update, Go Back</button>
                                                         {!! Form::submit('Update Demographics', ['class' => 'btn btn-info btn-sm pull-right']) !!} 
                                                     {!!Form::close()!!}
                                             </div>
@@ -454,5 +487,4 @@
             </div>
             <div class="h5 panel-footer bg-light lt ">
             </div>
-        </form>
     </div>

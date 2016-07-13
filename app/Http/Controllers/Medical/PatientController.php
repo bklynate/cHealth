@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Auth;
 use App\Appointment;
 use DB;
+use Session;
 
 class PatientController extends Controller
 {
@@ -99,7 +100,7 @@ class PatientController extends Controller
     }
 
     public function updatePatient($id, Request $request){
-       /* $this->validate($request, [
+        $this->validate($request, [
                 'firstName'             => 'required|min:2|max:265',
                 'middleName'            => 'max:265',
                 'lastName'              => 'max:265',
@@ -112,44 +113,13 @@ class PatientController extends Controller
                 'residence'             => 'required|min:2|max:100',
                 'county'                => 'max:100',
                 'countryOrigin'         => 'max:100',
-        ]);*/
+        ]);
 
         $updatedBy = Auth::user()->fullname;
 
-        //Update the patient fields
-       /*Patient::where('id', $id)
-          ->update(['firstName' => $request->input('firstName')])
-          ->update(['middleName' => $request->input('middleName')])
-          ->update(['lastName' => $request->input('lastName')])
-          ->update(['dateOfBirth' => $request->input('dateOfBirth')])
-          ->update(['estimatedAge' => $request->input('estimatedAge'))
-          ->update(['gender' => $request->input('gender')])
-          ->update(['patientPhone' $request->input('patientPhone')])
-          ->update(['kinPhone' => $request->input('kinPhone')])
-          ->update(['email' => $request->input('email')])
-          ->update(['residence' => $request->input('residence')])
-          ->update(['county' => $request->input('county')])
-          ->update(['countryOrigin' => $request->input('countryOrigin')])
-          ->update(['createdBy' => $updatedBy]);*/
-
-
-        $patients = DB::table('patients')->where('id', $id)->first();
-
-        $patients->update(['firstName' => $request->input('firstName')])
-          ->update(['middleName' => $request->input('middleName')])
-          ->update(['lastName' => $request->input('lastName')])
-          ->update(['dateOfBirth' => $request->input('dateOfBirth')])
-          ->update(['estimatedAge' => $request->input('estimatedAge'))
-          ->update(['gender' => $request->input('gender')])
-          ->update(['patientPhone' $request->input('patientPhone')])
-          ->update(['kinPhone' => $request->input('kinPhone')])
-          ->update(['email' => $request->input('email')])
-          ->update(['residence' => $request->input('residence')])
-          ->update(['county' => $request->input('county')])
-          ->update(['countryOrigin' => $request->input('countryOrigin')])
-          ->update(['createdBy' => $updatedBy]);
-          
-        $patients->save();
+        $patients = Patient::where('id', $id)->first();
+        $input = $request->all();
+        $patients->fill($input)->save();
 
         //Get current user staff Id
         $staffId = Auth::user()->staffId;
@@ -163,8 +133,10 @@ class PatientController extends Controller
 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
-                                                    ->where('status','Awaiting Consultation');
+                                                 ->where('status','Awaiting Consultation');
 
+        $patientname = $patient->firstName . " " .$patient->middleName . " " . $patient->lastName;
+        Session::flash('info', $patientname.'\'s ' . ' Medical Record has been updated successfully.');
         return view('templates.medical.home', compact('appointments', 'patient'));
 
     }
