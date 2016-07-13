@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Medical;
 use App\Http\Controllers\Controller;
 use App\Appointment;
+use App\Patient;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -28,8 +29,11 @@ class MedicalController extends Controller
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                     ->where('status','Awaiting Consultation');
+
+        $patientUpdate = Patient::findOrFail($patient->id);
+
                                             
-        return view('templates.medical.home', compact('appointments', 'patient'));
+        return view('templates.medical.home', compact('appointments', 'patient', 'patientUpdate'));
     }
 
 }

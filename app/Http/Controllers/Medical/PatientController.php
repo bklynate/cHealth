@@ -96,8 +96,76 @@ class PatientController extends Controller
         }
         
         return redirect()->route('reception-registration')->with('info', 'The Patient\'s Medical Profile has been created successfully');
+    }
 
-        
-        
+    public function updatePatient($id, Request $request){
+       /* $this->validate($request, [
+                'firstName'             => 'required|min:2|max:265',
+                'middleName'            => 'max:265',
+                'lastName'              => 'max:265',
+                'dateOfBirth'           => 'max:20',
+                'estimatedAge'          => 'max:150',
+                'gender'                => 'required|max:10',
+                'patientPhone'          => 'max:20',
+                'kinPhone'              => 'max:20',
+                'email'                 => 'max:265',
+                'residence'             => 'required|min:2|max:100',
+                'county'                => 'max:100',
+                'countryOrigin'         => 'max:100',
+        ]);*/
+
+        $updatedBy = Auth::user()->fullname;
+
+        //Update the patient fields
+       /*Patient::where('id', $id)
+          ->update(['firstName' => $request->input('firstName')])
+          ->update(['middleName' => $request->input('middleName')])
+          ->update(['lastName' => $request->input('lastName')])
+          ->update(['dateOfBirth' => $request->input('dateOfBirth')])
+          ->update(['estimatedAge' => $request->input('estimatedAge'))
+          ->update(['gender' => $request->input('gender')])
+          ->update(['patientPhone' $request->input('patientPhone')])
+          ->update(['kinPhone' => $request->input('kinPhone')])
+          ->update(['email' => $request->input('email')])
+          ->update(['residence' => $request->input('residence')])
+          ->update(['county' => $request->input('county')])
+          ->update(['countryOrigin' => $request->input('countryOrigin')])
+          ->update(['createdBy' => $updatedBy]);*/
+
+
+        $patients = DB::table('patients')->where('id', $id)->first();
+
+        $patients->update(['firstName' => $request->input('firstName')])
+          ->update(['middleName' => $request->input('middleName')])
+          ->update(['lastName' => $request->input('lastName')])
+          ->update(['dateOfBirth' => $request->input('dateOfBirth')])
+          ->update(['estimatedAge' => $request->input('estimatedAge'))
+          ->update(['gender' => $request->input('gender')])
+          ->update(['patientPhone' $request->input('patientPhone')])
+          ->update(['kinPhone' => $request->input('kinPhone')])
+          ->update(['email' => $request->input('email')])
+          ->update(['residence' => $request->input('residence')])
+          ->update(['county' => $request->input('county')])
+          ->update(['countryOrigin' => $request->input('countryOrigin')])
+          ->update(['createdBy' => $updatedBy]);
+          
+        $patients->save();
+
+        //Get current user staff Id
+        $staffId = Auth::user()->staffId;
+
+        //get appointment
+        $appointment = DB::table('appointments')->where('staffId', $staffId)
+                                                ->where('status', 'Consultation')->value('medId');
+
+        //Get patients record
+        $patient = DB::table('patients')->where('medId', $appointment)->first(); 
+
+        //Get appointments for the navigation
+        $appointments  = DB::table('appointments')->where('staffId', $staffId)
+                                                    ->where('status','Awaiting Consultation');
+
+        return view('templates.medical.home', compact('appointments', 'patient'));
+
     }
 }
