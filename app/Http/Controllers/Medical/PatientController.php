@@ -40,8 +40,6 @@ class PatientController extends Controller
 
     	$createdBy = Auth::user()->fullname;
 
-
-
         //fetch id no of previous record and add one to it
         $fetchNo = Patient::all();
 
@@ -130,14 +128,16 @@ class PatientController extends Controller
 
         //Get patients record
         $patient = DB::table('patients')->where('medId', $appointment)->first(); 
+        $patientId = $patient->id;
+
+        //Get vitals records
+        $vitals = Vital::where('onPatient', $patientId)->paginate(10);
 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                  ->where('status','Awaiting Consultation');
 
-        $patientname = $patient->firstName . " " .$patient->middleName . " " . $patient->lastName;
-        Session::flash('info', $patientname.'\'s ' . ' Medical Record has been updated successfully.');
-        return view('templates.medical.home', compact('appointments', 'patient'));
+        return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
 
     }
 }

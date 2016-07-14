@@ -25,7 +25,9 @@ Route::get('/doctor-appointments',        ['uses' => 'Doctor\DoctorController@ge
 Route::get('/doctor-consultations',       ['uses' => 'Doctor\DoctorController@getDoctorConsultations','as' => 'doctor-consultations', 'middleware'=> 'auth:doctor']);
 Route::get('/doctor-calendar',            ['uses' => 'Doctor\DoctorController@getDoctorCalendar','as' => 'doctor-calendar', 'middleware'=> 'auth:doctor']);
 Route::put('/appointment/{id}',           ['uses' => 'Doctor\DoctorController@consultPatient', 'as' => 'consultPatient']);
+
 Route::put('/patient/{id}',               ['uses' => 'Medical\PatientController@updatePatient', 'as' => 'updatePatient']);
+Route::post('/health-vitals',             ['uses' => 'Medical\VitalsController@addVitals', 'as' => 'add-vitals']);
 
 
 Route::get('/reception',                  ['uses' => 'Reception\ReceptionController@getHome','as' => 'reception-home', 'middleware'=> 'auth:receptionist']);

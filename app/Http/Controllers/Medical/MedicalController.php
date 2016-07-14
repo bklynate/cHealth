@@ -7,7 +7,9 @@ use App\Patient;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Session;
 use App\Http\Requests;
+use App\Vital;
 
 class MedicalController extends Controller
 {
@@ -20,20 +22,20 @@ class MedicalController extends Controller
         //get appointment
         $appointment = DB::table('appointments')->where('staffId', $staffId)
                                                 ->where('status', 'Consultation')->value('medId');
-        //Get medId, based on the appointments table
-        //$patientMedId = $appointment->medId;
 
         //Get patients record
         $patient = DB::table('patients')->where('medId', $appointment)->first(); 
+        $patientId = $patient->id;
+
+        //Get vitals records
+        $vitals = Vital::where('onPatient', $patientId)->paginate(10);
 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
-                                                    ->where('status','Awaiting Consultation');
+                                                 ->where('status','Awaiting Consultation');
 
-        $patientUpdate = Patient::findOrFail($patient->id);
 
-                                            
-        return view('templates.medical.home', compact('appointments', 'patient', 'patientUpdate'));
+        return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
     }
 
 }

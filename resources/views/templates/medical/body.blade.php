@@ -1,5 +1,6 @@
 @if($errors->any())
     <div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         @foreach($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
@@ -239,8 +240,9 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Health Vitals
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Head Vitals</button>
+                                        <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".health-vitals"><i class="fa fa-plus"></i> Add Health Vitals</button>
                                     </div>
+                                    <div>
                                     <table class="table table-striped m-b-none">
                                         <thead>
                                             <tr>
@@ -254,19 +256,74 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($vitals->reverse() as $vital)
                                             <tr>
-                                                <td>12/2/2016</td>
-                                                <td>67kg</td>
-                                                <td>189cm</td>
-                                                <td>22</td>
-                                                <td>78 bpm</td>
-                                                <td>78 bpm</td>
-                                                <td>36 C</td>
+                                                <td>{{ Carbon\Carbon::parse($vital->created_at)->diffForHumans() }}</td>
+                                                <td>{{$vital->weight}} Kg</td>
+                                                <td>{{$vital->height}} cm</td>
+                                                <td>{{$vital->bmi}}</td>
+                                                <td>{{$vital->weight}} bpm</td>
+                                                <td>{{$vital->weight}} bpm</td>
+                                                <td>{{$vital->temperature}}&deg;C</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
+                                    </div>
+                                    <div class="panel-footer">
+                                       <!--  <div class="text-center">{{ $vitals->links() }}</div> -->
+                                    </div>
                                 </div>
                             </div>
+                            <!--  Health Vitals -->
+                    <div class="modal fade health-vitals" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info dk">
+                                    <h4 class="font-thin text-center">Add Health Vitals <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {!! Form::open(['method'=>'POST','action'=>['Medical\VitalsController@addVitals']])!!}
+                                            <div class="form-group col-md-6">
+                                            <input type="hidden" name="onPatient" value="{{ $patient->id }}">
+                                                <div class="input-group m-b col-md-12">
+                                                    <input type="text" class="form-control" name="weight" placeholder="Weight">
+                                                </div>
+                                                <div class="input-group m-b col-md-12">
+                                                    <input type="text" class="form-control" name="height" placeholder="Height">
+                                                </div>
+                                                <div class="input-group m-b col-md-12">
+                                                    <input type="text" class="form-control" name="bmi" placeholder="BMI">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="input-group m-b col-md-12">
+                                                    <input type="phone" class="form-control" name="bloodPressure" placeholder="Blood Pressure">
+                                                </div>
+                                                <div class="input-group m-b col-md-12">
+                                                    <input type="phone" class="form-control" name="pulse" placeholder="Pulse">
+                                                </div>
+                                                <div class="input-group m-b col-md-12">
+                                                    <input type="emial" class="form-control" name="temperature" placeholder="Temperature">
+                                                </div>
+                                               
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer bg-light lt">
+                                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Save, Go Back</button>
+                                                        {!! Form::submit('Save Health Vitals', ['class' => 'btn btn-info btn-sm pull-right']) !!} 
+                                                    {!!Form::close()!!}
+                                            </div>
+                            </div>
+                            </div><!-- /. modal dialog -->
+                            </div><!-- /. modal-->
+                            <!-- Health Vitals -->
                             <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in" id="medical_history">
                                 <h1 class="h6 m-b-sm m-t-sm"></h1>
                                 <div class="panel panel-default">

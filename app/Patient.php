@@ -11,4 +11,9 @@ class Patient extends Model
         'patientPhone', 'kinPhone', 'email', 'residence', 'county', 'countryOrigin', 'createdBy',
     ];
 
+    public function vitals()
+  	{
+    	return $this->hasMany('App\Vital','onPatient');
+  	}
+  	
 }
