@@ -7,6 +7,7 @@ use App\Patient;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Input;
 use Session;
 use App\Http\Requests;
 use App\Vital;

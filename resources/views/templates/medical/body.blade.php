@@ -243,7 +243,7 @@
                                         <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".health-vitals"><i class="fa fa-plus"></i> Add Health Vitals</button>
                                     </div>
                                     <div>
-                                    <table class="table table-striped m-b-none">
+                                    <table class="table m-b-none">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
@@ -271,7 +271,7 @@
                                     </table>
                                     </div>
                                     <div class="panel-footer">
-                                       <!--  <div class="text-center">{{ $vitals->links() }}</div> -->
+                                        <div class="text-center">{{ $vitals->links() }}</div> 
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            {!! Form::open(['method'=>'POST','action'=>['Medical\VitalsController@addVitals']])!!}
+                                            {!! Form::open(['method'=>'POST', 'action'=>['Medical\VitalsController@addVitals']])!!}
                                             <div class="form-group col-md-6">
                                             <input type="hidden" name="onPatient" value="{{ $patient->id }}">
                                                 <div class="input-group m-b col-md-12">
@@ -331,7 +331,7 @@
                                         Active Diagnosis
                                         <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Diagnosis</button>
                                     </div>
-                                    <table class="table table-striped m-b-none">
+                                    <table class="table m-b-none">
                                         <thead>
                                             <tr>
                                                 <th>Diagnosis</th>
@@ -357,7 +357,7 @@
                                         Immunizations
                                         <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Immunizations</button>
                                     </div>
-                                    <table class="table table-striped m-b-none">
+                                    <table class="table m-b-none">
                                         <thead>
                                             <tr>
                                                 <th>Vaccine</th>

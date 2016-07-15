@@ -9,6 +9,7 @@ use App\Vital;
 use App\Http\Requests;
 use Auth;
 use DB;
+use Input;
 use Session;
 
 class VitalsController extends Controller
@@ -58,7 +59,7 @@ class VitalsController extends Controller
 
 
        
-    	return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
+    	return redirect()->route('medical-profile'); 
     
     }
 }

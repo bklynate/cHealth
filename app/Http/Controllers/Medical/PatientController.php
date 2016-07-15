@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Medical;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\Vital;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Auth;
 use App\Appointment;
 use DB;
+use Input;
 use Session;
 
 class PatientController extends Controller
@@ -137,7 +139,9 @@ class PatientController extends Controller
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                  ->where('status','Awaiting Consultation');
 
-        return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
+
+        return redirect()->route('medical-profile'); 
+        
 
     }
 }
