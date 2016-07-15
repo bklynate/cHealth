@@ -33,7 +33,8 @@ class MedicalController extends Controller
 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
-                                                 ->where('status','Awaiting Consultation');
+                                                  ->where('status','Awaiting Consultation')
+                                                  ->paginate(10); 
 
 
         return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
