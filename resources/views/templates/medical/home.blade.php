@@ -23,4 +23,5 @@
 
 @section('scripts')
 	@include('templates.main.scripts')
+	@include('templates.medical.scripts')
 @stop

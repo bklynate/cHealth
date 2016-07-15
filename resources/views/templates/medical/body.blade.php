@@ -39,8 +39,8 @@
             </div>
             <div class="col-md-12">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist" ng-transclude="">
-                    <li role="presentation" class="active"><a href="#demographics" aria-controls="home" role="tab" data-toggle="tab">Demographics</a></li>
+                <ul id="medical_tabs" class="nav nav-tabs" role="tablist" ng-transclude="">
+                    <li role="presentation"><a href="#demographics" aria-controls="home" role="tab" data-toggle="tab">Demographics</a></li>
                     <li role="presentation"><a href="#health_vitals" aria-controls="health_vitals" role="tab" data-toggle="tab">Health Vitals</a></li>
                     <li role="presentation"><a href="#medical_history" aria-controls="medical_history" role="tab" data-toggle="tab">Medical History</a></li>
                     <li role="presentation"><a href="#medication" aria-controls="medication" role="tab" data-toggle="tab">Medications</a></li>
