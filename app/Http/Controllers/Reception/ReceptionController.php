@@ -55,8 +55,9 @@ class ReceptionController extends Controller
                                         ->orWhere('firstName', 'LIKE', '%' . $query . '%')
                                         ->orWhere('middleName', 'LIKE', '%' . $query . '%')
                                         ->paginate(10);
-            
-        return view('templates.reception.patient-results', compact('patient', 'query'))->with('info', 'Sorry, there were no search results for '. $query .'.');
+
+        $services = DB::table('services')->get();
+        return view('templates.reception.patient-results', compact('patient', 'query', 'services'));
     }
 
     public function searchAppointment(Request $request){

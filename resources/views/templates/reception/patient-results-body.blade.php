@@ -22,9 +22,11 @@
                         <li class="list-group-item bg-light lt">
                             <div class="col-md-3 pull-right">
                                 <select name="doctor" class="form-control m-b" reqiored>
+                                    
                                     <option>Select a Doctor...</option>
-                                    <option>Family Doctor</option>
-                                    <option>Ganaecologist</option>
+                                    @foreach($services as $service)
+                                    <option value="{{$service->service}}">{{$service->service}} (Ksh. {{$service->cost}})</option>
+                                    @endforeach
                                 </select>
                                 <a href="" class="btn btn-info" data-toggle="modal" data-target=".appointment-{{$patient->id}}">Create an Appointment <i class="fa fa-calendar"></i></a>
                             </div>
