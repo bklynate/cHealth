@@ -12,8 +12,8 @@
 	@include('templates.sub-sections.nav.main-header')
 @stop
 
-@section('sign-up')
-	@include('templates.sub-sections.body.sign-up')
+@section('sign-in')
+	@include('templates.sub-sections.body.sign-in')
 @stop
 
 @section('medical-stats')

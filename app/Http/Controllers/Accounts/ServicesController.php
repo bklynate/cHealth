@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Session;
 use Auth;
 use DB;
+use App\User;
 
 class ServicesController extends Controller
 {
@@ -18,7 +19,7 @@ class ServicesController extends Controller
 
         $user = Auth::user()->id;
 
-        return view('templates.accounts.services', compact('services', 'user'));    
+        return view('templates.accounts.services', compact('services', 'user', 'users'));    
     }
 
     public function addService(Request $request)

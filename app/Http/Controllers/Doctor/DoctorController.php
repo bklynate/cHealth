@@ -7,7 +7,7 @@ use DB;
 use App\Appointment;
 use App\Patient;
 use Illuminate\Http\Request;
-
+use App\Vital;
 use App\Http\Requests;
 
 class DoctorController extends Controller
@@ -56,7 +56,7 @@ class DoctorController extends Controller
     }
 
     //CONSULT PATIENT
-    public function consultPatient($id, $medId)
+    public function consultPatient($id)
     {
         //Update the appointment status field
         Appointment::where('id', $id)
@@ -67,18 +67,24 @@ class DoctorController extends Controller
 
         //get appointment
         $appointment = DB::table('appointments')->where('staffId', $staffId)
-                                                ->where('status', "Consultation");
+                                                ->where('status', 'Consultation')->value('medId');
 
-        //Get medId, based on the appointments table 
-        $patientMedId = $appointment->medId;
 
         //Get patients record
-        $patient = DB::table('patients')->where('medId', $patientMedId)->first(); 
+        $patient = DB::table('patients')->where('medId', $appointment)->first(); 
+        
+        $vitals=0;
+        if($patient){
+            $patientId = $patient->id;
 
+            //Get vitals records
+            $vitals = Vital::where('onPatient', $patientId)->paginate(10);
+        } 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
-                                                    ->where('status','Awaiting Consultation');
+                                                  ->where('status','Awaiting Consultation')
+                                                  ->paginate(10); 
 
-        return view('templates.medical.home', compact('appointments', 'patient'));
+        return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
     }
 }

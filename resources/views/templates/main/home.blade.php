@@ -31,7 +31,7 @@
                 <!-- stats -->
                 <div class="row">
                   <div class="col-md-12">
-                    @yield('sign-up')
+                    @yield('sign-in')
                     @yield('medical-stats')
                     @yield('doctor-blocks')
                     @yield('doctor-medical-stats')

@@ -90,7 +90,7 @@ class AuthController extends Controller
                 return redirect()->route('lab-home');
             }
         } else {
-            return redirect()->route('home')->with('info','Sorry, We could not sign you in with those details.');
+            return redirect()->route('home')->with('info','Sorry, we could not sign you in with those details. Please try again.');
         }
    }
 

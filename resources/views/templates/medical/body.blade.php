@@ -1,6 +1,4 @@
-@if(!$patient)
-    Sorry, you haven't selected a patient medical record. Kindly choose consult patient from your <a class="text-info" href="{{ route('doctor-appointments')}}">appointments</a>.
-@else
+
 @if($errors->any())
     <div class="alert alert-danger">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -548,4 +546,3 @@
             <div class="h5 panel-footer bg-light lt ">
             </div>
     </div>
-@endif

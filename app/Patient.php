@@ -15,5 +15,12 @@ class Patient extends Model
   	{
     	return $this->hasMany('App\Vital','onPatient');
   	}
+
+
+    // returns the instance of the user who is author of that vital
+    public function author()
+    {
+        return $this->belongsTo('App\User','id');
+    }
   	
 }

@@ -51,5 +51,15 @@ class User extends Authenticatable
         return $this->roles()->detach($role);
     }
 
-    
+    public function patients()
+    {
+        return $this->hasMany('App\Patient','id');
+    }
+
+    public function vitals()
+    {
+        return $this->hasMany('App\Vital','from_user');
+    }
+
+
 }

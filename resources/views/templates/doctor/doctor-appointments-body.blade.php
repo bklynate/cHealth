@@ -16,11 +16,11 @@
             
             <thead>
                 <tr>
-                    <th style="width:5%">Med ID.</th>
-                    <th style="width:15%">Patient</th>
-                    <th style="width:10%">Doctor</th>
-                    <th style="width:10%">Time</th>
-                    <th style="width:5%">Status</th>
+                    <th style="width:10%">Med ID.</th>
+                    <th style="width:20%">Patient</th>
+                    <th style="width:20%">Doctor</th>
+                    <th style="width:15%">Time</th>
+                    <th style="width:20%">Status</th>
                     <th style="width:15%">Options</th>
                 </tr>
             </thead>
@@ -40,19 +40,14 @@
                         {{ Carbon\Carbon::parse($appointment->created_at)->diffForHumans() }}
                     </td>
                     <td>
-                        <button class="btn btn-xs btn-info">{{ $appointment->status }}</button>
+                        <span class="text-info">{{ $appointment->status }}</span>
                     </td>
                     <td class="center">
-                        <div class="btn-group btn-group-justified">
-                       
-                                <!-- <a href="{{ route('consultPatient',$appointment->id ) }}" class="btn btn-xs btn-success">Consult</a> -->
-                                {!!Form::open(['method'=>'PUT','action'=>['Doctor\DoctorController@consultPatient',$appointment->id, $appointment->medId]])!!}
-                                {!! Form::submit('Consult', ['class' => 'btn btn-danger btn-sm pull-right']) !!}
-                                {!!Form::close()!!}
                                 
-                                <!-- <a data-toggle="modal" data-target=".appointment-{{$appointment->id}}" type="submit" class="btn btn-xs btn-primary">Refer</a> -->
-                        </div>
-                        
+                                {!!Form::open(['method'=>'PUT','action'=>['Doctor\DoctorController@consultPatient',$appointment->id]])!!}
+                                {!! Form::submit('Consult', ['class' => 'btn btn-info btn-xs pull-left']) !!}
+                                {!!Form::close()!!}
+                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".appointment-{{$appointment->id}}" value="">Cancel</button>
                     </td>
                 </tr>
                 <div class="modal fade appointment-{{$appointment->id}}" tabindex="-1">
