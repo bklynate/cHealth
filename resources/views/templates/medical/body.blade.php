@@ -1,3 +1,6 @@
+@if(!$patient)
+    Sorry, there is no patient medical record.
+@else
 @if($errors->any())
     <div class="alert alert-danger">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -545,3 +548,4 @@
             <div class="h5 panel-footer bg-light lt ">
             </div>
     </div>
+@endif

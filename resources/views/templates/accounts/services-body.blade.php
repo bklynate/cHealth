@@ -47,7 +47,7 @@
                         @endif
                     </td>
                     <td>
-                        {{ $service->updatedBy }}
+                        {{ $service->$user->fullname }}
                     </td>
                     <td>
                         {{ $service->createdBy }}

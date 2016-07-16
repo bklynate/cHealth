@@ -26,16 +26,17 @@ class MedicalController extends Controller
 
         //Get patients record
         $patient = DB::table('patients')->where('medId', $appointment)->first(); 
-        $patientId = $patient->id;
+        if($patient){
+            $patientId = $patient->id;
 
-        //Get vitals records
-        $vitals = Vital::where('onPatient', $patientId)->paginate(10);
-
+            //Get vitals records
+            $vitals = Vital::where('onPatient', $patientId)->paginate(10);
+        } 
+        $vitals=0;
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                   ->where('status','Awaiting Consultation')
                                                   ->paginate(10); 
-
 
         return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
     }
