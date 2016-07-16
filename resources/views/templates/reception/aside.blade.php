@@ -47,6 +47,11 @@
                             </span>
                             <i class="fa fa-file-text-o"></i>
                             <span class="">Appointments</span>
+                            @if(count($appointments)!=0)
+                            <b class="badge bg-info pull-right">
+                            {{ $appointments }}
+                            </b>
+                            @endif
                         </a>
                     </li>
                 </ul>
@@ -61,18 +66,16 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12 b-r">
-
-                        <h4 class="m-t-none m-b font-thin"><i class="fa fa-user"></i> Search for a patient below: <button type="button" class="close" data-dismiss="modal">&times;</button></h4> 
+                        <h4 class="m-t-none m-b font-thin"><i class="fa fa-user"></i> Search for a patient below: <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
                         {!! Form::open(array('route' => 'search')) !!}
-                            <div class="form-group">
-                                <div class="input-group m-b">
-                                    <input type="text" class="form-control rounded" placeholder="Search here..." required>
-                                    <span class="input-group-btn">
-
-                                        <button class="btn btn-info rounded" type="submit"><i class="fa fa-search"></i> Search</button>
-                                    </span>
-                                </div>
+                        <div class="form-group">
+                            <div class="input-group m-b">
+                                <input type="text" class="form-control rounded" placeholder="Search here..." required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info rounded" type="submit"><i class="fa fa-search"></i> Search</button>
+                                </span>
                             </div>
+                        </div>
                         {!! Form::close() !!}
                     </div>
                 </div>

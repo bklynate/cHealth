@@ -19,8 +19,10 @@ class AppointmentsController extends Controller
     }
 
     public function getAppointments(){
-    	$appointments = Appointment::paginate(10);
-        return view('templates.reception.appointments', compact('appointments'));
+    	$appointmentsAll = Appointment::paginate(10);
+        $appointments = count(Appointment::all());
+
+        return view('templates.reception.appointments', compact('appointments', 'appointmentsAll'));
     }
     
     public function createAppointment(Request $request)

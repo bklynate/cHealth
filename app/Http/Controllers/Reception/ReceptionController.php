@@ -21,19 +21,25 @@ class ReceptionController extends Controller
     //GET PATIENTS
     public function getPatients()
     {
-        return view('templates.reception.patients');
+        $appointments = count(Appointment::all());
+
+        return view('templates.reception.patients', compact('appointments'));
     }
 
     //GET PATIENT RESULTS
     public function getPatientsResults()
     {
-        return view('templates.reception.patient-results');
+        $appointments = count(Appointment::all());
+
+        return view('templates.reception.patient-results', compact('appointments'));
     }
 
     //GET REGISTRATION
     public function getRegistration()
     {
-        return view('templates.reception.registration');
+        $appointments = count(Appointment::all());
+
+        return view('templates.reception.registration', compact('appointments'));
     }
 
     //GET CALENDAR
@@ -45,7 +51,9 @@ class ReceptionController extends Controller
     //GET APPOINTMENTS
     public function getAppointments()
     {
-        return view('templates.reception.appointments');
+        $appointments = count(Appointment::all());
+
+        return view('templates.reception.appointments', compact('appointments'));
     }
 
     public function searchPatient(Request $request){
@@ -55,7 +63,7 @@ class ReceptionController extends Controller
                                         ->orWhere('firstName', 'LIKE', '%' . $query . '%')
                                         ->orWhere('middleName', 'LIKE', '%' . $query . '%')
                                         ->paginate(10);
-
+        
         $services = DB::table('services')->get();
         return view('templates.reception.patient-results', compact('patient', 'query', 'services'));
     }
@@ -63,13 +71,13 @@ class ReceptionController extends Controller
     public function searchAppointment(Request $request){
 
         $query = $request->input('search');
-        $appointments = DB::table('appointments')->where('patient', 'LIKE', '%' . $query . '%')
+        $appointmentsAll = DB::table('appointments')->where('patient', 'LIKE', '%' . $query . '%')
                                         ->orWhere('serviceType', 'LIKE', '%' . $query . '%')
                                         ->orWhere('createdBy', 'LIKE', '%' . $query . '%')
                                         ->orWhere('created_at', 'LIKE', '%' . $query . '%')
                                         ->paginate(10);
+        $appointments = count(Appointment::all());
 
-
-        return view('templates.reception.appointments', compact('appointments', 'query'));
+        return view('templates.reception.appointments', compact('appointmentsAll', 'query'));
     }
 }

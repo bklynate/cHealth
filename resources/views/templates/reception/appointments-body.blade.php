@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($appointments->reverse() as $appointment)
+                @foreach($appointmentsAll->reverse() as $appointment)
                 <tr>
                     <td>
                         {{ $appointment->medId }}
@@ -94,7 +94,7 @@
         </div>
         <div class="text-center">
             <ul class="pagination"> 
-                    {{ $appointments->links() }}
+                    {{ $appointmentsAll->links() }}
             </ul>
         </div>
     </div>
