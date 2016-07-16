@@ -47,7 +47,7 @@
                         {{ Carbon\Carbon::parse($appointment->created_at)->diffForHumans() }}
                     </td>
                     <td>
-                       <button class="btn btn-xs btn-info">{{ $appointment->status }} <i class="fa fa-money"></i></button>
+                       <span class="text-info">{{ $appointment->status }}</span>
                     </td>
                     <td class="center">
                         <a href="">
