@@ -1,5 +1,5 @@
 @if(!$patient)
-    Sorry, there is no patient medical record.
+    Sorry, you haven't selected a patient medical record. Kindly choose consult patient from your <a class="text-info" href="{{ route('doctor-appointments')}}">appointments</a>.
 @else
 @if($errors->any())
     <div class="alert alert-danger">
