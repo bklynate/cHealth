@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateServicesTable extends Migration
 {
-    /**
+     /**
      * Run the migrations.
      *
      * @return void
@@ -15,9 +15,15 @@ class CreateServicesTable extends Migration
         Schema::create('services', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name');
-            $table->string('cost');
-            $table->string('status');
+            $table->string('service');
+            $table->double('cost');
+            $table->integer('status');
+            $table->integer('createdBy')->unsigned()->default(0);
+            $table->foreign('createdBy')
+                  ->references('id')->on('users');
+            $table->integer('updatedBy')->unsigned()->default(0);
+            $table->foreign('updatedBy')
+                  ->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -58,7 +58,7 @@
                 <div class="modal fade appointment-{{$appointment->id}}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header bg-info dk">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h5 class="blue bigger">
                                 <i class="fa fa-trash"></i>

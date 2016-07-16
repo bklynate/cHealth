@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     protected $fillable = [
-        'name', 'cost', 'status'
+        'service', 'cost', 'status', 'createdBy', 'updatedBy'
     ];
+
+    public function author()
+    {
+    	return $this->belongsTo('App\User','from_user');
+  	}
+
 }

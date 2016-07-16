@@ -24,13 +24,6 @@ class AccountsController extends Controller
         return view('templates.accounts.payments', compact('payments'));
     }
 
-    //GET EXPENSES
-    public function getServices()
-    {
-        $services = Service::paginate(10);
-        return view('templates.accounts.services', compact('services'));    
-    }
-
     //GET INSURANCE
     public function getInsurance()
     {
