@@ -6,8 +6,10 @@ use App\Payment;
 use App\Service;
 use App\Insurance;
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
+use App\Appointment;
+use Session;
 
 class AccountsController extends Controller
 {
@@ -20,7 +22,7 @@ class AccountsController extends Controller
     //GET PAYMENTS
     public function getPayments()
     {   
-        $payments = Payment::paginate(10);
+        $payments  = DB::table('appointments')->where('status', "Accounts")->paginate(10);
         return view('templates.accounts.payments', compact('payments'));
     }
 
@@ -35,5 +37,16 @@ class AccountsController extends Controller
     public function getReports()
     {
         return view('templates.accounts.reports');
+    }
+
+    public function confirmPayment($id)
+    {
+        //Update the appointment status field
+        Appointment::where('id', $id)
+          ->update(['status' => "Awaiting Consultation"]);
+
+        Session::flash('info', 'The payment has been confirmed successfully.');
+
+        return redirect()->route('accounts-payments');
     }
 }

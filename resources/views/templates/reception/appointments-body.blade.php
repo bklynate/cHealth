@@ -1,10 +1,9 @@
 @if(count($appointments)===0)
 <h5>Sorry, there are no appointments.</h5>
 @else
-@if (Session::has('info'))
+@if (Session::has('info-patient'))
 <div class="alert alert-info text-center btn-close" role="alert">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  {{ Session::get('info') }}
+  {{ Session::get('info-patient') }}
 </div>
 @endif
 <div class="panel panel-default">
@@ -23,11 +22,11 @@
             
             <thead>
                 <tr>
-                    <th style="width:5%">Med ID.</th>
-                    <th style="width:15%">Patient</th>
+                    <th style="width:10%">Med ID.</th>
+                    <th style="width:20%">Patient</th>
                     <th style="width:10%">Doctor</th>
-                    <th style="width:10%">Time</th>
-                    <th style="width:5%">Status</th>
+                    <th style="width:15%">Time</th>
+                    <th style="width:10%">Status</th>
                     <th style="width:15%">Options</th>
                 </tr>
             </thead>
@@ -50,22 +49,20 @@
                        <span class="text-info">{{ $appointment->status }}</span>
                     </td>
                     <td class="center">
-                        <a href="">
-                            Edit <i class="fa fa-pencil text-center"></i>
-                        </a> / 
-                        <a data-toggle="modal" data-target=".appointment-{{$appointment->id}}">
-                            Cancel <i class="fa fa-trash"></i>
-                        </a>
+                        <button class="btn btn-xs btn-default"><i class="fa fa-pencil"></i> Edit</button>
+                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".appointment-{{$appointment->id}}">
+                            Cancel <i class="fa fa-times"></i>
+                        </button>
                     </td>
                 </tr>
                 <div class="modal fade appointment-{{$appointment->id}}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">
+                                            <div class="modal-header bg-info dk">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h5 class="blue bigger">
-                                                    <i class="fa fa-trash"></i>
-                                                Please, Confirm to cancel this appointment?</h5>
+                                                    <i class="fa fa-times"></i>
+                                                Cancel Appointment</h5>
                                             </div>
 
                                             <div class="modal-body">
@@ -78,11 +75,11 @@
 
                                             <div class="modal-footer">
                                             {!!Form::open()!!}
-                                                        {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-info pull-left', 'data-dismiss' => 'modal']) !!} 
+                                                        {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!} 
                                                     {!!Form::close()!!}
 
                                                     {!!Form::open(['method'=>'DELETE','action'=>['Reception\AppointmentsController@cancelAppointment',$appointment->id]])!!}
-                                                        {!! Form::submit('Cancel Appointment', ['class' => 'btn btn-danger btn-sm pull-right']) !!} 
+                                                        {!! Form::submit('Yes, Cancel', ['class' => 'btn btn-danger btn-sm pull-right']) !!} 
                                                     {!!Form::close()!!}
                                             </div>
                                         </div>

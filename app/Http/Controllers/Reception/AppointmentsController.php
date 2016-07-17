@@ -10,6 +10,7 @@ use App\Http\Requests;
 use DB;
 use Auth;
 use Illuminate\Database\Query\Builder;
+use Session;
 
 class AppointmentsController extends Controller
 {
@@ -50,7 +51,7 @@ class AppointmentsController extends Controller
                 'patient'             => $patientName,
                 'serviceType'         => $request->input('doctor'),
                 'staffId'             => '123422', //To be sorted
-                'status'              => 'Awaiting Consultation',
+                'status'              => 'Accounts',
                 'createdBy'           => $createdBy,
             ]);
         return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
@@ -62,6 +63,8 @@ class AppointmentsController extends Controller
         $patientName = $appointment->patient;
 
         $appointment->delete();
+
+        Session::flash('info-patient', 'The patient\'s appointment has been deleted successfully');
 
         return redirect()->route('reception-appointments')->with('info', 'You have canceled successfully the appointment for '.$patientName .'.');
     }

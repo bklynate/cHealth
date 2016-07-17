@@ -9,6 +9,7 @@ use App\Patient;
 use Illuminate\Http\Request;
 use App\Vital;
 use App\Http\Requests;
+use Session;
 
 class DoctorController extends Controller
 {
@@ -84,6 +85,8 @@ class DoctorController extends Controller
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                   ->where('status','Awaiting Consultation')
                                                   ->paginate(10); 
+
+        Session::flash('info', 'The patient\'s appointment status has been successfully changed to "Consultation".');
 
         return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
     }

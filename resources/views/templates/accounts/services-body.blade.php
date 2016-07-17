@@ -54,7 +54,7 @@
                     </td>
                     <td class="text-center">
                         <button class="btn btn-default btn-xs pull-left" data-toggle="modal" data-target=".edit-service-{{$service->id}}">Edit Service</button>
-                        <button class="btn btn-info btn-xs pull-left" data-toggle="modal" data-target=".{{$service->id}}">Delete</button>
+                        <button class="btn btn-danger btn-xs pull-left" data-toggle="modal" data-target=".{{$service->id}}">Delete</button>
                     </td>
                 </tr>
                 <!-- Delete Service -->
@@ -97,7 +97,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 {!! Form::open(['method'=>'PUT','action'=>['Accounts\ServicesController@updateService', $service->id]])!!}
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-12">
                                                     <div class="input-group m-b col-md-12">
                                                         <input type="text" class="form-control" name="service" placeholder="Service" value="{{ $service->service }}">
                                                     </div>
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="modal-footer bg-light lt">
                                         <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Go Back</button>
-                                        {!! Form::submit('Update Demographics', ['class' => 'btn btn-info btn-sm pull-right']) !!}
+                                        {!! Form::submit('Update Demographics', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                                         {!!Form::close()!!}
                                     </div>
                                 </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use Carbon\Carbon; 
+use Session;
 
 class ReceptionController extends Controller
 {
@@ -63,9 +64,12 @@ class ReceptionController extends Controller
                                         ->orWhere('firstName', 'LIKE', '%' . $query . '%')
                                         ->orWhere('middleName', 'LIKE', '%' . $query . '%')
                                         ->paginate(10);
-        
+        $appointments = count(Appointment::all());
         $services = DB::table('services')->get();
-        return view('templates.reception.patient-results', compact('patient', 'query', 'services'));
+
+        Session::flash('info', 'There were ' . count($patient) .' search results for "'. $query . '".' );
+
+        return view('templates.reception.patient-results', compact('patient', 'query','appointments', 'services'));
     }
 
     public function searchAppointment(Request $request){
@@ -78,6 +82,8 @@ class ReceptionController extends Controller
                                         ->paginate(10);
         $appointments = count(Appointment::all());
 
-        return view('templates.reception.appointments', compact('appointmentsAll', 'query'));
+        Session::flash('info-patient', 'There were ' . count($appointmentsAll) .' search results for "'. $query . '".' );
+
+        return view('templates.reception.appointments', compact('appointmentsAll','appointments', 'query'));
     }
 }

@@ -6,7 +6,7 @@
       <nav ui-nav class="navi clearfix">
         <ul class="nav">
           <li class="padder m-t m-b-sm text-muted">
-            <button class="btn m-b-xs btn-success btn-addon">
+            <button class="btn m-b-xs btn-info btn-addon">
             <i class="fa fa-calendar"></i>
             Appointments
             </button>

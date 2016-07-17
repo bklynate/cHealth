@@ -21,8 +21,7 @@
                         {!!Form::open(['method'=>'POST', 'url'=>'create-appointment', 'action'=>['Reception\AppointmentsController@CreateAppointment']])!!}
                         <li class="list-group-item bg-light lt">
                             <div class="col-md-3 pull-right">
-                                <select name="doctor" class="form-control m-b" reqiored>
-                                    
+                                <select name="doctor" class="form-control m-b" required>
                                     <option>Select a Doctor...</option>
                                     @foreach($services as $service)
                                     <option value="{{$service->service}}">{{$service->service}} (Ksh. {{$service->cost}})</option>
@@ -31,10 +30,10 @@
                                 <a href="" class="btn btn-info" data-toggle="modal" data-target=".appointment-{{$patient->id}}">Create an Appointment <i class="fa fa-calendar"></i></a>
                             </div>
                             <p>
-                                <span class="h4 text-primary m-b-sm m-t-sm block">
+                                <span class="h4 m-b-sm m-t-sm block">
                                     {{ $patient->firstName }} {{ $patient->middleName }} {{ $patient->lastName }}</span>ID: {{ $patient->identification }}<input name="id_no" type="hidden" value="{{ $patient->identification }}"></input><br> Age: {{ $patient->dateOfBirth }} years.
                                 <br>Gender: {{ $patient->gender }}</p>
-                                <p><span class="label bg-primary pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-primary"></i> MED Id:</span> <span class="m-r-sm">{{ $patient->medId }}</span>
+                                <p><span class="label bg-info pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-info"></i> MED Id:</span> <span class="m-r-sm">{{ $patient->medId }}</span>
                                 <br>
                             </p>
                         </li>
@@ -42,7 +41,7 @@
                         <div class="modal fade appointment-{{$patient->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                             <div class="modal-dialog modal-md">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header bg-info dk">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="gridSystemModalLabel">Create an Appointment</h4>
                                     </div>
@@ -56,7 +55,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No, Go Back</button>
                                         
-                                        {!! Form::submit('Yes, I\'m sure', ['class' => 'btn btn-success pull-right']) !!}
+                                        {!! Form::submit('Yes, I\'m sure', ['class' => 'btn btn-info pull-right']) !!}
                                         
                                         {!!Form::close()!!}
                                     </div>

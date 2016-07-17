@@ -4,7 +4,7 @@
             <div class="col-xs-6">
               <a href="{{route('doctor-appointments')}}" class="block panel padder-v bg-info item dker">
                 <span class="text-white font-thin h1 block">{{ count($appointments) }}</span>
-                <span class="text-muted text-xs">Awaiting Appointments</span>
+                <span class="text-muted text-xs">Pending Appointments</span>
                 <span class="bottom text-right w-full">
                   <i class="fa fa-file-text-o text-muted m-r-sm"></i>
                 </span>

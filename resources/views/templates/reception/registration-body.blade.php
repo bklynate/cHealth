@@ -1,9 +1,4 @@
-<div class="wrapper-md">
-  <div class="row col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading bg-primary text-left">Register a New Patient</div>
-      <div class="panel-body">
-      @if (Session::has('info'))
+@if (Session::has('info'))
         <div class="alert alert-info text-center" role="alert">
           {{ Session::get('info') }}
         </div>
@@ -18,6 +13,9 @@
                   </ul>
                   </div>
                   @endif
+    <div class="panel panel-default">
+      <div class="panel-heading bg-primary text-left">Register a New Patient</div>
+      <div class="panel-body">
 
                   <!-- url="reception-registration" action="{{route('register-patient')}}" method="POST" class="form-horizontal form" role="form" -->
         <form role="form" url="reception-registration" action="{{route('register-patient')}}" method="POST">
@@ -99,6 +97,4 @@
         </div>
       {!! Form::close() !!}
     </div>
-  </div>
-</div>
-</div>
+  </div>  
