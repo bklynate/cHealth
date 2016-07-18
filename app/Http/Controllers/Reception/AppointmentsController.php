@@ -33,13 +33,13 @@ class AppointmentsController extends Controller
                 'createdBy'           => 'max:20'
             ]);
 
-        $patient = $request->input('id_no');
+        $patient = $request->input('medId');
 
         //Get patient details
-        $patientFirstName  = DB::table('patients')->where('identification', $patient)->value('firstName');
-        $patientMiddleName = DB::table('patients')->where('identification', $patient)->value('MiddleName');
-        $patientLastName   = DB::table('patients')->where('identification', $patient)->value('LastName');
-        $patientMedId      = DB::table('patients')->where('identification', $patient)->value('medId');
+        $patientFirstName  = DB::table('patients')->where('medId', $patient)->value('firstName');
+        $patientMiddleName = DB::table('patients')->where('medId', $patient)->value('MiddleName');
+        $patientLastName   = DB::table('patients')->where('medId', $patient)->value('LastName');
+        $patientMedId      = DB::table('patients')->where('medId', $patient)->value('medId');
 
         $patientName = $patientFirstName . ' ' . $patientMiddleName . ' ' . $patientLastName;
 

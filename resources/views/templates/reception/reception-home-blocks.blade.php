@@ -13,9 +13,9 @@
                                             </a>
                                         </div>
                                         <div class="col-xs-6">
-                                            <a href="{{ route('reception-calendar') }}" class="block panel padder-v bg-info item dker">
-                                                <span class="text-white font-thin h1 block"><i class="fa fa-calendar"></i></span>
-                                                <span class="text-muted text-xs">Calender</span>
+                                            <a href="{{ route('reception-doctors') }}" class="block panel padder-v bg-info item dker">
+                                                <span class="text-white font-thin h1 block"><i class="fa fa-user-md"></i></span>
+                                                <span class="text-muted text-xs">Staff</span>
                                             </a>
                                         </div>
                                         <div class="col-xs-6">

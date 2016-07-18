@@ -37,7 +37,7 @@ Route::get('/reception-registration',     ['uses' => 'Reception\ReceptionControl
 Route::post('/reception-registration',    ['uses' => 'Medical\PatientController@registerPatient',                'as' => 'register-patient']);
 Route::post('/search',                    ['uses' => 'Reception\ReceptionController@searchPatient',                       'as' => 'search']);
 
-Route::get('/reception-calendar',         ['uses' => 'Reception\ReceptionController@getCalendar','as' => 'reception-calendar', 'middleware'=> 'auth:receptionist']);
+Route::get('/reception-doctors',         ['uses' => 'Reception\ReceptionController@getDoctors','as' => 'reception-doctors', 'middleware'=> 'auth:receptionist']);
 Route::get('/reception-appointments',     ['uses' => 'Reception\AppointmentsController@getAppointments','as' => 'reception-appointments', 'middleware'=> 'auth:receptionist']);
 Route::post('/create-appointment',        ['uses' => 'Reception\AppointmentsController@createAppointment',                'as' => 'create-appointment']);
 Route::post('/search-appointment',        ['uses' => 'Reception\ReceptionController@searchAppointment',                       'as' => 'search-appointment']);

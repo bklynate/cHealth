@@ -8,9 +8,18 @@ use DB;
 use App\Http\Requests;
 use Carbon\Carbon; 
 use Session;
+use App\Role;
+use Auth;
+use App\User;
+use Illuminate\Contracts\Auth\Guard;
 
 class ReceptionController extends Controller
 {
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     //GET HOME PAGE
     public function getHome()
     {
@@ -44,9 +53,13 @@ class ReceptionController extends Controller
     }
 
     //GET CALENDAR
-    public function getCalendar()
+    public function getDoctors()
     {
-        return view('templates.reception.calendar');
+        $doctors = User::paginate(10);
+
+        $appointments = count(Appointment::all());
+        
+        return view('templates.reception.doctors', compact('appointments', 'doctors'));
     }
 
     //GET APPOINTMENTS
@@ -61,8 +74,18 @@ class ReceptionController extends Controller
 
         $query = $request->input('search');
         $patient = DB::table('patients')->where('identification', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('medId', 'LIKE', '%' . $query . '%')
                                         ->orWhere('firstName', 'LIKE', '%' . $query . '%')
                                         ->orWhere('middleName', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('lastName', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('dateOfBirth', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('estimatedAge', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('gender', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('patientPhone', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('kinPhone', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('email', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('residence', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('county', 'LIKE', '%' . $query . '%')
                                         ->paginate(10);
         $appointments = count(Appointment::all());
         $services = DB::table('services')->get();

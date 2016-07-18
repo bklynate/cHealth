@@ -31,7 +31,7 @@
                             </div>
                             <p>
                                 <span class="h4 m-b-sm m-t-sm block">
-                                    {{ $patient->firstName }} {{ $patient->middleName }} {{ $patient->lastName }}</span>ID: {{ $patient->identification }}<input name="id_no" type="hidden" value="{{ $patient->identification }}"></input><br> Age: {{ $patient->dateOfBirth }} years.
+                                    {{ $patient->firstName }} {{ $patient->middleName }} {{ $patient->lastName }}</span>ID: {{ $patient->identification }}<input name="medId" type="hidden" value="{{ $patient->medId }}"></input><br> Age: {{ $patient->dateOfBirth }} years.
                                 <br>Gender: {{ $patient->gender }}</p>
                                 <p><span class="label bg-info pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-info"></i> MED Id:</span> <span class="m-r-sm">{{ $patient->medId }}</span>
                                 <br>

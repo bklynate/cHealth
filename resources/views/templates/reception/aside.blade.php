@@ -18,6 +18,19 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('reception-appointments') }}">
+                            <span class="pull-right text-muted">
+                            </span>
+                            <i class="fa fa-file-text-o"></i>
+                            <span class="">Appointments</span>
+                            @if(count($appointments)>0)
+                            <b class="badge bg-info pull-right">
+                            {{ $appointments }}
+                            </b>
+                            @endif
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('reception-patients') }}">
                             <span class="pull-right text-muted">
                             </span>
@@ -33,25 +46,12 @@
                             <span class="">Registration</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="{{ route('reception-calendar') }}">
-                            <span class="pull-right text-muted">
-                            </span>
-                            <i class="fa fa-calendar"></i>
-                            <span class="">Calendar</span>
-                        </a>
-                    </li> -->
                     <li>
-                        <a href="{{ route('reception-appointments') }}">
+                        <a href="{{ route('reception-doctors') }}">
                             <span class="pull-right text-muted">
                             </span>
-                            <i class="fa fa-file-text-o"></i>
-                            <span class="">Appointments</span>
-                            @if(count($appointments)!=0)
-                            <b class="badge bg-info pull-right">
-                            {{ $appointments }}
-                            </b>
-                            @endif
+                            <i class="fa fa-user-md"></i>
+                            <span class="">Staff</span>
                         </a>
                     </li>
                 </ul>

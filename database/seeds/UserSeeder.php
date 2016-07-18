@@ -26,47 +26,47 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'         => 'neema001',
+            'username'      => 'neema001',
             'staffId'       => '123456',
             'password'      => Hash::make('password')
         ));
         $user->assignRole($receptionistRole);
 
         $user = User::create(array(
-            'fullname'    => 'Valentine Mwangi',
-            'username'         => 'neema002',
+            'fullname'      => 'Valentine Mwangi',
+            'username'      => 'neema002',
             'staffId'       => '123422',
             'password'      => Hash::make('password')
         ));
         $user->assignRole($doctorRole);
 
         $user = User::create(array(
-            'fullname'    => 'Valentine Mwangi',
-            'username'         => 'neema003',
+            'fullname'      => 'Valentine Mwangi',
+            'username'      => 'neema003',
             'staffId'       => '333456',
             'password'      => Hash::make('password')
         ));
         $user->assignRole($accountantRole);
 
         $user = User::create(array(
-            'fullname'    => 'Valentine Mwangi',
-            'username'         => 'neema004',
+            'fullname'      => 'Valentine Mwangi',
+            'username'      => 'neema004',
             'staffId'       => '223456',
             'password'      => Hash::make('password')
         ));
         $user->assignRole($pharmacyRole);
 
         $user = User::create(array(
-            'fullname'    => 'Valentine Mwangi',
-            'username'         => 'neema005',
+            'fullname'      => 'Valentine Mwangi',
+            'username'      => 'neema005',
             'staffId'       => '1233456',
             'password'      => Hash::make('password')
         ));
         $user->assignRole($nurseRole);
 
         $user = User::create(array(
-            'fullname'    => 'Valentine Mwangi',
-            'username'         => 'neema006',
+            'fullname'      => 'Valentine Mwangi',
+            'username'      => 'neema006',
             'staffId'       => '1234256',
             'password'      => Hash::make('password')
         ));
