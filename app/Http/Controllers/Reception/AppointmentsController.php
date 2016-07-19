@@ -54,6 +54,8 @@ class AppointmentsController extends Controller
                 'status'              => 'Accounts',
                 'createdBy'           => $createdBy,
             ]);
+        Session::flash('info-patient', 'The patient\'s appointment status has been successfully created.');
+
         return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
     }
 

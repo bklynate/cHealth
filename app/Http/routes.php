@@ -22,13 +22,9 @@ Route::group(array('before' => 'auth', 'after' => 'no-cache'), function()
 
 Route::get('/doctor',                     ['uses' => 'Doctor\DoctorController@getDashboard','as' => 'doctor-home', 'middleware'=> 'auth:doctor']);
 Route::get('/doctor-appointments',        ['uses' => 'Doctor\DoctorController@getDoctorAppointments','as' => 'doctor-appointments', 'middleware'=> 'auth:doctor']);
-Route::get('/doctor-consultations',       ['uses' => 'Doctor\DoctorController@getDoctorConsultations','as' => 'doctor-consultations', 'middleware'=> 'auth:doctor']);
+Route::get('/doctor-history',       ['uses' => 'Doctor\DoctorController@getDoctorHistory','as' => 'doctor-consultations', 'middleware'=> 'auth:doctor']);
 Route::get('/doctor-calendar',            ['uses' => 'Doctor\DoctorController@getDoctorCalendar','as' => 'doctor-calendar', 'middleware'=> 'auth:doctor']);
 Route::put('/appointment/{id}',           ['uses' => 'Doctor\DoctorController@consultPatient', 'as' => 'consultPatient']);
-
-Route::put('/patient/{id}',               ['uses' => 'Medical\PatientController@updatePatient', 'as' => 'updatePatient']);
-Route::post('/health-vitals',             ['uses' => 'Medical\VitalsController@addVitals', 'as' => 'add-vitals']);
-
 
 Route::get('/reception',                  ['uses' => 'Reception\ReceptionController@getHome','as' => 'reception-home', 'middleware'=> 'auth:receptionist']);
 Route::get('/reception-patients',         ['uses' => 'Reception\ReceptionController@getPatients','as' => 'reception-patients', 'middleware'=> 'auth:receptionist']);
@@ -61,6 +57,11 @@ Route::get('/lab-records',        ['uses' => 'Lab\LabController@getRecords','as'
 Route::get('/lab-past-records',   ['uses' => 'Lab\LabController@getPastRecords','as' => 'past-records']);
 
 Route::get('/medical-profile',    ['uses' => 'Medical\MedicalController@getHome','as' => 'medical-profile', 'middleware'=> 'auth:doctor']);
+Route::put('/checkout/{id}',           ['uses' => 'Doctor\DoctorController@consulted', 'as' => 'consulted']);
+Route::put('/patient/{id}',               ['uses' => 'Medical\PatientController@updatePatient', 'as' => 'updatePatient']);
+Route::post('/health-vitals',             ['uses' => 'Medical\VitalsController@addVitals', 'as' => 'add-vitals']);
+Route::post('/prescribe-medication',             ['uses' => 'Medical\MedicationController@prescribeMedication', 'as' => '/prescribe-medication']);
+
 
 });
 

@@ -44,7 +44,7 @@
                     </td>
                     <td class="center">
                                 @if($appointment->status === "Awaiting Consultation")
-                                <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$appointment->id}}" value=""><i class="fa fa-check"></i> Consult Patient</button>
+                                <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$appointment->id}}"><i class="fa fa-check"></i> Consult Patient</button>
                                 <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".appointment-{{$appointment->id}}" value="">Cancel <i class="fa fa-times"></i></button>
                                 @endif
                     </td>

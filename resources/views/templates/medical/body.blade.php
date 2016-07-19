@@ -1,16 +1,19 @@
+@if(!$patient)
+Sorry, no medical profile is shown since there isn't any selected appointment.
 
+@else
 @if($errors->any())
-    <div class="alert alert-danger">
+<div class="alert alert-danger">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        @foreach($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    </div>
+    @foreach($errors->all() as $error)
+    <p>{{ $error }}</p>
+    @endforeach
+</div>
 @endif
 @if (Session::has('info'))
 <div class="alert alert-info text-center btn-close" role="alert">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  {{ Session::get('info') }}
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{ Session::get('info') }}
 </div>
 @endif
 <div class="panel panel-default">
@@ -18,26 +21,93 @@
         Medical Profile
     </div>
     <div class="panel-body">
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <div class="col-md-8">
-                        <span class="thumb-lg">
-                        <img src="http://newtricks.com/wp-content/uploads/2011/06/unknown-128.jpg" class="img-circle"></span>
-                    </span>
-                    <p>
-                        <h4>{{ $patient->firstName }} {{ $patient->middleName }} {{ $patient->lastName }}</h4> ID. No: {{ $patient->identification }}
-                        <br> Age: {{ Carbon\Carbon::parse($patient->dateOfBirth)->age }} years
-                        <br>
-                    </p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="form-group col-md-12">
-                        <div class="btn-group btn-group-justified">
-                            <a href="" class="btn btn-info">Check Out <i class="fa fa-user-md"></i></a>
-                        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <span class="thumb-lg">
+                    <img src="http://newtricks.com/wp-content/uploads/2011/06/unknown-128.jpg" class="img-circle"></span>
+                </span>
+                <p>
+                    <h4>{{ $patient->firstName }} {{ $patient->middleName }} {{ $patient->lastName }}</h4> ID. No: {{ $patient->identification }}
+                    <br> Age: {{ Carbon\Carbon::parse($patient->dateOfBirth)->age }} years
+                    <br>
+                </p>
+            </div>
+            <div class="col-md-3 pull-right">
+                <div class="form-group">
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-success btn-sm" data-toggle="modal" data-target=".consulted-{{$appointment->id}}"><i class="fa fa-user-md"></i> Check Out</a>
+                        <a class="btn btn-info btn-sm" data-toggle="modal" data-target=".refer-{{$appointment->id}}"> Refer</a>
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Checkout patient-->
+        <div class="modal fade consulted-{{$appointment->id}}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info dk">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="blue bigger">
+                        <i class="fa fa-check"></i>
+                        Confirm Checkout</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <p>Are you sure you want to check out this patient?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {!!Form::open()!!}
+                        {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
+                        {!!Form::close()!!}
+                        {!!Form::open(['method'=>'PUT','action'=>['Doctor\DoctorController@consulted',$appointment->id]])!!}
+                        {!! Form::submit('Yes, Checkout Patient', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+                </div><!-- /. modal dialog -->
+            </div>
+            <!-- Checkout patient-->
+
+            <!-- Refer patient-->
+        <div class="modal fade refer-{{$appointment->id}}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info dk">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="blue bigger">
+                        Refer Patient</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                <label>Kindly choose the department to refer the patient.</label><br><br>
+                                    <select>
+                                        <option class="">Consultation</option>
+                                        <option class="">Dentist</option>
+                                        <option class="">Optician</option>
+                                        <option class="">Emergency</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {!!Form::open()!!}
+                        {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
+                        {!!Form::close()!!}
+                        {!!Form::open(['method'=>'PUT','action'=>['Doctor\DoctorController@consulted',$appointment->id]])!!}
+                        {!! Form::submit('Refer Patient', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+                </div><!-- /. modal dialog -->
+            </div>
+            <!-- Refer patient-->
             <div class="col-md-12">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist" ng-transclude="">
@@ -77,16 +147,16 @@
                                     <span class="text-muted">Date of Birth:</span> N/A<br>
                                 </p>
                                 @else
-                                  <p class="h6 m">
+                                <p class="h6 m">
                                     <span class="text-muted">Date of Birth:</span> {{ $patient->dateOfBirth }}<br>
-                                </p>  
+                                </p>
                                 @endif
                                 @if($patient->estimatedAge=="")
                                 <p class="h6 m">
                                     <span class="text-muted">Estimated Age:</span> N/A<br>
                                 </p>
                                 @else
-                                    <span class="text-muted">Estimated Age:</span> {{ $patient->estimatedAge }}<br>
+                                <span class="text-muted">Estimated Age:</span> {{ $patient->estimatedAge }}<br>
                                 @endif
                                 </small>
                             </div>
@@ -145,7 +215,7 @@
                                                     <input type="text" class="form-control" name="middleName" placeholder="Middle Name"value="{{ $patient->middleName }}">
                                                 </div>
                                                 <div class="input-group m-b col-md-12">
-                                                    <input type="text" class="form-control" name="lastName" placeholder="Last Name" 
+                                                    <input type="text" class="form-control" name="lastName" placeholder="Last Name"
                                                     value="{{ $patient->lastName }}">
                                                 </div>
                                                 <div class="input-group m-b col-md-12">
@@ -214,7 +284,7 @@
                                                     <input type="text" class="form-control" name="county" placeholder="County" value="{{ $patient->county }}">
                                                 </div>
                                                 <div class="input-group m-b col-md-12">
-                                                <input type="text" class="form-control" name="county" placeholder="County" value="{{ $patient->countryOrigin }}">
+                                                    <input type="text" class="form-control" name="county" placeholder="County" value="{{ $patient->countryOrigin }}">
                                                     <!--    <select ui-jq="chosen" class="w-full" name="countryOrigin">
                                                         <optgroup label="Country" selected="{{ $patient->countryOrigin }}">
                                                             @include('templates.reception.select-countries')
@@ -228,10 +298,10 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer bg-light lt">
-                                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Update, Go Back</button>
-                                                        {!! Form::submit('Update Demographics', ['class' => 'btn btn-info btn-sm pull-right']) !!} 
-                                                    {!!Form::close()!!}
-                                            </div>
+                                    <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Update, Go Back</button>
+                                    {!! Form::submit('Update Demographics', ['class' => 'btn btn-info btn-sm pull-right']) !!}
+                                    {!!Form::close()!!}
+                                </div>
                             </div>
                             </div><!-- /. modal dialog -->
                             </div><!-- /. modal-->
@@ -244,305 +314,359 @@
                                         <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".health-vitals"><i class="fa fa-plus"></i> Add Health Vitals</button>
                                     </div>
                                     <div>
-                                    <table class="table m-b-none">
-                                        <thead>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Weight</th>
-                                                <th>Height</th>
-                                                <th>BMI</th>
-                                                <th>Blood Pressure</th>
-                                                <th>Pulse</th>
-                                                <th>Temp</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($vitals->reverse() as $vital)
-                                            <tr>
-                                                <td>{{ Carbon\Carbon::parse($vital->created_at)->diffForHumans() }}</td>
-                                                <td>{{$vital->weight}} Kg</td>
-                                                <td>{{$vital->height}} cm</td>
-                                                <td>{{$vital->bmi}}</td>
-                                                <td>{{$vital->weight}} bpm</td>
-                                                <td>{{$vital->weight}} bpm</td>
-                                                <td>{{$vital->temperature}}&deg;C</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                        <table class="table m-b-none">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Weight</th>
+                                                    <th>Height</th>
+                                                    <th>BMI</th>
+                                                    <th>Blood Pressure</th>
+                                                    <th>Pulse</th>
+                                                    <th>Temp</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($vitals->reverse() as $vital)
+                                                <tr>
+                                                    <td>{{ Carbon\Carbon::parse($vital->created_at)->diffForHumans() }}</td>
+                                                    <td>{{$vital->weight}} Kg</td>
+                                                    <td>{{$vital->height}} cm</td>
+                                                    <td>{{$vital->bmi}}</td>
+                                                    <td>{{$vital->weight}} bpm</td>
+                                                    <td>{{$vital->weight}} bpm</td>
+                                                    <td>{{$vital->temperature}}&deg;C</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="panel-footer">
-                                        <div class="text-center">{{ $vitals->links() }}</div> 
+                                        <div class="text-center">{{ $vitals->links() }}</div>
                                     </div>
                                 </div>
                             </div>
                             <!--  Health Vitals -->
-                    <div class="modal fade health-vitals" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-info dk">
-                                    <h4 class="font-thin text-center">Add Health Vitals <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            {!! Form::open(['method'=>'POST', 'action'=>['Medical\VitalsController@addVitals']])!!}
-                                            <div class="form-group col-md-6">
-                                            <input type="hidden" name="onPatient" value="{{ $patient->id }}">
-                                                <div class="input-group m-b col-md-12">
-                                                    <input type="text" class="form-control" name="weight" placeholder="Weight">
-                                                </div>
-                                                <div class="input-group m-b col-md-12">
-                                                    <input type="text" class="form-control" name="height" placeholder="Height">
-                                                </div>
-                                                <div class="input-group m-b col-md-12">
-                                                    <input type="text" class="form-control" name="bmi" placeholder="BMI">
+                            <div class="modal fade health-vitals" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-info dk">
+                                            <h4 class="font-thin text-center">Add Health Vitals <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    {!! Form::open(['method'=>'POST', 'action'=>['Medical\VitalsController@addVitals']])!!}
+                                                    <div class="form-group col-md-6">
+                                                        <input type="hidden" name="onPatient" value="{{ $patient->id }}">
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="text" class="form-control" name="weight" placeholder="Weight">
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="text" class="form-control" name="height" placeholder="Height">
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="text" class="form-control" name="bmi" placeholder="BMI">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="phone" class="form-control" name="bloodPressure" placeholder="Blood Pressure">
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="phone" class="form-control" name="pulse" placeholder="Pulse">
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="emial" class="form-control" name="temperature" placeholder="Temperature">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                    
                                                 </div>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <div class="input-group m-b col-md-12">
-                                                    <input type="phone" class="form-control" name="bloodPressure" placeholder="Blood Pressure">
-                                                </div>
-                                                <div class="input-group m-b col-md-12">
-                                                    <input type="phone" class="form-control" name="pulse" placeholder="Pulse">
-                                                </div>
-                                                <div class="input-group m-b col-md-12">
-                                                    <input type="emial" class="form-control" name="temperature" placeholder="Temperature">
-                                                </div>
-                                               
+                                        </div>
+                                        <div class="modal-footer bg-light lt">
+                                            <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Save, Go Back</button>
+                                            {!! Form::submit('Save Health Vitals', ['class' => 'btn btn-info btn-sm pull-right']) !!}
+                                            {!!Form::close()!!}
+                                        </div>
+                                    </div>
+                                    </div><!-- /. modal dialog -->
+                                    </div><!-- /. modal-->
+                                    <!-- Health Vitals -->
+                                    <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in" id="medical_history">
+                                        <h1 class="h6 m-b-sm m-t-sm"></h1>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Active Diagnosis
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Diagnosis</button>
                                             </div>
-                                            
-                                            
+                                            <table class="table m-b-none">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Diagnosis</th>
+                                                        <th>From Date</th>
+                                                        <th>To Date</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Bandage of Wound</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>20/02/2016</td>
+                                                        <td>The patient needs to visit once every three days</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+                                        <div class="line b-b"></div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Immunizations
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Immunizations</button>
+                                            </div>
+                                            <table class="table m-b-none">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Vaccine</th>
+                                                        <th>Date/Time</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Hepatitis Kenya</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+                                        <div class="line b-b"></div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Injections/ Intravenous Therapies
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Injections/ Therapies</button>
+                                            </div>
+                                            <table class="table table-striped m-b-none">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Vaccine</th>
+                                                        <th>Date/Time</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Hepatitis Kenya</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+                                        <div class="line b-b"></div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Procedures, Surgeries and Hospitalization
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Procedures, Surgeries etc.</button>
+                                            </div>
+                                            <table class="table table-striped m-b-none">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Type</th>
+                                                        <th>From Date</th>
+                                                        <th>To Date</th>
+                                                        <th>Duration</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Left Leg Ankle</td>
+                                                        <td>Light insertion</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>3hrs</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+                                        <div class="line b-b"></div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Family and Social History
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Family and Social History</button>
+                                            </div>
+                                            <table class="table table-striped m-b-none">
+                                                <thead>
+                                                    <tr>
+                                                        <th>History</th>
+                                                        <th>Relationship</th>
+                                                        <th>From Date</th>
+                                                        <th>To Date</th>
+                                                        <th>Status</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Diabetes</td>
+                                                        <td>Mother</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>92/02/2019</td>
+                                                        <td>Alive</td>
+                                                        <td>She underwent consistent medication</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in lter" id="medication">
+                                        <div class="wrapper "></div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading ">
+                                                Medications
+                                                <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".medication"><i class="fa fa-plus"></i> Prescribe Medication</button>
+                                            </div>
+                                            <table class="table table-striped m-b-none ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Prescription</th>
+                                                        <th>Description</th>
+                                                        <th>From Date</th>
+                                                        <th>To Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($medications->reverse() as $medication)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $medication->prescription }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $medication->description }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $medication->from_date }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $medication->to_date }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {{ $medications->links() }}
+                                    </div>
+                                    
+                                    
+                                    <!--  Medication Vitals -->
+                            <div class="modal fade medication" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-info dk">
+                                            <h4 class="font-thin text-center">Prescribe Medication <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    {!! Form::open(['method'=>'POST', 'action'=>['Medical\MedicationController@prescribeMedication']])!!}
+                                                    <div class="form-group col-md-12">
+                                                        <input type="hidden" name="onPatient" value="{{ $patient->id }}">
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="text" class="form-control" name="prescription" placeholder="Prescription">
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <textarea type="text" class="form-control" name="description" placeholder="Description" rows="5"></textarea>
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="text" class="form-control" name="from_date" placeholder="From Date">
+                                                        </div>
+                                                        <div class="input-group m-b col-md-12">
+                                                            <input type="text" class="form-control" name="to_date" placeholder="To Date">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer bg-light lt">
+                                            <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Save, Go Back</button>
+                                            {!! Form::submit('Prescribe Medication', ['class' => 'btn btn-info btn-sm pull-right']) !!}
+                                            {!!Form::close()!!}
+                                        </div>
+                                    </div>
+                                    </div><!-- /. modal dialog -->
+                                    </div><!-- /. modal-->
+
+                                    <div role="tabpanel " class="tab-pane b-l b-r b-b wrapper fade in lter " id="allergies">
+                                        <div class="wrapper "></div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading ">
+                                                Allergies
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Allergies</button>
+                                            </div>
+                                            <table class="table table-striped m-b-none ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Allergen</th>
+                                                        <th>Severity</th>
+                                                        <th>Observed on</th>
+                                                        <th>Status</th>
+                                                        <th>Reactions</th>
+                                                        <th>Options</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Methyl Fructose</td>
+                                                        <td>severe</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>Active</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in lter " id="lab_records">
+                                        <div class="wrapper "></div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading ">
+                                                Lab Records
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Lab Record</button>
+                                            </div>
+                                            <table class="table table-striped m-b-none ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Test</th>
+                                                        <th>Lab</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Blood</td>
+                                                        <td>General</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer bg-light lt">
-                                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Save, Go Back</button>
-                                                        {!! Form::submit('Save Health Vitals', ['class' => 'btn btn-info btn-sm pull-right']) !!} 
-                                                    {!!Form::close()!!}
-                                            </div>
-                            </div>
-                            </div><!-- /. modal dialog -->
-                            </div><!-- /. modal-->
-                            <!-- Health Vitals -->
-                            <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in" id="medical_history">
-                                <h1 class="h6 m-b-sm m-t-sm"></h1>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Active Diagnosis
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Diagnosis</button>
-                                    </div>
-                                    <table class="table m-b-none">
-                                        <thead>
-                                            <tr>
-                                                <th>Diagnosis</th>
-                                                <th>From Date</th>
-                                                <th>To Date</th>
-                                                <th>Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Bandage of Wound</td>
-                                                <td>12/02/2016</td>
-                                                <td>20/02/2016</td>
-                                                <td>The patient needs to visit once every three days</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="wrapper"></div>
-                                <div class="line b-b"></div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Immunizations
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Immunizations</button>
-                                    </div>
-                                    <table class="table m-b-none">
-                                        <thead>
-                                            <tr>
-                                                <th>Vaccine</th>
-                                                <th>Date/Time</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hepatitis Kenya</td>
-                                                <td>12/02/2016</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="wrapper"></div>
-                                <div class="line b-b"></div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Injections/ Intravenous Therapies
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Injections/ Therapies</button>
-                                    </div>
-                                    <table class="table table-striped m-b-none">
-                                        <thead>
-                                            <tr>
-                                                <th>Vaccine</th>
-                                                <th>Date/Time</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hepatitis Kenya</td>
-                                                <td>12/02/2016</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="wrapper"></div>
-                                <div class="line b-b"></div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Procedures, Surgeries and Hospitalization
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Procedures, Surgeries etc.</button>
-                                    </div>
-                                    <table class="table table-striped m-b-none">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Type</th>
-                                                <th>From Date</th>
-                                                <th>To Date</th>
-                                                <th>Duration</th>
-                                                <th>Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Left Leg Ankle</td>
-                                                <td>Light insertion</td>
-                                                <td>12/02/2016</td>
-                                                <td>12/02/2016</td>
-                                                <td>3hrs</td>
-                                                <td>12/02/2016</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="wrapper"></div>
-                                <div class="line b-b"></div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Family and Social History
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Family and Social History</button>
-                                    </div>
-                                    <table class="table table-striped m-b-none">
-                                        <thead>
-                                            <tr>
-                                                <th>History</th>
-                                                <th>Relationship</th>
-                                                <th>From Date</th>
-                                                <th>To Date</th>
-                                                <th>Status</th>
-                                                <th>Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Diabetes</td>
-                                                <td>Mother</td>
-                                                <td>12/02/2016</td>
-                                                <td>92/02/2019</td>
-                                                <td>Alive</td>
-                                                <td>She underwent consistent medication</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in lter" id="medication">
-                                <div class="wrapper "></div>
-                                <div class="panel panel-default ">
-                                    <div class="panel-heading ">
-                                        Medications
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Medications</button>
-                                    </div>
-                                    <table class="table table-striped m-b-none ">
-                                        <thead>
-                                            <tr>
-                                                <th>Prescription</th>
-                                                <th>From Date</th>
-                                                <th>To Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Methyl Fructose</td>
-                                                <td>12/02/2016</td>
-                                                <td>12/02/2016</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div role="tabpanel " class="tab-pane b-l b-r b-b wrapper fade in lter " id="allergies">
-                                <div class="wrapper "></div>
-                                <div class="panel panel-default ">
-                                    <div class="panel-heading ">
-                                        Allergies
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Allergies</button>
-                                    </div>
-                                    <table class="table table-striped m-b-none ">
-                                        <thead>
-                                            <tr>
-                                                <th>Allergen</th>
-                                                <th>Severity</th>
-                                                <th>Observed on</th>
-                                                <th>Status</th>
-                                                <th>Reactions</th>
-                                                <th>Options</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Methyl Fructose</td>
-                                                <td>severe</td>
-                                                <td>12/02/2016</td>
-                                                <td>Active</td>
-                                                <td>12/02/2016</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in lter " id="lab_records">
-                                <div class="wrapper "></div>
-                                <div class="panel panel-default ">
-                                    <div class="panel-heading ">
-                                        Lab Records
-                                        <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Lab Record</button>
-                                    </div>
-                                    <table class="table table-striped m-b-none ">
-                                        <thead>
-                                            <tr>
-                                                <th>Test</th>
-                                                <th>Lab</th>
-                                                <th>Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Blood</td>
-                                                <td>General</td>
-                                                <td>12/02/2016</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <!-- <div class="row wrapper ">
+                                    <a href=" " class="btn btn-info "><i class="fa fa-close "></i> Done with Record</a>
+                                </div> -->
                             </div>
                         </div>
-                        <!-- <div class="row wrapper ">
-                            <a href=" " class="btn btn-info "><i class="fa fa-close "></i> Done with Record</a>
-                        </div> -->
+                    </div>
+                    <div class="h5 panel-footer bg-light lt ">
                     </div>
                 </div>
-            </div>
-            <div class="h5 panel-footer bg-light lt ">
-            </div>
-    </div>
+                @endif

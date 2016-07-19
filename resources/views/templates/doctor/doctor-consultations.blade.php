@@ -13,7 +13,7 @@
 @stop
 
 @section('doctor-consultations-body')
-	@include('templates.doctor.doctor-consultations-body')
+	@include('templates.doctor.doctor-history-body')
 @stop
 
 @section('footer')

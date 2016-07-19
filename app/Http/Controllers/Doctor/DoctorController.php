@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Vital;
 use App\Http\Requests;
 use Session;
+use App\Medication;
 
 class DoctorController extends Controller
 {
@@ -42,7 +43,7 @@ class DoctorController extends Controller
     }
 
     //GET CONSULTATIONS PAGE
-    public function getDoctorConsultations()
+    public function getDoctorHistory()
     {
         //Fetch doctor's appointments from getAppointments function in this class
         $appointments = $this->getAppointments();
@@ -80,14 +81,35 @@ class DoctorController extends Controller
 
             //Get vitals records
             $vitals = Vital::where('onPatient', $patientId)->paginate(10);
+            
+            //Get appointment Id for checkout button
+            $appointment = DB::table('appointments')->where('staffId', $staffId)
+                                                ->where('status','Consultation')->first();  
+            //Get medications to display on medical profile
+            $medications = Medication::where('onPatient', $patientId)->paginate(10);
+
         } 
         //Get appointments for the navigation
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                   ->where('status','Awaiting Consultation')
                                                   ->paginate(10); 
+        
 
         Session::flash('info', 'The patient\'s appointment status has been successfully changed to "Consultation".');
 
-        return view('templates.medical.home', compact('appointments', 'patient', 'vitals'));
+        return view('templates.medical.home', compact('appointments', 'appointment', 'patient', 'vitals', 'medications'));
+    }
+
+    //Onclick on the check out button in the medical profile
+    public function consulted($id)
+    {
+        //Update the appointment status field
+        Appointment::where('id', $id)
+          ->update(['status' => "Consultated"]);
+
+        Session::flash('info', 'The patient\'s appointment status has been successfully changed to "Consultated".');
+
+        return redirect()->route('medical-profile');
+
     }
 }
