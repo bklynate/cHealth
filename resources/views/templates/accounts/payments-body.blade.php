@@ -40,8 +40,11 @@
                     <td>
                         {{ $payment->patient }}
                     </td>
-                    <td>
-                        <span class="text-info">{{ $payment->status }}</i></span>
+                    <td>@if(($payment->status)==="Not paid")
+                            <span class="text-danger">{{ $payment->status }}</i></span>
+                        @else
+                            <span class="text-success">{{ $payment->status }}</i></span>
+                        @endif
                     </td>
                     <td>
                         {{ $payment->serviceType }}
