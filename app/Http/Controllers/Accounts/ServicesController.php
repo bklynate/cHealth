@@ -15,11 +15,13 @@ class ServicesController extends Controller
     //GET EXPENSES
     public function getServices(Request $request)
     {
+        $payments  = DB::table('payments')->where('status', "Not Paid");
+
         $services = Service::paginate(10);
 
         $user = Auth::user()->id;
 
-        return view('templates.accounts.services', compact('services', 'user', 'users'));    
+        return view('templates.accounts.services', compact('services', 'user', 'users', 'payments'));    
     }
 
     public function addService(Request $request)

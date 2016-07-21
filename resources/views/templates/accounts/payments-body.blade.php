@@ -26,7 +26,7 @@
                     <th style="width:20%">Patient Name</th>
                     <th style="width:10%">Status</th>
                     <th style="width:15%">Service</th>
-                    <th style="width:12%">Cost (Ksh.)</th>
+                    <th style="width:12%">Cost</th>
                     <th style="width:15%">Created on</th>
                     <th class="text-center" style="width:15%">Options</th>
                 </tr>
@@ -47,7 +47,7 @@
                         {{ $payment->serviceType }}
                     </td>
                     <td>
-                        
+                        Ksh. {{ $payment->cost }}
                     </td>
                     <td>
                         {{ Carbon\Carbon::parse($payment->created_at)->diffForHumans() }}

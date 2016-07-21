@@ -5,3 +5,19 @@
     	$(this).alert('close');
 	});
 </script>
+<script type="text/javascript">
+	//Redirect to home when session expires
+	$(function() {
+    	// Set idle time
+    	$( document ).idleTimer(7200000);
+	});
+
+	$(function() {
+    	$( document ).on( "idle.idleTimer", function(event, elem, obj){
+        	window.location.href = "/"
+    	});  
+	});
+</script>
+
+
+

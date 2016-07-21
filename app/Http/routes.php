@@ -51,6 +51,10 @@ Route::put('/accounts-services/{id}',         ['uses' => 'Accounts\ServicesContr
 Route::post('/search-services',               ['uses' => 'Accounts\ServicesController@searchService',                       'as' => 'search-services']);
 Route::put('/confirm-payment/{id}',           ['uses' => 'Accounts\AccountsController@confirmPayment', 'as' => 'confirm-payment']);
 
+Route::get('/pharmacy',                       ['uses' => 'Pharmacy\DispensationController@getHome','as' => 'pharmacy-home']);
+Route::get('/dispensations',                  ['uses' => 'Pharmacy\DispensationController@getDispensation','as' => 'pharmacy-dispensations']);
+Route::get('/inventory',                      ['uses' => 'Pharmacy\DispensationController@getInventory','as' => 'pharmacy-inventory']);
+
 
 Route::get('/lab',                ['uses' => 'Lab\LabController@getHome','as' => 'lab-home']);
 Route::get('/lab-records',        ['uses' => 'Lab\LabController@getRecords','as' => 'lab-records']);

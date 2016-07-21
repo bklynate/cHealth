@@ -7,8 +7,8 @@
         <ul class="nav">
           <li class="padder m-t m-b-sm text-muted">
             <button class="btn m-b-xs btn-info btn-addon">
-            <i class="fa fa-calendar"></i>
-            Appointments
+            <i class="fa fa-plus"></i>
+            Search Drug
             </button>
           </li>
           <li>
@@ -20,16 +20,13 @@
             </a>
           </li>
           <li>
-            <a href="{{route('doctor-appointments')}}">
+            <a href="{{route('pharmacy-dispensations')}}">
               <span class="pull-right text-muted">
               </span>
               <i class="fa fa-file-text-o"></i>
-              <span>Appointments</span>
-              @if(count($appointments)>0)
+              <span>Dispensations</span>
                 <b class="badge bg-info pull-right"> 
-                  {{ count($appointments) }}
                 </b>
-              @endif
             </a>
           </li>
           <li>
@@ -37,17 +34,17 @@
               <span class="pull-right text-muted">
               </span>
               <i class="fa fa-stethoscope"></i>
-              <span class="">Consultation</span>
+              <span class="">Inventory</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="{{route('doctor-consultations')}}">
               <span class="pull-right text-muted">
               </span>
               <i class="fa fa-database"></i>
-              <span class="">History</span>
+              <span class="">Notifications</span>
             </a>
-          </li>
+          </li> -->
           <!-- <li>
             <a href="{{route('doctor-calendar')}}">
               <span class="pull-right text-muted">

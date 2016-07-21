@@ -2,7 +2,7 @@
                                         <div class="row row-sm text-center">
                                             <div class="col-xs-6">
                                                 <a href="{{ route('accounts-payments') }}" class="block panel padder-v bg-info item dker">
-                                                    <span class="text-white font-thin h1 block"><i class="fa fa-plus"></i></span>
+                                                    <span class="text-white font-thin h1 block">{{ count($payments) }}</span>
                                                     <span class="text-muted text-xs">Payments</span>
                                                 </a>
                                             </div>

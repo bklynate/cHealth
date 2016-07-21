@@ -86,7 +86,7 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                             <div class="col-xs-12 col-sm-12">
                                 <div class="form-group">
                                 <label>Kindly choose the department to refer the patient.</label><br><br>
-                                    <select>
+                                    <select class="col-md-6">
                                         <option class="">Consultation</option>
                                         <option class="">Dentist</option>
                                         <option class="">Optician</option>

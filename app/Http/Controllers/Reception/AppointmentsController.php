@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Appointment;
 use App\Patient;
+use App\Payment;
 use App\Http\Requests; 
 use DB;
 use Auth;
@@ -41,6 +42,10 @@ class AppointmentsController extends Controller
         $patientLastName   = DB::table('patients')->where('medId', $patient)->value('LastName');
         $patientMedId      = DB::table('patients')->where('medId', $patient)->value('medId');
 
+        //To get cost and create appointment
+        $serviceType       = DB::table('appointments')->where('medId', $patient)->value('serviceType');
+        $cost              = DB::table('services')->where('service', $serviceType)->value('cost');       
+
         $patientName = $patientFirstName . ' ' . $patientMiddleName . ' ' . $patientLastName;
 
         //Appointment created by this logged in user.
@@ -54,6 +59,17 @@ class AppointmentsController extends Controller
                 'status'              => 'Accounts',
                 'createdBy'           => $createdBy,
             ]);
+
+        //Create Payment
+        Payment::create([
+                'medId'               => $patientMedId,
+                'patient'             => $patientName,
+                'status'              => 'Not paid',
+                'cost'                => $cost,
+                'serviceType'         => $serviceType,
+                'receivedBy'          => $createdBy,
+            ]);
+
         Session::flash('info-patient', 'The patient\'s appointment status has been successfully created.');
 
         return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
