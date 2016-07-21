@@ -40,11 +40,7 @@ class AppointmentsController extends Controller
         $patientFirstName  = DB::table('patients')->where('medId', $patient)->value('firstName');
         $patientMiddleName = DB::table('patients')->where('medId', $patient)->value('MiddleName');
         $patientLastName   = DB::table('patients')->where('medId', $patient)->value('LastName');
-        $patientMedId      = DB::table('patients')->where('medId', $patient)->value('medId');
-
-        //To get cost and create appointment
-        $serviceType       = DB::table('appointments')->where('medId', $patient)->value('serviceType');
-        $cost              = DB::table('services')->where('service', $serviceType)->value('cost');       
+        $patientMedId      = DB::table('patients')->where('medId', $patient)->value('medId');      
 
         $patientName = $patientFirstName . ' ' . $patientMiddleName . ' ' . $patientLastName;
 
@@ -60,17 +56,22 @@ class AppointmentsController extends Controller
                 'createdBy'           => $createdBy,
             ]);
 
+        //To get cost and create appointment(Cannot come before the above Appointment::create since
+        //in the case where the first appoinment hasn't been created the 1st select statement 
+        //below would return error of integritiy constant violation since there isn't 
+        //and appointment to select the medId from).
+        $serviceType       = DB::table('appointments')->where('medId', $patient)->value('serviceType');
+        $cost              = DB::table('services')->where('service', $serviceType)->value('cost'); 
+
         //Create Payment
         Payment::create([
                 'medId'               => $patientMedId,
                 'patient'             => $patientName,
-                'status'              => 'Not paid',
+                'status'              => "Not Paid",
                 'cost'                => $cost,
                 'serviceType'         => $serviceType,
                 'receivedBy'          => $createdBy,
             ]);
-
-        Session::flash('info-patient', 'The patient\'s appointment status has been successfully created.');
 
         return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
     }

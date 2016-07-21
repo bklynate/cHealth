@@ -16,14 +16,14 @@ class AccountsController extends Controller
     //GET HOME PAGE
     public function getHome()
     {
-        $payments  = DB::table('payments')->where('status', "Not Paid");
+        $payments  = DB::table('payments')->where('status', "Not Paid")->get();
         return view('templates.accounts.home', compact('payments'));
     }
 
     //GET PAYMENTS
     public function getPayments()
     {   
-        $payments  = DB::table('payments')->where('status', "Not Paid");
+        $payments  = DB::table('payments')->where('status', "Not Paid")->get();
 
         $allpayments  = DB::table('payments')->paginate(10);
 
@@ -33,7 +33,7 @@ class AccountsController extends Controller
     //GET INSURANCE
     public function getInsurance()
     {
-        $payments  = DB::table('payments')->where('status', "Not Paid");
+        $payments  = DB::table('payments')->where('status', "Not Paid")->get();
         $insurances = Insurance::paginate(10);
         return view('templates.accounts.insurance', compact('insurances', 'payments'));
     }

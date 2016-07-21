@@ -15,7 +15,7 @@ class ServicesController extends Controller
     //GET EXPENSES
     public function getServices(Request $request)
     {
-        $payments  = DB::table('payments')->where('status', "Not Paid");
+        $payments  = DB::table('payments')->where('status', "Not Paid")->get();
 
         $services = Service::paginate(10);
 

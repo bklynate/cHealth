@@ -5,7 +5,7 @@
 </div>
 @endif
 @if(count($payments)===0)
-<h5>Sorry, there are no pending payments.</h5>
+<h5>Sorry, there are no processed payments.</h5>
 @else
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -40,7 +40,7 @@
                     <td>
                         {{ $payment->patient }}
                     </td>
-                    <td>@if(($payment->status)==="Not paid")
+                    <td>@if(($payment->status)==="Not Paid")
                             <span class="text-danger">{{ $payment->status }}</i></span>
                         @else
                             <span class="text-success">{{ $payment->status }}</i></span>

@@ -1,10 +1,17 @@
 <div class="col-md-5">
                                         <div class="row row-sm text-center">
                                             <div class="col-xs-6">
-                                                <a href="{{ route('accounts-payments') }}" class="block panel padder-v bg-info item dker">
+                                                @if($payments)
+                                                    <a href="{{ route('accounts-payments') }}" class="block panel padder-v bg-danger item dk">
+                                                        <span class="text-white font-thin h1 block">{{ count($payments) }}</span>
+                                                        <span class="text-muted text-xs">Pending Payments</span>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('accounts-payments') }}" class="block panel padder-v bg-info item dker">
                                                     <span class="text-white font-thin h1 block">{{ count($payments) }}</span>
                                                     <span class="text-muted text-xs">Pending Payments</span>
-                                                </a>
+                                                    </a>
+                                                @endif
                                             </div>
                                             <div class="col-xs-6">
                                                 <a href="{{ route('accounts-services') }}" class="block panel padder-v bg-info item dker">

@@ -23,8 +23,8 @@
                             </span>
                             <i class="fa fa-plus"></i>
                             <span class="">Payments</span>
-                            @if(count($payments)!=0)
-                            <b class="badge bg-info pull-right">
+                            @if(count($payments)>0)
+                            <b class="badge bg-danger dk pull-right">
                             {{ count($payments) }}
                             </b>
                             @endif
