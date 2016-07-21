@@ -73,7 +73,7 @@ class AppointmentsController extends Controller
                 'receivedBy'          => $createdBy,
             ]);
 
-        return redirect()->route('reception-patients')->with('info', 'The Appointment has been created successfully.');
+        return redirect()->route('reception-appointments')->with('info-patient', 'The appointment has been created successfully.');
     }
 
     public function cancelAppointment($id)

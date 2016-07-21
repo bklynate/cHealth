@@ -4,7 +4,7 @@
     {{ Session::get('info') }}
 </div>
 @endif
-@if(count($payments)===0)
+@if(count($allpayments)===0)
 <h5>Sorry, there are no processed payments.</h5>
 @else
 <div class="panel panel-default">
@@ -19,7 +19,7 @@
         {!! Form::close() !!}
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-sm table-responsive">
+        <table class="table table-striped table-xs table-responsive">
             <thead>
                 <tr>
                     <th style="width:10%">Med Id.</th>
