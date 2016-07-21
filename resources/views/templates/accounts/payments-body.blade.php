@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($payments->reverse() as $payment)
+                @foreach($allpayments->reverse() as $payment)
                 <tr>
                     <td>
                         {{ $payment->medId }}
@@ -53,7 +53,11 @@
                         {{ Carbon\Carbon::parse($payment->created_at)->diffForHumans() }}
                     </td>
                     <td class="center">
-                        <button class="btn btn-success btn-xs" data-toggle="modal" data-target=".confirm-{{$payment->id}}"><i class="fa fa-check"></i> Confirm Payment</button>
+                        @if(($payment->status)==="Not Paid")
+                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target=".confirm-{{$payment->id}}"><i class="fa fa-check"></i> Confirm Payment</button>
+                        @else
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".confirm-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit Payment</button>
+                        @endif
                     </td>
                 </tr>
                 <!-- Confirm Payment -->
@@ -75,7 +79,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> No, Go Back</button>
-                                {!!Form::open(['method'=>'PUT','action'=>['Accounts\AccountsController@confirmPayment',$payment->id]])!!}
+                                {!!Form::open(['method'=>'PUT','action'=>['Accounts\AccountsController@confirmPayment',$payment->medId]])!!}
                                 {!! Form::submit('Confirm Payment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                                 {!!Form::close()!!}
                             </div>
@@ -88,7 +92,7 @@
                     </div>
                     <div class="text-center">
                         <ul class="pagination">
-                            {{ $payments->links() }}
+                            {{ $allpayments->links() }}
                         </ul>
                     </div>
                 </div>

@@ -23,8 +23,11 @@ class AccountsController extends Controller
     //GET PAYMENTS
     public function getPayments()
     {   
-        $payments  = DB::table('payments')->paginate(10);
-        return view('templates.accounts.payments', compact('payments'));
+        $payments  = DB::table('payments')->where('status', "Not Paid");
+
+        $allpayments  = DB::table('payments')->paginate(10);
+
+        return view('templates.accounts.payments', compact('payments', 'allpayments'));
     }
 
     //GET INSURANCE
@@ -41,11 +44,13 @@ class AccountsController extends Controller
         return view('templates.accounts.reports');
     }
 
-    public function confirmPayment($id)
+    public function confirmPayment($medId)
     {
         //Update the appointment status field
-        Appointment::where('id', $id)
-          ->update(['status' => "Awaiting Consultation"]);
+        Appointment::where('medId', $medId)->where('status', "Accounts")->update(['status' => "Awaiting Consultation"]);
+
+        Payment::where('medId', $medId)->where('status', "Not Paid")->update(['status'=>"Paid"]);
+
 
         Session::flash('info', 'The payment has been confirmed successfully.');
 
