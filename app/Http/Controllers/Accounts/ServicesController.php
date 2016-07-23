@@ -68,7 +68,7 @@ class ServicesController extends Controller
         $input = $request->all();
         $service->fill($input)->save();
 
-        Session::flash('info', 'The service have been successfully updated.');
+        Session::flash('info', 'The service has been successfully updated.');
 
         return redirect()->route('accounts-services'); 
     }

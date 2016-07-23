@@ -9,7 +9,7 @@
 @else
 <div class="panel panel-default">
     <div class="panel-heading">
-        {!! Form::open(array('route' => 'search-services', 'class'=>'form-inline text-right')) !!}
+        {!! Form::open(array('route' => 'search-payment', 'class'=>'form-inline text-right')) !!}
         <div class="form-group">
             <div class="input-group">
                 <input placeholder="Search payments" name="search" class="form-control" type="text" required>
@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th style="width:10%">Med Id.</th>
-                    <th style="width:20%">Patient Name</th>
+                    <th style="width:25%">Patient Name</th>
                     <th style="width:10%">Status</th>
                     <th style="width:15%">Service</th>
                     <th style="width:12%">Cost</th>
@@ -59,11 +59,11 @@
                         @if(($payment->status)==="Not Paid")
                             <button class="btn btn-success btn-xs" data-toggle="modal" data-target=".confirm-{{$payment->id}}"><i class="fa fa-check"></i> Confirm Payment</button>
                         @else
-                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".confirm-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit Payment</button>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit Payment</button>
                         @endif
                     </td>
                 </tr>
-                <!-- Confirm Payment -->
+                <!-- Edit Payment -->
                 <div class="modal fade confirm-{{$payment->id}}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -76,7 +76,7 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12">
-                                        <p>Are you sure you want to confirm payment for <strong>{{ $payment->patient }}</strong>?</p>
+                                        <p>Are you sure you want to confirm payment of <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
                                     </div>
                                 </div>
                             </div>
@@ -89,6 +89,74 @@
                         </div>
                         </div><!-- /. modal dialog -->
                         </div><!-- /. modal-->
+                        <!-- Confirm Payment -->
+                        <div class="modal fade edit-{{$payment->id}}" tabindex="-1">
+                            <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-info dk">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="blue bigger text-center">
+                                        <i class="fa fa-pencil"></i>
+                                        Edit Payment</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            {!! Form::open(['method'=>'PUT','action'=>['Accounts\AccountsController@updatePayment', $payment->id]])!!}
+                                            @if(($payment->status)==="Paid")
+                                            <div class="form-group col-md-11 col-md-offset-1">
+                                                <label>
+                                                   Edit Payment Status:
+                                                </label>
+                                                <div class="radio">
+                                                    <label class="i-checks">
+                                                        <input type="radio" name="status" value="Paid" checked>
+                                                        <i></i>
+                                                        Paid
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label class="i-checks">
+                                                        <input type="radio" name="status" value="Not Paid">
+                                                        <i></i>
+                                                        Not Paid
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @else
+                                            <div class="form-group col-md-11 col-md-offset-1">
+                                                <label>
+                                                    Payment Status:
+                                                </label>
+                                                <div class="radio">
+                                                    <label class="i-checks">
+                                                        <input type="radio" name="status" value="Paid">
+                                                        <i></i>
+                                                        Paid
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label class="i-checks">
+                                                        <input type="radio" name="status" value="Not Paid" checked>
+                                                        <i></i>
+                                                        Not Paid
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @endif
+                                            <div class="input-group m-b col-md-12">
+                                                <input type="hidden" class="form-control" name="updatedBy" placeholder="UpdatedBy"
+                                                value="{{ $user }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer bg-light lt">
+                                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Go Back</button>
+                                        {!! Form::submit('Update Payment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+                                        {!!Form::close()!!}
+                                    </div>
+                                </div>
+                                </div><!-- /. modal dialog -->
+                                </div><!-- /. modal-->
                                 @endforeach
                             </tbody>
                         </table>

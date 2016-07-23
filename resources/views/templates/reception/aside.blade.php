@@ -5,7 +5,7 @@
             <nav ui-nav class="navi clearfix">
                 <ul class="nav">
                     <li class="padder m-t m-b-sm text-muted">
-                        <button class="btn m-b-xs btn-info btn-addon" data-toggle="modal" data-target=".search-patient">
+                        <button class="btn m-b-xs btn-success btn-addon" data-toggle="modal" data-target=".search-patient">
                         <i class="fa fa-search"></i> Search Patients
                         </button>
                     </li>

@@ -50,6 +50,8 @@ Route::delete('/accounts-services/{id}',                 'Accounts\ServicesContr
 Route::put('/accounts-services/{id}',         ['uses' => 'Accounts\ServicesController@updateService',   'as' => 'update-service']);
 Route::post('/search-services',               ['uses' => 'Accounts\ServicesController@searchService',                       'as' => 'search-services']);
 Route::put('/confirm-payment/{id}',           ['uses' => 'Accounts\AccountsController@confirmPayment', 'as' => 'confirm-payment']);
+Route::post('/search-payment',                ['uses' => 'Accounts\AccountsController@searchPayment', 'as' => 'search-payment']);
+Route::put('/payment/{id}',                   ['uses' => 'Accounts\AccountsController@updatePayment',   'as' => 'update-payment']);
 
 Route::get('/pharmacy',                       ['uses' => 'Pharmacy\DispensationController@getHome','as' => 'pharmacy-home']);
 Route::get('/dispensations',                  ['uses' => 'Pharmacy\DispensationController@getDispensation','as' => 'pharmacy-dispensations']);

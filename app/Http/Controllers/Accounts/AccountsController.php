@@ -10,6 +10,7 @@ use DB;
 use App\Http\Requests;
 use App\Appointment;
 use Session;
+use Auth;
 
 class AccountsController extends Controller
 {
@@ -27,7 +28,9 @@ class AccountsController extends Controller
 
         $allpayments  = DB::table('payments')->paginate(10);
 
-        return view('templates.accounts.payments', compact('payments', 'allpayments'));
+        $user = Auth::user()->id;
+
+        return view('templates.accounts.payments', compact('payments', 'allpayments', 'user'));
     }
 
     //GET INSURANCE
@@ -55,5 +58,44 @@ class AccountsController extends Controller
         Session::flash('info', 'The payment has been confirmed successfully.');
 
         return redirect()->route('accounts-payments');
+    }
+
+    public function searchPayment(Request $request)
+    {
+        $query = $request->input('search');
+        $allpayments = DB::table('payments')->where('id', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('medId', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('patient', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('status', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('serviceType', 'LIKE', '%' . $query . '%')
+                                        ->orWhere('created_at', 'LIKE', '%' . $query . '%')
+                                        ->paginate(10);
+
+        $user = $request->user()->id;
+
+        $payments  = DB::table('payments')->where('status', "Not Paid")->get();
+
+        Session::flash('info', 'There are ' . count($allpayments) .' search results for "'. $query . '".' );
+                    
+        //return redirect()->route('accounts-payments', compact('payments')); 
+        return view('templates.accounts.payments', compact('payments', 'allpayments' , 'user'));
+
+    }
+
+    public function updatePayment($id, Request $request)
+    {
+        $this->validate($request, [
+                'status'              => 'required'
+        ]);
+
+        $updatedBy = $request->user()->id;
+
+        $payment = Payment::where('id', $id)->first();
+        $input = $request->all();
+        $payment->fill($input)->save();
+
+        Session::flash('info', 'The payment change has been successfully updated.');
+
+        return redirect()->route('accounts-payments'); 
     }
 }
