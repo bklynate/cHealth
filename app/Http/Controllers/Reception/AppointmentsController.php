@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Appointment;
 use App\Patient;
 use App\Payment;
+use App\Service;
 use App\Http\Requests; 
 use DB;
 use Auth;
@@ -23,8 +24,9 @@ class AppointmentsController extends Controller
     public function getAppointments(){
     	$appointmentsAll = Appointment::paginate(10);
         $appointments = count(Appointment::all());
+        $services = Service::get();
 
-        return view('templates.reception.appointments', compact('appointments', 'appointmentsAll'));
+        return view('templates.reception.appointments', compact('appointments', 'appointmentsAll', 'services'));
     }
     
     public function createAppointment(Request $request)
@@ -86,5 +88,20 @@ class AppointmentsController extends Controller
         Session::flash('info-patient', 'The patient\'s appointment has been deleted successfully');
 
         return redirect()->route('reception-appointments')->with('info', 'You have canceled successfully the appointment for '.$patientName .'.');
+    }
+
+    public function updateAppointment(Request $request, $id)
+    {
+        $this->validate($request, [
+                'service'              => 'required'
+        ]);
+
+        $updatedBy = $request->user()->id;
+
+        $appointment = Appointment::find($id);
+        $appointment->serviceType;
+        $appointment->save();
+        
+        return redirect()->route('reception-appointments')->with('info-patient', 'The appointment change has been successfully updated.'); 
     }
 }

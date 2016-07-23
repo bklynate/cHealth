@@ -32,6 +32,7 @@ Route::get('/reception-patients-results', ['uses' => 'Reception\ReceptionControl
 Route::get('/reception-registration',     ['uses' => 'Reception\ReceptionController@getRegistration','as' => 'reception-registration', 'middleware'=> 'auth:receptionist']);
 Route::post('/reception-registration',    ['uses' => 'Medical\PatientController@registerPatient',                'as' => 'register-patient']);
 Route::post('/search',                    ['uses' => 'Reception\ReceptionController@searchPatient',                       'as' => 'search']);
+Route::put('/appointments-update/{id}',   ['uses' => 'Reception\AppointmentsController@updateAppointment',   'as' => 'appointments-update']);
 
 Route::get('/reception-doctors',         ['uses' => 'Reception\ReceptionController@getDoctors','as' => 'reception-doctors', 'middleware'=> 'auth:receptionist']);
 Route::get('/reception-appointments',     ['uses' => 'Reception\AppointmentsController@getAppointments','as' => 'reception-appointments', 'middleware'=> 'auth:receptionist']);
