@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('status');
             $table->double('cost');
             $table->string('serviceType');
+            $table->integer('insurance')-> default(0);
             $table->string('receivedBy');
             $table->timestamps();
         });

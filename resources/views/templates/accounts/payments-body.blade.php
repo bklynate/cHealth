@@ -27,8 +27,8 @@
                     <th style="width:10%">Status</th>
                     <th style="width:15%">Service</th>
                     <th style="width:12%">Cost</th>
-                    <th style="width:15%">Created on</th>
-                    <th class="text-center" style="width:15%">Options</th>
+                    <th style="width:12%">Created on</th>
+                    <th class="text-center" style="width:20%">Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,9 +41,9 @@
                         {{ $payment->patient }}
                     </td>
                     <td>@if(($payment->status)==="Not Paid")
-                            <span class="text-danger">{{ $payment->status }}</i></span>
+                        <span class="text-danger">{{ $payment->status }}</i></span>
                         @else
-                            <span class="text-success">{{ $payment->status }}</i></span>
+                        <span class="text-success">{{ $payment->status }}</i></span>
                         @endif
                     </td>
                     <td>
@@ -57,26 +57,29 @@
                     </td>
                     <td class="center">
                         @if(($payment->status)==="Not Paid")
-                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target=".confirm-{{$payment->id}}"><i class="fa fa-check"></i> Confirm Payment</button>
+                        <div class="btn-group">
+                            <label aria-invalid="false" class="btn btn-xs btn-info" btn-checkbox="" data-toggle="modal" data-target=".confirm-cash-{{$payment->id}}"><i class="fa fa-money"></i> Cash</label>
+                            <label style="" aria-invalid="false" class="btn btn-xs btn-primary" btn-checkbox=""> Insure <i class="fa fa-credit-card"></i></label>
+                        </div>
                         @else
-                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit Payment</button>
+                        <button class="btn btn-default btn-xs col-md-12" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit Payment</button>
                         @endif
                     </td>
                 </tr>
                 <!-- Edit Payment -->
-                <div class="modal fade confirm-{{$payment->id}}" tabindex="-1">
+                <div class="modal fade confirm-cash-{{$payment->id}}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header bg-info dk">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h5 class="blue bigger">
                                 <i class="fa fa-check"></i>
-                                Confirm Payment</h5>
+                                Confirm Cash Payment</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12">
-                                        <p>Are you sure you want to confirm payment of <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
+                                        <p>Are you sure you want to confirm cash payment of <i class="fa fa-money"></i> <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +108,7 @@
                                             @if(($payment->status)==="Paid")
                                             <div class="form-group col-md-11 col-md-offset-1">
                                                 <label>
-                                                   Edit Payment Status:
+                                                    Edit Payment Status:
                                                 </label>
                                                 <div class="radio">
                                                     <label class="i-checks">
