@@ -69,7 +69,7 @@
                                 {!!Form::open()!!}
                                 {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-info pull-left', 'data-dismiss' => 'modal']) !!}
                                 {!!Form::close()!!}
-                                {!!Form::open(['method'=>'DELETE','action'=>['Reception\AppointmentsController@cancelAppointment',$appointment->id]])!!}
+                                {!!Form::open(['method'=>'DELETE','action'=>['Doctor\DoctorController@cancelAppointment',$appointment->id]])!!}
                                 {!! Form::submit('Cancel Appointment', ['class' => 'btn btn-danger btn-sm pull-right']) !!}
                                 {!!Form::close()!!}
                             </div>

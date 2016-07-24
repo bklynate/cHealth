@@ -25,6 +25,7 @@ Route::get('/doctor-appointments',        ['uses' => 'Doctor\DoctorController@ge
 Route::get('/doctor-history',       ['uses' => 'Doctor\DoctorController@getDoctorHistory','as' => 'doctor-consultations', 'middleware'=> 'auth:doctor']);
 Route::get('/doctor-calendar',            ['uses' => 'Doctor\DoctorController@getDoctorCalendar','as' => 'doctor-calendar', 'middleware'=> 'auth:doctor']);
 Route::put('/appointment/{id}',           ['uses' => 'Doctor\DoctorController@consultPatient', 'as' => 'consultPatient']);
+Route::delete('/doctor-appointments/{id}','Doctor\DoctorController@cancelAppointment');
 
 Route::get('/reception',                  ['uses' => 'Reception\ReceptionController@getHome','as' => 'reception-home', 'middleware'=> 'auth:receptionist']);
 Route::get('/reception-patients',         ['uses' => 'Reception\ReceptionController@getPatients','as' => 'reception-patients', 'middleware'=> 'auth:receptionist']);

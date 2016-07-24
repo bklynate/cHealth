@@ -98,7 +98,7 @@
                                             {!! Form::open(['method'=>'PUT','action'=>['Reception\AppointmentsController@updateAppointment', $appointment->id]])!!}
                                             <div class="form-group col-md-11 col-md-offset-1">
                                                 <label>
-                                                    Edit Appointment Status:
+                                                    Edit Appointment Service:
                                                 </label><br>
                                                 <select name="service" class="col-md-6">
                                                     @foreach($services as $service)

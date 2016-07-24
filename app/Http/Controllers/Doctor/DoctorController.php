@@ -112,4 +112,16 @@ class DoctorController extends Controller
         return redirect()->route('medical-profile');
 
     }
+
+    public function cancelAppointment($id)
+    {   
+        $appointment = Appointment::find($id);
+        $patientName = $appointment->patient;
+
+        $appointment->delete();
+
+        Session::flash('info-patient', 'The patient\'s appointment has been deleted successfully');
+
+        return redirect()->route('doctor-appointments')->with('info', 'You have canceled successfully the appointment for '.$patientName .'.');
+    }
 }
