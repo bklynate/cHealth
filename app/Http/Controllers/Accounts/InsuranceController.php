@@ -51,4 +51,12 @@ class InsuranceController extends Controller
         ]);
         return redirect()->route('accounts-insurance')->with('info', 'The Insurance has been created successfully.');
     }
+
+    public function deleteInsurance($id)
+    {
+    	$insurance = Insurance::find($id);
+        $patientName = $insurance->patient;
+        $insurance->delete();
+        return redirect()->route('accounts-insurance')->with('info', 'You have deleted successfully the insurance payment for '.$patientName .'.');
+    }
 }

@@ -68,11 +68,11 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12">
-                                        <p>Are you sure you want to <b>Permanently</b> cancel this appointment?</p>
+                                        <p>Are you sure you want to <b>permanently</b> cancel this appointment?</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer bg-light bg">
                                 {!!Form::open()!!}
                                 {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
                                 {!!Form::close()!!}
