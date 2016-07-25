@@ -61,8 +61,8 @@ Route::post('/search-insurances',             ['uses' => 'Accounts\InsuranceCont
 
 Route::get('/pharmacy',                       ['uses' => 'Pharmacy\DispensationController@getHome','as' => 'pharmacy-home']);
 Route::get('/dispensations',                  ['uses' => 'Pharmacy\DispensationController@getDispensation','as' => 'pharmacy-dispensations']);
-Route::get('/inventory',                      ['uses' => 'Pharmacy\DispensationController@getInventory','as' => 'pharmacy-inventory']);
-
+Route::get('/inventory',                      ['uses' => 'Pharmacy\InventoryController@getInventory','as' => 'pharmacy-inventory']);
+Route::get('/refills',                         ['uses' => 'Pharmacy\RefillController@getRefill','as' => 'pharmacy-refills']);
 
 Route::get('/lab',                ['uses' => 'Lab\LabController@getHome','as' => 'lab-home']);
 Route::get('/lab-records',        ['uses' => 'Lab\LabController@getRecords','as' => 'lab-records']);

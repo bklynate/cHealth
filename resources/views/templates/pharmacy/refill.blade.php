@@ -5,11 +5,11 @@
 @stop
 
 @section('header-appointments')
-	@include('templates.pharmacy.header-inventory')
+	@include('templates.pharmacy.header-refill')
 @stop
 
 @section('main-header-appointments')
-	@include('templates.pharmacy.main-header-inventory')
+	@include('templates.pharmacy.main-header-refill')
 @stop
 
 
@@ -18,7 +18,7 @@
 @stop
 
 @section('doctor-appointments-body')
-	@include('templates.pharmacy.inventory-body')
+	@include('templates.pharmacy.refill-body')
 @stop
 
 @section('footer')

@@ -33,11 +33,19 @@
             </a>
           </li>
           <li>
-            <a href="{{route('medical-profile')}}">
+            <a href="{{route('pharmacy-inventory')}}">
               <span class="pull-right text-muted">
               </span>
-              <i class="fa fa-stethoscope"></i>
+              <i class="fa fa-database"></i>
               <span class="">Inventory</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('pharmacy-refills')}}">
+              <span class="pull-right text-muted">
+              </span>
+              <i class="fa fa-plus-circle"></i>
+              <span class="">Refills</span>
             </a>
           </li>
           <!-- <li>
