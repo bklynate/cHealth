@@ -17,10 +17,11 @@
             <thead>
                 <tr>
                     <th style="width:10%">Med ID.</th>
-                    <th style="width:20%">Patient</th>
+                    <th style="width:10%">Patient Name</th>
+                    <th style="width:20%">Prescription</th>
+                    <th style="width:15%">Description</th>
                     <th style="width:15%">Doctor</th>
-                    <th style="width:15%">Time</th>
-                    <th style="width:15%">Status</th>
+                    <th style="width:15%">Qty Dispensed</th>
                     <th style="width:25%">Options</th>
                 </tr>
             </thead>
@@ -28,25 +29,26 @@
                 @foreach($dispensations->reverse() as $dispensations)
                 <tr>
                     <td>
-                        {{ $dispensation->medId }}
+                        
                     </td>
                     <td>
-                        {{ $dispensation->patient }}
+                        {{ $dispensation->onPatient }}
                     </td>
                     <td>
-                        {{ $dispensation->serviceType }}
+                        {{ $dispensation->prescription }}
                     </td>
                     <td>
-                        {{ Carbon\Carbon::parse($dispensation->created_at)->diffForHumans() }}
+                        {{ $dispensation->description }}
                     </td>
                     <td>
-                        <span class="text-info">{{ $dispensation->status }}</span>
+                        {{ $dispensation->from_user }}
+                    </td>
+                    <td>
+                        {{ $dispensation->quantity_dispensed }}
                     </td>
                     <td class="center">
-                                @if($dispensation->status === "Awaiting Consultation")
                                 <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$dispensation->id}}"><i class="fa fa-check"></i> Consult Patient</button>
                                 <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".dispensation-{{$dispensation->id}}" value="">Cancel <i class="fa fa-times"></i></button>
-                                @endif
                     </td>
                 </tr>
                 <div class="modal fade dispensation-{{$dispensation->id}}" tabindex="-1">
