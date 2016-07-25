@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use App\Insurance;
+use App\Payment;
 use App\Http\Requests;
 use Session;
 class InsuranceController extends Controller
@@ -49,6 +50,15 @@ class InsuranceController extends Controller
                 'provider'            => $provider,
                 'createdBy'           => $createdBy,
         ]);
+
+    	//change payment status to paid
+    	//and change payment insurance to 1 
+        Payment::where('id', $id)->where('status', "Not Paid")->update(['status'=>"Paid"]);
+
+        Payment::where('id', $id)->where('insurance', 0)->update(['insurance'=> 1]);
+
+        //Payment::where('medId', $medId)->where('status', "Not Paid")->update(['status'=>"Paid"]);
+
         return redirect()->route('accounts-insurance')->with('info-insurance', 'The Insurance has been created successfully.');
     }
 

@@ -22,12 +22,13 @@
         <table class="table table-striped table-xs table-responsive">
             <thead>
                 <tr>
-                    <th style="width:10%">Med Id.</th>
+                    <th style="width:8%">Med ID.</th>
                     <th style="width:20%">Patient Name</th>
                     <th style="width:10%">Status</th>
-                    <th style="width:15%">Service</th>
+                    <th style="width:10%">Type</th>
+                    <th style="width:12%">Service</th>
                     <th style="width:12%">Cost</th>
-                    <th style="width:15%">Created on</th>
+                    <th style="width:12%">Created</th>
                     <th class="text-center" style="width:20%">Options</th>
                 </tr>
             </thead>
@@ -46,6 +47,16 @@
                         <span class="text-success">{{ $payment->status }}</i></span>
                         @endif
                     </td>
+                    <td>@if(($payment->insurance)==0 && ($payment->status)==="Not Paid")
+                            Pending
+                        @elseif(($payment->insurance)==0 && ($payment->status)==="Paid")
+                            Cash
+                        @elseif(($payment->insurance)==1 && ($payment->status)==="Paid")
+                            Insurance
+                        @else
+                            N/A
+                        @endif
+                    </td>
                     <td>
                         {{ $payment->serviceType }}
                     </td>
@@ -53,7 +64,7 @@
                         Ksh. {{ $payment->cost }}
                     </td>
                     <td>
-                        {{ Carbon\Carbon::parse($payment->created_at)->diffForHumans() }}
+                        {{ Carbon\Carbon::parse($payment->created_at)->toFormattedDateString() }}
                     </td>
                     <td class="center">
                         @if(($payment->status)==="Not Paid")
@@ -62,7 +73,7 @@
                             <label style="" aria-invalid="false" class="btn btn-xs btn-primary" btn-checkbox="" data-toggle="modal" data-target=".confirm-insurance-{{$payment->id}}"> Insure <i class="fa fa-credit-card"></i></label>
                         </div>
                         @else
-                        <button class="btn btn-default btn-xs col-md-12" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit Payment</button>
+                        <button class="btn btn-default btn-xs col-md-12" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit</button>
                         @endif
                     </td>
                 </tr>
