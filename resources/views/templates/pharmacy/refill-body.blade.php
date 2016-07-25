@@ -16,11 +16,10 @@
             
             <thead>
                 <tr>
-                    <th style="width:10%">Med ID.</th>
-                    <th style="width:20%">Patient</th>
-                    <th style="width:15%">Doctor</th>
-                    <th style="width:15%">Time</th>
-                    <th style="width:15%">Status</th>
+                    <th style="width:10%">Name</th>
+                    <th style="width:20%">Formulation</th>
+                    <th style="width:15%">Quantity</th>
+                    <th style="width:15%">Expiry Date</th>
                     <th style="width:25%">Options</th>
                 </tr>
             </thead>
@@ -28,25 +27,20 @@
                 @foreach($refills->reverse() as $refill)
                 <tr>
                     <td>
-                        {{ $refill->medId }}
+                        {{ $refill->name }}
                     </td>
                     <td>
-                        {{ $refill->patient }}
+                        {{ $refill->formulation }}
                     </td>
                     <td>
-                        {{ $refill->serviceType }}
+                        {{ $refill->quantity }}
                     </td>
                     <td>
-                        {{ Carbon\Carbon::parse($refill->created_at)->diffForHumans() }}
-                    </td>
-                    <td>
-                        <span class="text-info">{{ $refill->status }}</span>
+                        {{ $refill->expiryDate }}
                     </td>
                     <td class="center">
-                                @if($refill->status === "Awaiting Consultation")
                                 <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$refill->id}}"><i class="fa fa-check"></i> Consult Patient</button>
                                 <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".refill-{{$refill->id}}" value="">Cancel <i class="fa fa-times"></i></button>
-                                @endif
                     </td>
                 </tr>
                 <div class="modal fade refill-{{$refill->id}}" tabindex="-1">
