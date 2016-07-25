@@ -86,7 +86,7 @@ class ServicesController extends Controller
 
         $user = Auth::user()->id;
 
-        Session::flash('info', 'There are ' . count($services) .' search results for "'. $query . '".' );
+        Session::flash('info', 'There were ' . count($services) .' search results for "'. $query . '".' );
                    	
         return view('templates.accounts.services', compact('services', 'user'));   
     }

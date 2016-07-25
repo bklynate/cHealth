@@ -67,9 +67,8 @@ class AccountsController extends Controller
 
         $payments  = DB::table('payments')->where('status', "Not Paid")->get();
 
-        Session::flash('info', 'There are ' . count($allpayments) .' search results for "'. $query . '".' );
-                    
-        //return redirect()->route('accounts-payments', compact('payments')); 
+        Session::flash('info', 'There were ' . count($allpayments) .' search results for "'. $query . '".' );
+                
         return view('templates.accounts.payments', compact('payments', 'allpayments' , 'user'));
 
     }
