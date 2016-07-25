@@ -1,6 +1,3 @@
-@if(count($inventories)===0)
-<h5>Sorry, you don't have any inventory.</h5>
-@else
 @if (Session::has('info'))
 <div class="alert alert-info text-center btn-close" role="alert">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -9,7 +6,14 @@
 @endif
 <div class="panel panel-default">
     <div class="panel-heading">
-        
+        {!! Form::open(array('route' => 'search-insurances', 'class'=>'form-inline text-right')) !!}
+        <div class="form-group">
+            <div class="input-group">
+                <input placeholder="Search Inventory" name="search" class="form-control" type="text" required>
+                <div class="input-group-btn"><button class="btn btn-info" type="submit">Search</button></div>
+            </div>
+        </div>
+        {!! Form::close() !!}
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-responsive">
@@ -114,4 +118,3 @@
                 </ul>
             </div>
         </div>
-        @endif

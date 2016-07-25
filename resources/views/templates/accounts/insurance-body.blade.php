@@ -4,9 +4,6 @@
     {{ Session::get('info-insurance') }}
 </div>
 @endif
-@if(!$insurances)
-<h5>Sorry, there are no insurances.</h5>
-@else
 <div class="panel panel-default">
     <div class="panel-heading">
     {!! Form::open(array('route' => 'search-insurances', 'class'=>'form-inline text-right')) !!}
@@ -122,4 +119,3 @@
                         </ul>
                     </div>
                 </div>
-                @endif
