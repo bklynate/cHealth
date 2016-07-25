@@ -6,7 +6,14 @@
 @endif
 <div class="panel panel-default">
     <div class="panel-heading">
-        
+        {!! Form::open(array('route' => 'search-insurances', 'class'=>'form-inline text-right')) !!}
+        <div class="form-group">
+            <div class="input-group">
+                <input placeholder="Search Inventory" name="search" class="form-control" type="text" required>
+                <div class="input-group-btn"><button class="btn btn-info" type="submit">Search</button></div>
+            </div>
+        </div>
+        {!! Form::close() !!}
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm table-responsive">
