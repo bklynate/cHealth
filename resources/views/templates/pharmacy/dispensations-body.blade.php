@@ -9,7 +9,7 @@
         {!! Form::open(array('route' => 'search-insurances', 'class'=>'form-inline text-right')) !!}
         <div class="form-group">
             <div class="input-group">
-                <input placeholder="Search Inventory" name="search" class="form-control" type="text" required>
+                <input placeholder="Search Dispensations" name="search" class="form-control" type="text" required>
                 <div class="input-group-btn"><button class="btn btn-info" type="submit">Search</button></div>
             </div>
         </div>
