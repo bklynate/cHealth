@@ -11,7 +11,8 @@ class DispensationController extends Controller
 {
     public function getHome()
     {
-    	return view('templates.pharmacy.dashboard');
+    	$dispensations = Dispensation::paginate(10);
+        return view('templates.pharmacy.dashboard', compact('dispensations'));
     }
 
     public function getDispensation()

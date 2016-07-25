@@ -12,7 +12,7 @@
             </button>
           </li>
           <li>
-            <a href="{{route('doctor-home')}}">
+            <a href="{{route('pharmacy-home')}}">
               <span class="pull-right text-muted">
               </span>
               <i class="fa fa-home"></i>
@@ -25,8 +25,11 @@
               </span>
               <i class="fa fa-file-text-o"></i>
               <span>Dispensations</span>
-                <b class="badge bg-info pull-right"> 
-                </b>
+              @if(count($dispensations)>0)
+              <b class="badge bg-info pull-right">
+              {{ $appointments }}
+              </b>
+              @endif
             </a>
           </li>
           <li>

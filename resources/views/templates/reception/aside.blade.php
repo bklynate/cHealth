@@ -23,7 +23,7 @@
                             </span>
                             <i class="fa fa-file-text-o"></i>
                             <span class="">Appointments</span>
-                            @if(count($appointments)>0)
+                            @if($appointments)
                             <b class="badge bg-info pull-right">
                             {{ $appointments }}
                             </b>

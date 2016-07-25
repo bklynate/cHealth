@@ -201,6 +201,47 @@
                                                         </div>
                                                     </div>
                                                     @endif
+                                                    @if(($payment->insurance)==1)
+                                                    <div class="form-group col-md-11 col-md-offset-1">
+                                                        <label>
+                                                            Update Insurance Status:
+                                                        </label>
+                                                        <div class="radio">
+                                                            <label class="i-checks">
+                                                                <input type="radio" name="insurance" value="1" checked>
+                                                                <i></i>
+                                                                Yes
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label class="i-checks">
+                                                                <input type="radio" name="insurance" value="0">
+                                                                <i></i>
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    @else
+                                                    <div class="form-group col-md-11 col-md-offset-1">
+                                                        <label>
+                                                            Update Insurance Status:
+                                                        </label>
+                                                        <div class="radio">
+                                                            <label class="i-checks">
+                                                                <input type="radio" name="insurance" value="1">
+                                                                <i></i>
+                                                                Yes
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label class="i-checks">
+                                                                <input type="radio" name="insurance" value="0" checked>
+                                                                <i></i>
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    @endif
                                                     <div class="input-group m-b col-md-12">
                                                         <input type="hidden" class="form-control" name="updatedBy" placeholder="UpdatedBy"
                                                         value="{{ $user }}">
