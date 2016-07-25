@@ -33,7 +33,7 @@
                         {{ $insurance->patient }}
                     </td>
                     <td>
-                        {{ $insurance->cost }}
+                        Ksh. {{ $insurance->cost }}
                     </td>
                     <td>
                         {{ $insurance->provider }}
