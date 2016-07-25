@@ -56,6 +56,7 @@ Route::post('/search-payment',                ['uses' => 'Accounts\AccountsContr
 Route::put('/payment/{id}',                   ['uses' => 'Accounts\AccountsController@updatePayment',   'as' => 'update-payment']);
 Route::post('/create-insurance',              ['uses' => 'Accounts\InsuranceController@createInsurance']);
 Route::delete('/delete-insurance/{id}',        'Accounts\InsuranceController@deleteInsurance');
+Route::put('/insurance-payment/{id}',                   ['uses' => 'Accounts\InsuranceController@updateInsurance',   'as' => 'update-insurance']);
 
 Route::get('/pharmacy',                       ['uses' => 'Pharmacy\DispensationController@getHome','as' => 'pharmacy-home']);
 Route::get('/dispensations',                  ['uses' => 'Pharmacy\DispensationController@getDispensation','as' => 'pharmacy-dispensations']);
