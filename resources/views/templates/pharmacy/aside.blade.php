@@ -6,8 +6,8 @@
       <nav ui-nav class="navi clearfix">
         <ul class="nav">
           <li class="padder m-t m-b-sm text-muted">
-            <button class="btn m-b-xs btn-info btn-addon">
-            <i class="fa fa-plus"></i>
+            <button class="btn m-b-xs btn-success btn-addon">
+            <i class="fa fa-search"></i>
             Search Drug
             </button>
           </li>
