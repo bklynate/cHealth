@@ -1,4 +1,10 @@
-@if(count($insurances===0))
+@if (Session::has('info'))
+<div class="alert alert-info text-center btn-close" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{ Session::get('info') }}
+</div>
+@endif
+@if(!$insurances)
 <h5>Sorry, there are no insurances.</h5>
 @else
 <div class="panel panel-default">
@@ -9,44 +15,37 @@
             
             <thead>
                 <tr>
-                    <th style="width:10%">Med Id.</th>
-                    <th style="width:10%">Ins. Id.</th>
-                    <th style="width:15%">Patient</th>
-                    <th style="width:15%">Service</th>
+                    <th style="width:20%">Ins. Id.</th>
+                    <th style="width:20%">Patient</th>
                     <th style="width:10%">Cost</th>
-                    <th style="width:15%">Provider</th>
+                    <th style="width:20%">Provider</th>
                     <th style="width:15%">Date</th>
-                    <th style="width:10%">Options</th>
+                    <th style="width:15%">Options</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($insurances->reverse() as $insurance)
                 <tr>
                     <td>
-                        {{ $insurance->medId }}
-                    </td>
-                    <td>
                         {{ $insurance->insId }}
                     </td>
                     <td>
-                        {{ $insurance->name }}
+                        {{ $insurance->patient }}
                     </td>
                     <td>
                         {{ $insurance->cost }}
                     </td>
                     <td>
-                        {{ $insurance->status }}
+                        {{ $insurance->provider }}
                     </td>
                     <td>
-                        {{ $insurance->createdBy }}
+                        {{ Carbon\Carbon::parse($insurance->created_at)->toFormattedDateString() }}
                     </td>
                     <td class="center">
-                        <a href="">
-                            Edit <i class="fa fa-pencil text-center"></i>
-                        </a> /
-                        <a data-toggle="modal" data-target=".insurance-{{$insurance->id}}">
-                            Cancel <i class="fa fa-trash"></i>
-                        </a>
+                        <div class="btn-group">
+                            <label aria-invalid="false" class="btn btn-xs btn-default" btn-checkbox="" data-toggle="modal" data-target=""><i class="fa fa-arrow-left"></i> Cash</label>
+                            <label style="" aria-invalid="false" class="btn btn-xs btn-danger" btn-checkbox="" data-toggle="modal" data-target=""> Delete </label>
+                        </div>
                     </td>
                 </tr>
                 <div class="modal fade insurance-{{$insurance->id}}" tabindex="-1">

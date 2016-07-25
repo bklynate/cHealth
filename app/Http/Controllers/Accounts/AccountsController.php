@@ -33,14 +33,6 @@ class AccountsController extends Controller
         return view('templates.accounts.payments', compact('payments', 'allpayments', 'user'));
     }
 
-    //GET INSURANCE
-    public function getInsurance()
-    {
-        $payments  = DB::table('payments')->where('status', "Not Paid")->get();
-        $insurances = Insurance::paginate(10);
-        return view('templates.accounts.insurance', compact('insurances', 'payments'));
-    }
-
     //GET REPORTS
     public function getReports()
     {

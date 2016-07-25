@@ -45,7 +45,7 @@ Route::delete('/reception-appointments/{id}','Reception\AppointmentsController@c
 Route::get('/accounts',                       ['uses' => 'Accounts\AccountsController@getHome','as' => 'accounts-home']);
 Route::get('/accounts-payments',              ['uses' => 'Accounts\AccountsController@getPayments','as' => 'accounts-payments']);
 Route::get('/accounts-services',              ['uses' => 'Accounts\ServicesController@getServices','as' => 'accounts-services']);
-Route::get('/accounts-insurance',             ['uses' => 'Accounts\AccountsController@getInsurance','as' => 'accounts-insurance']);
+Route::get('/accounts-insurance',             ['uses' => 'Accounts\InsuranceController@getInsurance','as' => 'accounts-insurance']);
 Route::get('/accounts-reports',               ['uses' => 'Accounts\AccountsController@getReports','as' => 'accounts-reports']);
 Route::post('/accounts-services',             ['uses' => 'Accounts\ServicesController@addService']);
 Route::delete('/accounts-services/{id}',                 'Accounts\ServicesController@deleteService');
