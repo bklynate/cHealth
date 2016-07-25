@@ -16,11 +16,11 @@
             
             <thead>
                 <tr>
-                    <th style="width:10%">Med ID.</th>
-                    <th style="width:20%">Patient</th>
-                    <th style="width:15%">Doctor</th>
-                    <th style="width:15%">Time</th>
-                    <th style="width:15%">Status</th>
+                    <th style="width:10%">Drug Name</th>
+                    <th style="width:20%">Formulation</th>
+                    <th style="width:15%">Description</th>
+                    <th style="width:15%">Quantity</th>
+                    <th style="width:15%">Expiry Date</th>
                     <th style="width:25%">Options</th>
                 </tr>
             </thead>
@@ -28,25 +28,23 @@
                 @foreach($inventories->reverse() as $inventories)
                 <tr>
                     <td>
-                        {{ $inventory->medId }}
+                        {{ $inventory->drugName }}
                     </td>
                     <td>
-                        {{ $inventory->patient }}
+                        {{ $inventory->Formulation }}
                     </td>
                     <td>
-                        {{ $inventory->serviceType }}
+                        {{ $inventory->description }}
                     </td>
                     <td>
-                        {{ Carbon\Carbon::parse($inventory->created_at)->diffForHumans() }}
+                        {{ $inventory->quantity }}
                     </td>
                     <td>
-                        <span class="text-info">{{ $inventory->status }}</span>
+                        {{ $inventory->expiryDate }}
                     </td>
                     <td class="center">
-                                @if($inventory->status === "Awaiting Consultation")
                                 <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-check"></i> Consult Patient</button>
                                 <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".inventory-{{$inventory->id}}" value="">Cancel <i class="fa fa-times"></i></button>
-                                @endif
                     </td>
                 </tr>
                 <div class="modal fade inventory-{{$inventory->id}}" tabindex="-1">
