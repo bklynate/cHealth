@@ -23,11 +23,11 @@
             <thead>
                 <tr>
                     <th style="width:10%">Med Id.</th>
-                    <th style="width:25%">Patient Name</th>
+                    <th style="width:20%">Patient Name</th>
                     <th style="width:10%">Status</th>
                     <th style="width:15%">Service</th>
                     <th style="width:12%">Cost</th>
-                    <th style="width:12%">Created on</th>
+                    <th style="width:15%">Created on</th>
                     <th class="text-center" style="width:20%">Options</th>
                 </tr>
             </thead>
@@ -107,12 +107,24 @@
                                             <div class="col-xs-12 col-sm-12">
                                                 <p>Are you sure you want to confirm <i class="fa fa-credit-card"></i> insurance payment of <i class="fa fa-money"></i> <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
                                             </div>
+                                            <div class="col-md-12">
+                                                {!! Form::open(['method'=>'POST','action'=>['Accounts\InsuranceController@createInsurance', $payment->medId, $payment->id]])!!}
+                                                <label class="m">Create Insurance</label>
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group m-b col-md-12">
+                                                        <input type="text" class="form-control" name="provider" placeholder="Insurance Provider" required>
+                                                    </div>
+                                                     <div class="input-group m-b col-md-12">
+                                                        <input type="text" class="form-control" name="insId" placeholder="Insurance ID. No." required>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> No, Go Back</button>
                                         {!!Form::open(['method'=>'PUT','action'=>['Accounts\AccountsController@confirmPayment',$payment->medId]])!!}
-                                        {!! Form::submit('Confirm Payment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+                                        {!! Form::submit('Insure Payment', ['class' => 'btn btn-primary btn-sm pull-right']) !!}
                                         {!!Form::close()!!}
                                     </div>
                                 </div>

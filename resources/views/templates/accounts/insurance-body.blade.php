@@ -10,18 +10,24 @@
             <thead>
                 <tr>
                     <th style="width:10%">Med Id.</th>
+                    <th style="width:10%">Ins. Id.</th>
                     <th style="width:15%">Patient</th>
-                    <th style="width:15%">Doctor</th>
                     <th style="width:15%">Service</th>
                     <th style="width:10%">Cost</th>
                     <th style="width:15%">Provider</th>
-                    <th style="width:15%">Created By</th>
+                    <th style="width:15%">Date</th>
                     <th style="width:10%">Options</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($insurances->reverse() as $insurance)
                 <tr>
+                    <td>
+                        {{ $insurance->medId }}
+                    </td>
+                    <td>
+                        {{ $insurance->insId }}
+                    </td>
                     <td>
                         {{ $insurance->name }}
                     </td>

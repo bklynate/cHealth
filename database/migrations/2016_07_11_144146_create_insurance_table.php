@@ -16,8 +16,8 @@ class CreateInsuranceTable extends Migration
         {
             $table->increments('id');
             $table->string('medId');
+            $table->string('insId');
             $table->string('patient');
-            $table->string('doctor');
             $table->string('service');
             $table->string('cost');
             $table->string('provider');
