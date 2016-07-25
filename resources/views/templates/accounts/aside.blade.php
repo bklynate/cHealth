@@ -31,19 +31,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('accounts-services') }}">
-                            <span class="pull-right text-muted">
-                            </span>
-                            <i class="fa fa-medkit" aria-hidden="true"></i>
-                            <span class="">Services</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('accounts-insurance') }}">
                             <span class="pull-right text-muted">
                             </span>
                             <i class="fa fa-credit-card"></i>
                             <span class="">Insurance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('accounts-services') }}">
+                            <span class="pull-right text-muted">
+                            </span>
+                            <i class="fa fa-medkit" aria-hidden="true"></i>
+                            <span class="">Services</span>
                         </a>
                     </li>
                     <!-- <li>
