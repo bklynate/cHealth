@@ -1,6 +1,3 @@
-@if(count($refills)===0)
-<h5>Sorry, you don't have any refills.</h5>
-@else
 @if (Session::has('info'))
 <div class="alert alert-info text-center btn-close" role="alert">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -110,4 +107,3 @@
                 </ul>
             </div>
         </div>
-        @endif
