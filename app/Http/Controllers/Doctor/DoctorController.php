@@ -97,7 +97,9 @@ class DoctorController extends Controller
 
         Session::flash('info', 'The patient\'s appointment status has been successfully changed to "Consultation".');
 
-        return view('templates.medical.home', compact('appointments', 'appointment', 'patient', 'vitals', 'medications'));
+        $drugs = DB::table('inventories')->get();
+
+        return view('templates.medical.home', compact('appointments', 'appointment', 'patient', 'vitals', 'medications', 'drugs'));
     }
 
     //Onclick on the check out button in the medical profile

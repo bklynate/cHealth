@@ -139,8 +139,9 @@ class PatientController extends Controller
         $appointments  = DB::table('appointments')->where('staffId', $staffId)
                                                  ->where('status','Awaiting Consultation');
 
+        $drugs = DB::table('inventories')->get();
 
-        return redirect()->route('medical-profile'); 
+        return redirect()->route('medical-profile', compact('drugs')); 
         
 
     }

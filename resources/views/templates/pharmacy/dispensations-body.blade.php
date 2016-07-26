@@ -21,11 +21,10 @@
             <thead>
                 <tr>
                     <th style="width:10%">Med ID.</th>
-                    <th style="width:10%">Patient Name</th>
-                    <th style="width:20%">Prescription</th>
+                    <th style="width:20%">Patient Name</th>
+                    <th style="width:20%">Name of Drug</th>
                     <th style="width:15%">Description</th>
                     <th style="width:15%">Doctor</th>
-                    <th style="width:15%">Qty Dispensed</th>
                     <th style="width:25%">Options</th>
                 </tr>
             </thead>
@@ -33,7 +32,7 @@
                 @foreach($dispensations->reverse() as $dispensations)
                 <tr>
                     <td>
-                        
+                        {{ $dispensation->medId }}
                     </td>
                     <td>
                         {{ $dispensation->onPatient }}
@@ -51,8 +50,7 @@
                         {{ $dispensation->quantity_dispensed }}
                     </td>
                     <td class="center">
-                                <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$dispensation->id}}"><i class="fa fa-check"></i> Consult Patient</button>
-                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".dispensation-{{$dispensation->id}}" value="">Cancel <i class="fa fa-times"></i></button>
+                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-eye"></i> View</button>
                     </td>
                 </tr>
                 <div class="modal fade dispensation-{{$dispensation->id}}" tabindex="-1">

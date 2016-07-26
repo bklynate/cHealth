@@ -578,25 +578,24 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                                 <div class="col-md-12">
                                                     {!! Form::open(['method'=>'POST', 'action'=>['Medical\MedicationController@prescribeMedication']])!!}
                                                     <div class="form-group col-md-12">
-                                                        <input type="hidden" name="onPatient" value="{{ $patient->id }}">
+                                                        <input type="hidden" name="patientMedId" value="{{ $patient->medId }}">
                                                         <div class="input-group m-b col-md-12">
-                                                            <input type="text" class="form-control" name="prescription" placeholder="Prescription">
+                                                            <select class="form-control w-full" ui-jq="chosen" name="prescription">
+                                                                <option class="text-muted">Select Prescription...</option>
+                                                                @foreach($drugs as $drug)
+                                                                    <option value="{{ $drug->drugName }}- {{ $drug->formulation }}">{{ $drug->drugName }} - {{ $drug->formulation }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         <div class="input-group m-b col-md-12">
                                                             <textarea type="text" class="form-control" name="description" placeholder="Description" rows="5"></textarea>
-                                                        </div>
-                                                        <div class="input-group m-b col-md-12">
-                                                            <input type="text" class="form-control" name="from_date" placeholder="From Date">
-                                                        </div>
-                                                        <div class="input-group m-b col-md-12">
-                                                            <input type="text" class="form-control" name="to_date" placeholder="To Date">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer bg-light lt">
-                                            <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Don't Save, Go Back</button>
+                                            <button class="btn btn-sm btn-default pull-left" data-dismiss="modal"> Go Back</button>
                                             {!! Form::submit('Prescribe Medication', ['class' => 'btn btn-info btn-sm pull-right']) !!}
                                             {!!Form::close()!!}
                                         </div>

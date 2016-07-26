@@ -57,9 +57,9 @@ class VitalsController extends Controller
         $patientname = $patient->firstName;
         Session::flash('info', 'The patient\'s health vitals have been successfully added.');
 
-
+        $drugs = DB::table('inventories')->get();
        
-    	return redirect()->route('medical-profile'); 
+    	return redirect()->route('medical-profile', compact('drugs')); 
     
     }
 }

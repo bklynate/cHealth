@@ -43,7 +43,7 @@
                         {{ str_limit($inventory->description, $limit = 30, $end = '...') }}
                     </td>
                     <td class="center">
-                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-eye"></i></button>
+                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-eye"></i> View</button>
                     </td>
                 </tr>
                 <div class="modal fade inventory-{{$inventory->id}}" tabindex="-1">

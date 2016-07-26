@@ -41,8 +41,7 @@ class AppointmentsController extends Controller
         //Get patient details
         $patientFirstName  = DB::table('patients')->where('medId', $patient)->value('firstName');
         $patientMiddleName = DB::table('patients')->where('medId', $patient)->value('MiddleName');
-        $patientLastName   = DB::table('patients')->where('medId', $patient)->value('LastName');
-        $patientMedId      = DB::table('patients')->where('medId', $patient)->value('medId');      
+        $patientLastName   = DB::table('patients')->where('medId', $patient)->value('LastName');     
 
         $patientName = $patientFirstName . ' ' . $patientMiddleName . ' ' . $patientLastName;
 
@@ -50,7 +49,7 @@ class AppointmentsController extends Controller
         $createdBy = Auth::user()->fullname;
 
         Appointment::create([
-                'medId'               => $patientMedId, 
+                'medId'               => $patient, 
                 'patient'             => $patientName,
                 'serviceType'         => $request->input('doctor'),
                 'staffId'             => '123422', //To be sorted
@@ -67,7 +66,7 @@ class AppointmentsController extends Controller
 
         //Create Payment
         Payment::create([
-                'medId'               => $patientMedId,
+                'medId'               => $patient,
                 'patient'             => $patientName,
                 'status'              => "Not Paid",
                 'cost'                => $cost,

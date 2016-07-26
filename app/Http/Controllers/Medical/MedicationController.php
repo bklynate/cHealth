@@ -8,6 +8,7 @@ use Auth;
 use DB;
 use Session;
 use App\Medication;
+use App\Dispensation;
 use App\Vital;
 
 class MedicationController extends Controller
@@ -17,24 +18,41 @@ class MedicationController extends Controller
     	$this->validate($request, [
                 'prescription'    => 'required|max:256',
                 'description'     => 'max:256',
-                'from_date'       => '',
-                'to_date'         => '',
         ]);
 
+        $patientMedId = $request->input('patientMedId');
+        //Get patient details
+        $patientFirstName  = DB::table('patients')->where('medId', $patientMedId)->value('firstName');
+        $patientMiddleName = DB::table('patients')->where('medId', $patientMedId)->value('MiddleName');
+        $patientLastName   = DB::table('patients')->where('medId', $patientMedId)->value('LastName');
+        $patientId         = DB::table('patients')->where('medId', $patientMedId)->value('id');
+
+        $patientName = $patientFirstName . ' ' . $patientMiddleName . ' ' . $patientLastName;
+        $createdBy = Auth::user()->fullname;
+
         Medication::create([
-                'onPatient'       => $request->input('onPatient'),
-                'from_user'       => $request->user()->id,
+                'medId'           => $patientMedId,
+                'onPatient'       => $patientName,
+                'from_user'       => Auth::user()->fullname,
                 'prescription'    => $request->input('prescription'),
                 'description'     => $request->input('description'),
                 'from_date'       => $request->input('from_date'),
                 'to_date'         => $request->input('to_date'),
+                'createdBy'       => $createdBy,
+        ]);
+
+        Dispensation::create([
+                'medId'           => $patientMedId,
+                'onPatient'       => $patientName,
+                'from_user'       => Auth::user()->fullname,
+                'prescription'    => $request->input('prescription'),
+                'description'     => $request->input('description'),
+                'status'          => 1,
         ]);
 
 
         //Get current user staff Id
         $staffId = Auth::user()->staffId;
-
-        $patientId = $patient->id;
         
         //get appointment
         $medId = DB::table('appointments')->where('staffId', $staffId)
@@ -47,7 +65,7 @@ class MedicationController extends Controller
         $vitals = Vital::where('onPatient', $request->input('onPatient'))->paginate(10);
 
         //Get medications to display on medical profile
-        $medications = Medication::where('onPatient', $patientId)->paginate(10);
+        $medications = Medication::where('medId', $medId)->paginate(10);
         
 
         //Get appointments for the left navigation notification
@@ -58,9 +76,9 @@ class MedicationController extends Controller
 
         Session::flash('info', 'You have prescribed the medication successfully.');
 
-
+        $drugs = DB::table('inventories')->get();
        
-    	return redirect()->route('medical-profile'); 
+    	return redirect()->route('medical-profile', compact('drugs')); 
     
     }
 }

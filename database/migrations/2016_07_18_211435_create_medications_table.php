@@ -15,17 +15,14 @@ class CreateMedicationsTable extends Migration
         Schema::create('medications', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('onPatient') -> unsigned() -> default(0);
-            $table->foreign('onPatient')
-                  ->references('id')->on('patients')
-                  ->onDelete('cascade');
-            $table->integer('from_user') -> unsigned() -> default(0);
-            $table->foreign('from_user')
-                  ->references('id')->on('users');
+            $table->string('medId');
+            $table->string('onPatient');
+            $table->string('from_user');
             $table->string('prescription');
-            $table->text('description');
-            $table->date('from_date');
-            $table->date('to_date');
+            $table->text('description')->nullable();
+            $table->date('from_date')->nullable();
+            $table->date('to_date')->nullable();
+            $table->string('createdBy');
             $table->timestamps();
         });
     }

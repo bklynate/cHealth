@@ -15,20 +15,17 @@ class CreateDispensationsTable extends Migration
         Schema::create('dispensations', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('onPatient') -> unsigned() -> default(0);
-            $table->foreign('onPatient')
-                  ->references('id')->on('patients')
-                  ->onDelete('cascade');
-            $table->integer('from_user') -> unsigned() -> default(0);
-            $table->foreign('from_user')
-                  ->references('id')->on('users');
+            $table->string('medId');
+            $table->string('onPatient');
+            $table->string('from_user');
             $table->string('prescription');
-            $table->text('description');
-            $table->date('from_date');
-            $table->date('to_date');
-            $table->integer('quantity_dispensed');
-            $table->integer('quantity_left');
+            $table->text('description')->nullable();
+            $table->date('from_date')->nullable();
+            $table->date('to_date')->nullable();
+            $table->integer('quantity_dispensed')->nullable();
+            $table->integer('quantity_left')->nullable();
             $table->integer('status')->default(0);
+            $table->string('dispensedBy')->nullable();
             $table->timestamps();
         });
     }
