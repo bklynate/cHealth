@@ -20,14 +20,14 @@
             
             <thead>
                 <tr>
-                    <th style="width:10%">Drug Name</th>
-                    <th style="width:20%">Formulation</th>
-                    <th style="width:15%">Description</th>
-                    <th style="width:15%">Quantity</th>
-                    <th style="width:25%">Options</th>
+                    <th style="width:20%">Name of Drug</th>
+                    <th style="width:15%">Formulation</th>
+                    <th style="width:10%">Quantity</th>
+                    <th style="width:30%">Description</th>
+                    <th style="width:5%">Options</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-light lt">
                 @foreach($inventories->reverse() as $inventory)
                 <tr>
                     <td>
@@ -37,14 +37,13 @@
                         {{ $inventory->formulation }}
                     </td>
                     <td>
-                        {{ $inventory->description }}
-                    </td>
-                    <td>
                         {{ $inventory->quantity }}
                     </td>
+                    <td>
+                        {{ str_limit($inventory->description, $limit = 30, $end = '...') }}
+                    </td>
                     <td class="center">
-                                <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-check"></i> Consult Patient</button>
-                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".inventory-{{$inventory->id}}" value="">Cancel <i class="fa fa-times"></i></button>
+                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-eye"></i></button>
                     </td>
                 </tr>
                 <div class="modal fade inventory-{{$inventory->id}}" tabindex="-1">
