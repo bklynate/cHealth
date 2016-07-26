@@ -27,7 +27,7 @@
               <span>Dispensations</span>
               @if($dispensationsCount)
               <b class="badge bg-danger pull-right">
-              {{ count($dispensationsCount) }}
+              {{ $dispensationsCount }}
               </b>
               @endif
             </a>

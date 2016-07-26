@@ -62,7 +62,7 @@ class MedicationController extends Controller
         $patient = DB::table('patients')->where('medId', $medId)->first(); 
 
         //Get vitals records to display on medical profile
-        $vitals = Vital::where('onPatient', $request->input('onPatient'))->paginate(10);
+        $vitals = Vital::where('onPatient', $patientId)->paginate(10);
 
         //Get medications to display on medical profile
         $medications = Medication::where('medId', $medId)->paginate(10);
@@ -78,7 +78,7 @@ class MedicationController extends Controller
 
         $drugs = DB::table('inventories')->get();
        
-    	return redirect()->route('medical-profile', compact('drugs')); 
+    	return redirect()->route('medical-profile'); 
     
     }
 }
