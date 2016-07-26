@@ -79,22 +79,22 @@
                             </div>
                             <div class="modal-footer bg-light lt">
                                 {!!Form::open()!!}
-                                {!! Form::submit('Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
+                                {!! Form::submit('Close', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
                                 {!!Form::close()!!}
                             </div>
                         </div>
                         </div><!-- /. modal dialog -->
                         </div><!-- /. modal-->
                         
-                        <!-- Consult Modal -->
+                        <!-- Dispense Modal -->
                         <div class="modal fade consult-{{$dispensation->id}}" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header bg-info dk">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h5 class="blue bigger">
+                                        <h5 class="blue bigger text-center">
                                         <i class="fa fa-check"></i>
-                                        Confirm Consultation</h5>
+                                         Dispense Drug</h5>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
@@ -114,7 +114,7 @@
                                 </div>
                                 </div><!-- /. modal dialog -->
                                 </div><!-- /. modal-->
-                                <!-- Consult Modal -->
+                                <!-- Dispense Modal -->
                                 @endforeach
                             </tbody>
                         </table>
