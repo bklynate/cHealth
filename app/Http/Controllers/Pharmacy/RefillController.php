@@ -6,7 +6,7 @@ use App\Dispensation;
 use App\Inventory;
 use App\Refill;
 use Illuminate\Http\Request;
-
+use Auth;
 use App\Http\Requests;
 
 class RefillController extends Controller
@@ -22,18 +22,17 @@ class RefillController extends Controller
     public function refillNew(Request $request)
     {
     	$this->validate($request, [
-                'name'               => 'required',
+                'drugName'           => 'required',
                 'formulation'        => 'required',
                 'quantity'           => 'required'
         ]);
 
-    	$name                        = $request->input('name');
+    	$name                        = $request->input('drugName');
     	$formulation                 = $request->input('formulation');
     	$description                 = $request->input('description');
     	$quantity                    = $request->input('quantity');
-    	$user                        = $request->user()->name;
-
-
+    	$user                        = Auth::user()->fullname;
+    	
     	Refill::create([
                 'drugName'           => $name,
                 'formulation'        => $formulation,

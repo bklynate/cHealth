@@ -22,7 +22,7 @@
                             {!! Form::open(['method'=>'POST', 'action'=>['Pharmacy\RefillController@refillNew']])!!}
                             <div class="col-xs-12 col-sm-12">
                                 <div class="form-group col-md-12">
-                                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                                    <input type="text" class="form-control" name="drugName" placeholder="Name of Drug" required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <select class="form-control" name="formulation" required>

@@ -18,7 +18,7 @@ class CreateInventoriesTable extends Migration
             $table->string('drugName');
             $table->string('formulation');
             $table->string('description');
-            $table->string('quantity');
+            $table->integer('quantity');
             $table->date('expiryDate')->nullable();
             $table->timestamps();
         });

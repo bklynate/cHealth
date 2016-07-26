@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Refill extends Model
 {
     protected $fillable = [
-        'name', 'formulation', 'quantity', 'expiryDate'
+        'drugName', 'formulation', 'description', 'quantity', 'expiryDate', 'createdBy'
     ];
 }
