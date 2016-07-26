@@ -25,9 +25,9 @@
               </span>
               <i class="fa fa-file-text-o"></i>
               <span>Dispensations</span>
-              @if(count($dispensations)>0)
+              @if($dispensationsCount)
               <b class="badge bg-danger pull-right">
-              {{ count($dispensations) }}
+              {{ count($dispensationsCount) }}
               </b>
               @endif
             </a>
