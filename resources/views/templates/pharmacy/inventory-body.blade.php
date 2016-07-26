@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($inventories->reverse() as $inventories)
+                @foreach($inventories->reverse() as $inventory)
                 <tr>
                     <td>
                         {{ $inventory->drugName }}
