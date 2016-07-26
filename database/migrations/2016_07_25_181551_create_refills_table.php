@@ -19,6 +19,7 @@ class CreateRefillsTable extends Migration
             $table->string('formulation');
             $table->integer('quantity');
             $table->date('expiryDate')->nullable();
+            $table->string('createdBy');
             $table->timestamps();
         });
     }

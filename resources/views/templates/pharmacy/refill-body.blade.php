@@ -102,9 +102,11 @@
                             
                             <thead>
                                 <tr>
-                                    <th style="width:10%">Name</th>
+                                    <th style="width:20%">Name</th>
                                     <th style="width:20%">Formulation</th>
                                     <th style="width:15%">Quantity</th>
+                                    <th style="width:15%">Description</th>
+                                    <th style="width:15%">Created By</th>
                                     <th style="width:25%">Options</th>
                                 </tr>
                             </thead>
@@ -112,13 +114,19 @@
                                 @foreach($refills->reverse() as $refill)
                                 <tr>
                                     <td>
-                                        {{ $refill->name }}
+                                        {{ $refill->drugName }}
                                     </td>
                                     <td>
                                         {{ $refill->formulation }}
                                     </td>
                                     <td>
                                         {{ $refill->quantity }}
+                                    </td>
+                                    <td>
+                                        {{ $refill->description }}
+                                    </td>
+                                    <td>
+                                        {{ $refill->createdBy }}
                                     </td>
                                     <td class="center">
                                         <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$refill->id}}"><i class="fa fa-check"></i> Consult Patient</button>

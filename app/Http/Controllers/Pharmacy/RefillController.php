@@ -31,12 +31,15 @@ class RefillController extends Controller
     	$formulation                 = $request->input('formulation');
     	$description                 = $request->input('description');
     	$quantity                    = $request->input('quantity');
+    	$user                        = $request->user()->name;
+
 
     	Refill::create([
-                'drugName'               => $name,
+                'drugName'           => $name,
                 'formulation'        => $formulation,
                 'description'        => $description,
-                'quantity'           => $quantity
+                'quantity'           => $quantity,
+                'createdBy'          => $user
         ]);
 
     	Inventory::create([
