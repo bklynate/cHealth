@@ -19,7 +19,7 @@ class CreateInventoriesTable extends Migration
             $table->string('formulation');
             $table->string('description');
             $table->string('quantity');
-            $table->date('expiryDate');
+            $table->date('expiryDate')->nullable();
             $table->timestamps();
         });
     }

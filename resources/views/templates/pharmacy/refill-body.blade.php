@@ -19,7 +19,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            {!!Form::open()!!}
+                            {!! Form::open(['method'=>'POST', 'action'=>['Pharmacy\RefillController@refillNew']])!!}
                             <div class="col-xs-12 col-sm-12">
                                 <div class="form-group col-md-12">
                                     <input type="text" class="form-control" name="name" placeholder="Name" required>
@@ -32,7 +32,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <textarea type="text" class="form-control" name="description" placeholder="Description" required></textarea>
+                                    <textarea type="text" class="form-control" name="description" placeholder="Description"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <input type="text" class="form-control" name="quantity" placeholder="Quantity" required>
@@ -41,9 +41,7 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-light lt">
-                        {!!Form::open()!!}
-                        {!! Form::submit('No, Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
-                        {!!Form::close()!!}
+                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">No, Go Back</button>
                         {!! Form::submit('Add New Drug', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                         {!!Form::close()!!}
                     </div>

@@ -34,7 +34,7 @@
                         {{ $inventory->drugName }}
                     </td>
                     <td>
-                        {{ $inventory->Formulation }}
+                        {{ $inventory->formulation }}
                     </td>
                     <td>
                         {{ $inventory->description }}

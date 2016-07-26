@@ -18,7 +18,7 @@ class CreateRefillsTable extends Migration
             $table->string('drugName');
             $table->string('formulation');
             $table->integer('quantity');
-            $table->date('expiryDate');
+            $table->date('expiryDate')->nullable();
             $table->timestamps();
         });
     }
