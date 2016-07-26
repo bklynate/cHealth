@@ -24,12 +24,12 @@
                     <th style="width:20%">Patient Name</th>
                     <th style="width:20%">Name of Drug</th>
                     <th style="width:15%">Description</th>
-                    <th style="width:15%">Doctor</th>
-                    <th style="width:25%">Options</th>
+                    <th style="width:20%">Doctor</th>
+                    <th style="width:20%">Options</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($dispensations->reverse() as $dispensations)
+                @foreach($dispensations->reverse() as $dispensation)
                 <tr>
                     <td>
                         {{ $dispensation->medId }}
@@ -46,11 +46,10 @@
                     <td>
                         {{ $dispensation->from_user }}
                     </td>
-                    <td>
-                        {{ $dispensation->quantity_dispensed }}
-                    </td>
                     <td class="center">
-                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-eye"></i> View</button>
+                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$dispensation->id}}"><i class="fa fa-eye"></i> </button>
+                                <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".consult-{{$dispensation->id}}"><i class="fa fa-edit"></i> </button>
+                                <button class="btn btn-xs btn-info" data-toggle="modal" data-target=".consult-{{$dispensation->id}}"><i class="fa fa-check"></i></button>
                     </td>
                 </tr>
                 <div class="modal fade dispensation-{{$dispensation->id}}" tabindex="-1">
@@ -60,7 +59,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h5 class="blue bigger">
                                 <i class="fa fa-trash"></i>
-                                Please, Confirm to cancel this dispensation?</h5>
+                                Dispensation</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
