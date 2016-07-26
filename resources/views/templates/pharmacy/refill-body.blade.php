@@ -6,6 +6,8 @@
 @endif
 <div class="panel panel-default">
     <div class="panel-heading">
+        <button class="btn btn-sm btn-default btn-rounded pull-left" data-toggle="modal" data-target=".add-service"><i class="fa fa-fw fa-plus"></i>New</button>
+        <button class="btn btn-sm btn-default btn-rounded pull-left" data-toggle="modal" data-target=".add-service"><i class="fa fa-fw fa-level-up"></i>Refill</button>
         {!! Form::open(array('route' => 'search-insurances', 'class'=>'form-inline text-right')) !!}
         <div class="form-group">
             <div class="input-group">
