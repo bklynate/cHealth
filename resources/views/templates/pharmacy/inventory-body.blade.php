@@ -24,7 +24,6 @@
                     <th style="width:20%">Formulation</th>
                     <th style="width:15%">Description</th>
                     <th style="width:15%">Quantity</th>
-                    <th style="width:15%">Expiry Date</th>
                     <th style="width:25%">Options</th>
                 </tr>
             </thead>
@@ -42,9 +41,6 @@
                     </td>
                     <td>
                         {{ $inventory->quantity }}
-                    </td>
-                    <td>
-                        {{ $inventory->expiryDate }}
                     </td>
                     <td class="center">
                                 <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$inventory->id}}"><i class="fa fa-check"></i> Consult Patient</button>

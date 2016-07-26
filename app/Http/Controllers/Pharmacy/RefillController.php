@@ -16,4 +16,15 @@ class RefillController extends Controller
     	$dispensations = Dispensation::paginate(10);
         return view('templates.pharmacy.refill', compact('dispensations', 'refills'));
     }
+
+    public function refillNew()
+    {
+    	$this->validate($request, [
+                'status'              => 'required'
+        ]);
+
+    	$dispensations = Dispensation::paginate(10);
+
+    	return redirect()->route('pharmacy-refills');
+    }
 }

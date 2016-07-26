@@ -63,6 +63,8 @@ Route::get('/pharmacy',                       ['uses' => 'Pharmacy\DispensationC
 Route::get('/dispensations',                  ['uses' => 'Pharmacy\DispensationController@getDispensation','as' => 'pharmacy-dispensations']);
 Route::get('/inventory',                      ['uses' => 'Pharmacy\InventoryController@getInventory','as' => 'pharmacy-inventory']);
 Route::get('/refills',                         ['uses' => 'Pharmacy\RefillController@getRefill','as' => 'pharmacy-refills']);
+Route::post('/refill-new',                    ['uses' => 'Pharmacy\RefillController@refillNew']);
+
 
 Route::get('/lab',                ['uses' => 'Lab\LabController@getHome','as' => 'lab-home']);
 Route::get('/lab-records',        ['uses' => 'Lab\LabController@getRecords','as' => 'lab-records']);
