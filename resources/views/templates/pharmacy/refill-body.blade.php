@@ -102,7 +102,7 @@
                             
                             <thead>
                                 <tr>
-                                    <th style="width:20%">Name</th>
+                                    <th style="width:20%">Name of Drug</th>
                                     <th style="width:15%">Formulation</th>
                                     <th style="width:10%">Quantity</th>
                                     <th style="width:20%">Description</th>
