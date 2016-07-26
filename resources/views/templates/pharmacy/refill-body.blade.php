@@ -107,6 +107,7 @@
                                     <th style="width:10%">Quantity</th>
                                     <th style="width:20%">Description</th>
                                     <th style="width:20%">Refilled By</th>
+                                    <th style="width:20%">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,6 +127,9 @@
                                     </td>
                                     <td>
                                         {{ $refill->createdBy }}
+                                    </td>
+                                    <td>
+                                        {{ Carbon\Carbon::parse($refill->created_at)->toFormattedDateString() }}
                                     </td>
                                 </tr>
                                 <div class="modal fade refill-{{$refill->id}}" tabindex="-1">
