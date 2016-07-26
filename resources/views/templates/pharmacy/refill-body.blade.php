@@ -123,7 +123,7 @@
                                         {{ $refill->quantity }}
                                     </td>
                                     <td>
-                                        {{ $refill->description }}
+                                        {{ str_limit($refill->description, $limit = 20, $end = '...') }}
                                     </td>
                                     <td>
                                         {{ $refill->createdBy }}
