@@ -103,11 +103,10 @@
                             <thead>
                                 <tr>
                                     <th style="width:20%">Name</th>
-                                    <th style="width:20%">Formulation</th>
-                                    <th style="width:15%">Quantity</th>
-                                    <th style="width:15%">Description</th>
-                                    <th style="width:15%">Created By</th>
-                                    <th style="width:25%">Options</th>
+                                    <th style="width:15%">Formulation</th>
+                                    <th style="width:10%">Quantity</th>
+                                    <th style="width:20%">Description</th>
+                                    <th style="width:20%">Refilled By</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,10 +126,6 @@
                                     </td>
                                     <td>
                                         {{ $refill->createdBy }}
-                                    </td>
-                                    <td class="center">
-                                        <button class="btn btn-xs btn-success" data-toggle="modal" data-target=".consult-{{$refill->id}}"><i class="fa fa-check"></i> Consult Patient</button>
-                                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".refill-{{$refill->id}}" value="">Cancel <i class="fa fa-times"></i></button>
                                     </td>
                                 </tr>
                                 <div class="modal fade refill-{{$refill->id}}" tabindex="-1">
