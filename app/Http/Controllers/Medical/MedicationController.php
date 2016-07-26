@@ -47,7 +47,7 @@ class MedicationController extends Controller
                 'from_user'       => Auth::user()->fullname,
                 'prescription'    => $request->input('prescription'),
                 'description'     => $request->input('description'),
-                'status'          => 1,
+                'status'          => 0,
         ]);
 
 
