@@ -31,7 +31,10 @@
             <div class="col-xs-6">
               <a href="" class="block panel padder-v bg-info item dker">
                 <span class="text-white font-thin h1 block">5</span>
-                <span class="text-muted text-xs">Notifications</span>
+                <span class="text-muted text-xs">Refills</span>
+                <span class="bottom text-right w-full">
+                  <i class="fa fa-plus-circle text-muted m-r-sm"></i>
+                </span>
               </a>
             </div>
             <div class="col-xs-6">
