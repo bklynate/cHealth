@@ -93,69 +93,71 @@
                                     <div class="modal-header bg-info dk">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h5 class="blue bigger text-center">
-                                        <i class="fa fa-check"></i>
+                                        <i class="fa fa-edit"></i>
                                         Edit Dispensation</h5>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12">
-                                                {!! Form::open(['method'=>'PUT','action'=>['Accounts\ServicesController@updateService']])!!}
+                                                {!! Form::open(['method'=>'PUT','action'=>['Pharmacy\DispensationController@updateDispensation', $dispensation->id]])!!}
                                                 <div class="input-group m-b col-md-12">
-                                                    <input type="text" class="form-control" name="prescription" placeholder="Name of Drug" value="{{ $dispensation->prescription }}">
+                                                    <select class="form-control w-full" ui-jq="chosen" name="prescription">
+                                                        <option class="text-muted">Select Prescription...</option>
+                                                        @foreach($drugs as $drug)
+                                                        <option value="{{ $drug->drugName }} ({{ $drug->formulation }})">{{ $drug->drugName }} ({{ $drug->formulation }})</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="input-group m-b col-md-12">
                                                     <input type="text" class="form-control" name="description" placeholder="Description"value="{{ $dispensation->description }}">
                                                 </div>
-                                                @if($service->status==1)
-                                                    <div class="form-group col-md-12">
-                                                        <label>
-                                                            Status:
+                                                @if($dispensation->status==1)
+                                                <div class="form-group col-md-12">
+                                                    <label>
+                                                        Status:
+                                                    </label>
+                                                    <div class="radio">
+                                                        <label class="i-checks">
+                                                            <input type="radio" name="status" value="1" checked>
+                                                            <i></i>
+                                                            Dispensed
                                                         </label>
-                                                        <div class="radio">
-                                                            <label class="i-checks">
-                                                                <input type="radio" name="status" value="1" checked>
-                                                                <i></i>
-                                                                Enable
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label class="i-checks">
-                                                                <input type="radio" name="status" value="0">
-                                                                <i></i>
-                                                                Disable
-                                                            </label>
-                                                        </div>
                                                     </div>
-                                                    @else
-                                                    <div class="form-group col-md-12">
-                                                        <label>
-                                                            Status:
+                                                    <div class="radio">
+                                                        <label class="i-checks">
+                                                            <input type="radio" name="status" value="0">
+                                                            <i></i>
+                                                            Not Dispensed
                                                         </label>
-                                                        <div class="radio">
-                                                            <label class="i-checks">
-                                                                <input type="radio" name="status" value="1">
-                                                                <i></i>
-                                                                Enable
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label class="i-checks">
-                                                                <input type="radio" name="status" value="0" checked>
-                                                                <i></i>
-                                                                Disable
-                                                            </label>
-                                                        </div>
                                                     </div>
-                                                    @endif
-
+                                                </div>
+                                                @else
+                                                <div class="form-group col-md-12">
+                                                    <label>
+                                                        Status:
+                                                    </label>
+                                                    <div class="radio">
+                                                        <label class="i-checks">
+                                                            <input type="radio" name="status" value="1">
+                                                            <i></i>
+                                                            Dispensed
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label class="i-checks">
+                                                            <input type="radio" name="status" value="0" checked>
+                                                            <i></i>
+                                                            Not Dispensed
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        {!!Form::open()!!}
-                                        {!! Form::submit('Go Back', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
-                                        {!!Form::close()!!}
-                                        {!! Form::submit('Yes, Consult Patient', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+                                        <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Back</button>
+                                        {!! Form::submit('Edit Dispensation', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                                         {!!Form::close()!!}
                                     </div>
                                 </div>
