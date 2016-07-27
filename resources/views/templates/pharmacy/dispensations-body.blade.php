@@ -177,8 +177,18 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-md-10 col-md-offset-1 text-center">
-                                                        <label>Are you sure you want to dispense this drug?</label>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group col-md-6 col-md-offset-3 text-center">
+                                                            <div class="input-group m-b col-md-12">
+                                                                <input type="text" class="form-control" name="quantityDispensed" placeholder="Quantity">
+                                                            </div>
+                                                            <div class="input-group m-b col-md-12">
+                                                                <input type="text" class="form-control" name="startDate" placeholder="Start Date">
+                                                            </div>
+                                                            <div class="input-group m-b col-md-12">
+                                                                <input type="text" class="form-control" name="endDate" placeholder="End Date">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

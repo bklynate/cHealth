@@ -54,10 +54,15 @@ class DispensationController extends Controller
         Dispensation::where('id', $id)->update(['status'=> 1]);
         //Dispensation::where('id', $id)->where('id', $id)->update(['status'=> 1]);
 
+
         $quantity_dispensed = DB::table('dispensations')->where('id', $id)->value('quantity_dispensed');
-        
         $quantity_inventory = Inventory::where('drugId',$drugId)->value('quantity');
 
+        $this->validate($request, [
+                'prescription'             => 'max:256',
+                'description'              => 'max:256',
+        ]);
+        
         Session::flash('info', 'You have successfully dispensed the drug.');
 
         return redirect()->route('pharmacy-dispensations'); 
