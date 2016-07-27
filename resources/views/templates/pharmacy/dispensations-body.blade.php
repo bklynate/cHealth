@@ -53,7 +53,7 @@
                     <td class="center">
                         <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".view-{{$dispensation->id}}"><i class="fa fa-eye"></i> </button>
                         <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".edit-{{$dispensation->id}}"><i class="fa fa-edit"></i> </button>
-                        <button class="btn btn-xs btn-info" data-toggle="modal" data-target=".consult-{{$dispensation->id}}"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-xs btn-info" data-toggle="modal" data-target=".dispense-{{$dispensation->id}}"><i class="fa fa-check"></i></button>
                     </td>
                 </tr>
                 <div class="modal fade view-{{$dispensation->id}}" tabindex="-1">
@@ -74,6 +74,7 @@
                                         <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
                                         <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>
                                         <label><strong>Created on:</strong> <i>{{ $dispensation->created_at }}</i></label><br>
+                                        <label><strong>Dispensed by:</strong> <i>{{ $dispensation->dispensedBy }}</i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -163,14 +164,46 @@
                                 </div>
                                 </div><!-- /. modal dialog -->
                                 </div><!-- /. modal-->
+                                <!-- Edit Modal -->
                                 <!-- Dispense Modal -->
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="text-center">
-                        <ul class="pagination">
-                            {{ $dispensations->links() }}
-                        </ul>
-                    </div>
-                </div>
+                                <div class="modal fade dispense-{{$dispensation->id}}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-info dk">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="blue bigger text-center">
+                                                <i class="fa fa-check"></i>
+                                                Dispense Drug</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <label><strong>Medication ID:</strong> <i>{{ $dispensation->medId }}</i></label><br>
+                                                        <label><strong>Patient Name:</strong> <i>{{ $dispensation->onPatient }}</i></label><hr>
+                                                        <label><strong>Name of Drug:</strong> <i>{{ $dispensation->prescription }}</i></label><br>
+                                                        <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
+                                                        <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>
+                                                        <label><strong>Created on:</strong> <i>{{ $dispensation->created_at }}</i></label><br>
+                                                        <label><strong>Dispensed by:</strong> <i>{{ $dispensation->dispensedBy }}</i></label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer bg-light lt">
+                                                {!!Form::open()!!}
+                                                {!! Form::submit('Close', ['class' => 'btn btn-sm btn-default pull-left', 'data-dismiss' => 'modal']) !!}
+                                                {!!Form::close()!!}
+                                            </div>
+                                        </div>
+                                        </div><!-- /. modal dialog -->
+                                        </div><!-- /. modal-->
+                                        <!-- Dispense Modal -->
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center">
+                                <ul class="pagination">
+                                    {{ $dispensations->links() }}
+                                </ul>
+                            </div>
+                        </div>
