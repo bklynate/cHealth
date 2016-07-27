@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Dispensation;
+use App\Inventory;
 use App\Http\Requests;
 use Auth;
 use Session;
@@ -38,11 +39,26 @@ class DispensationController extends Controller
 
         $updatedBy = Auth::user()->fullname;
 
-        $service = Dispensation::where('id', $id)->first();
+        $dispensation = Dispensation::where('id', $id)->first();
         $input = $request->all();
-        $service->fill($input)->save();
+        $dispensation->fill($input)->save();
 
         Session::flash('info', 'The dispensation has been successfully updated.');
+
+        return redirect()->route('pharmacy-dispensations'); 
+    }
+
+    public function dispenseDrug($id)
+    {
+        $updatedBy = Auth::user()->fullname;
+        Dispensation::where('id', $id)->update(['status'=> 1]);
+        //Dispensation::where('id', $id)->where('id', $id)->update(['status'=> 1]);
+
+        $quantity_dispensed = DB::table('dispensations')->where('id', $id)->value('quantity_dispensed');
+        
+        $quantity_inventory = Inventory::where('drugId',$drugId)->value('quantity');
+
+        Session::flash('info', 'You have successfully dispensed the drug.');
 
         return redirect()->route('pharmacy-dispensations'); 
     }

@@ -15,6 +15,7 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->string('drugId');            
             $table->string('drugName');
             $table->string('formulation');
             $table->string('description');

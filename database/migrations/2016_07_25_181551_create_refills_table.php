@@ -15,6 +15,7 @@ class CreateRefillsTable extends Migration
         Schema::create('refills', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->string('drugId');
             $table->string('drugName');
             $table->string('formulation');
             $table->string('description');

@@ -29,12 +29,17 @@ class MedicationController extends Controller
 
         $patientName = $patientFirstName . ' ' . $patientMiddleName . ' ' . $patientLastName;
         $createdBy = Auth::user()->fullname;
+        $drugId           = $request->input('prescription');
+
+        $drugName         = DB::table('inventories')->where('drugId', $drugId)->value('drugName');
+        $formulation      = DB::table('inventories')->where('drugId', $drugId)->value('formulation');
+        $prescription     = $drugName . " (". $formulation.")";
 
         Medication::create([
                 'medId'           => $patientMedId,
                 'onPatient'       => $patientName,
                 'from_user'       => Auth::user()->fullname,
-                'prescription'    => $request->input('prescription'),
+                'prescription'    => $prescription,
                 'description'     => $request->input('description'),
                 'from_date'       => $request->input('from_date'),
                 'to_date'         => $request->input('to_date'),
@@ -45,7 +50,8 @@ class MedicationController extends Controller
                 'medId'           => $patientMedId,
                 'onPatient'       => $patientName,
                 'from_user'       => Auth::user()->fullname,
-                'prescription'    => $request->input('prescription'),
+                'drugId'          => $request->input('prescription'),
+                'prescription'    => $prescription,
                 'description'     => $request->input('description'),
                 'status'          => 0,
         ]);

@@ -8,6 +8,7 @@ use App\Refill;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
+use DB;
 
 class RefillController extends Controller
 {
@@ -34,20 +35,56 @@ class RefillController extends Controller
     	$quantity                    = $request->input('quantity');
     	$user                        = Auth::user()->fullname;
     	
-    	Refill::create([
+
+        $drugId = Inventory::all();
+        if (count($drugId)!=0) {
+            $drugId = DB::table('inventories')->get();
+            $drugId = count($drugId);
+            $drugId = (int)$drugId;
+            $drugId = $drugId + 1;
+
+            $drugId = "D-" . $drugId;
+
+            Refill::create([
+                'drugId'             => $drugId,
                 'drugName'           => $name,
                 'formulation'        => $formulation,
                 'description'        => $description,
                 'quantity'           => $quantity,
                 'createdBy'          => $user
-        ]);
+            ]);
 
-    	Inventory::create([
-    			'drugName'           => $name,
-    			'formulation'        => $formulation,
-    			'description'        => $description,
-    			'quantity'           => $quantity
-    	]);
+            Inventory::create([
+                'drugId'             => $drugId,
+                'drugName'           => $name,
+                'formulation'        => $formulation,
+                'description'        => $description,
+                'quantity'           => $quantity
+             ]);
+
+        } else {
+            $drugId = 1;
+            $drugId = (int)$drugId;
+
+            $drugId = "D-" . $drugId;
+
+            Refill::create([
+                'drugId'             => $drugId,
+                'drugName'           => $name,
+                'formulation'        => $formulation,
+                'description'        => $description,
+                'quantity'           => $quantity,
+                'createdBy'          => $user
+            ]);
+
+            Inventory::create([
+                'drugId'             => $drugId,
+                'drugName'           => $name,
+                'formulation'        => $formulation,
+                'description'        => $description,
+                'quantity'           => $quantity
+            ]);
+        }
 
     	$dispensations = Dispensation::paginate(10);
 

@@ -18,6 +18,7 @@ class CreateMedicationsTable extends Migration
             $table->string('medId');
             $table->string('onPatient');
             $table->string('from_user');
+            $table->string('drugName');
             $table->string('prescription');
             $table->text('description')->nullable();
             $table->date('from_date')->nullable();
