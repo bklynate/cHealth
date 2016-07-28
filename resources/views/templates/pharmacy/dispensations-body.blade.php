@@ -74,7 +74,6 @@
                                         <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
                                         <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>
                                         <label><strong>Created on:</strong> <i>{{ $dispensation->created_at }}</i></label><br>
-                                        <label><strong>Dispensed by:</strong> <i>{{ $dispensation->dispensedBy }}</i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +177,13 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <div class="form-group col-md-6 col-md-offset-3 text-center">
+                                                        <div class="form-group col-md-8 col-md-offset-2">
+                                                        <label><strong>Medication ID:</strong> <i>{{ $dispensation->medId }}</i></label><br>
+                                        <label><strong>Patient Name:</strong> <i>{{ $dispensation->onPatient }}</i></label><hr>
+                                        <label><strong>Name of Drug:</strong> <i>{{ $dispensation->prescription }}</i></label><br>
+                                        <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
+                                        <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>
+                                        <label><strong>Created on:</strong> <i>{{ $dispensation->created_at }}</i></label><br><hr>
                                                             <div class="input-group m-b col-md-12">
                                                                 <input type="text" class="form-control" name="quantityDispensed" placeholder="Quantity">
                                                             </div>
@@ -195,7 +200,7 @@
                                             <div class="modal-footer bg-light lt">
                                                 <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Close</button>
                                                 {!! Form::open(['method'=>'PUT','action'=>['Pharmacy\DispensationController@dispenseDrug', $dispensation->id]])!!}
-                                                {!! Form::submit('Yes, Dispense Drug', ['class' => 'btn btn-sm btn-success pull-right']) !!}
+                                                {!! Form::submit('Dispense Drug', ['class' => 'btn btn-sm btn-success pull-right']) !!}
                                                 {!!Form::close()!!}
                                             </div>
                                         </div>
