@@ -110,7 +110,7 @@
 <option value="Japan">Japan</option>
 <option value="Jordan">Jordan</option>
 <option value="Kazakhstan">Kazakhstan</option>
-<option value="Kenya">Kenya</option>
+<option value="Kenya" selected>Kenya</option>
 <option value="Kiribati">Kiribati</option>
 <option value="Korea North">Korea North</option>
 <option value="Korea Sout">Korea South</option>
