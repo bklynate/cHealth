@@ -583,7 +583,7 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                                             <select class="form-control w-full" ui-jq="chosen" name="prescription">
                                                                 <option class="text-muted">Select Prescription...</option>
                                                                 @foreach($drugs as $drug)
-                                                                    <option value="{{ $drug->drugId }})">{{ $drug->drugName }} ({{ $drug->formulation }})</option>
+                                                                    <option value="{{ $drug->drugId }}">{{ $drug->drugName }} ({{ $drug->formulation }})</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
