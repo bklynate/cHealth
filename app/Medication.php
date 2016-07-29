@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Medication extends Model
 {
     protected $fillable = [
-        'medId','onPatient', 'from_user', 'prescription', 'description', 'from_date', 'to_date'
+        'drugId', 'medId', 'onPatient', 'from_user', 'prescription', 'description', 'from_date', 'to_date'
     ];
 
     public function author()

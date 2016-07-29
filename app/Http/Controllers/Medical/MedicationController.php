@@ -37,6 +37,7 @@ class MedicationController extends Controller
 
         Medication::create([
                 'medId'           => $patientMedId,
+                'drugId'          => $drugId,
                 'onPatient'       => $patientName,
                 'from_user'       => Auth::user()->fullname,
                 'prescription'    => $prescription,
@@ -48,6 +49,7 @@ class MedicationController extends Controller
 
         Dispensation::create([
                 'medId'           => $patientMedId,
+                'drugId'          => $drugId,
                 'onPatient'       => $patientName,
                 'from_user'       => Auth::user()->fullname,
                 'drugId'          => $request->input('prescription'),

@@ -72,7 +72,7 @@
         </div>
         
         <div class="form-group col-md-12">
-          <select ui-jq="chosen" class="w-full" name="countryOrigin">
+          <select ui-jq="chosen" class="w-full form-control" name="countryOrigin">
             <optgroup label="Country">
               @include('templates.reception.select-countries')
             </optgroup>

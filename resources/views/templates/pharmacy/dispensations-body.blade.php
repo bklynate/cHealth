@@ -186,6 +186,9 @@
                                         <label><strong>Created on:</strong> <i>{{ Carbon\Carbon::parse($dispensation->created_at)->toDayDateTimeString() }}</i></label><br><hr>
                                         {!! Form::open(['method'=>'PUT','action'=>['Pharmacy\DispensationController@dispenseDrug', $dispensation->id]])!!}
                                                             <div class="input-group m-b col-md-12">
+                                                                <input type="hidden" name="drugId" value="{{$dispensation->drugId}}">
+                                                            </div>
+                                                            <div class="input-group m-b col-md-12">
                                                                 <input type="text" class="form-control" name="quantityDispensed" placeholder="Quantity">
                                                             </div>
                                                             <div class="input-group m-b col-md-12">

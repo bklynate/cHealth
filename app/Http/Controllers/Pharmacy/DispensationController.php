@@ -48,21 +48,38 @@ class DispensationController extends Controller
         return redirect()->route('pharmacy-dispensations'); 
     }
 
-    public function dispenseDrug($id)
+    public function dispenseDrug($id, Request $request)
     {
         $updatedBy = Auth::user()->fullname;
         Dispensation::where('id', $id)->update(['status'=> 1]);
-        //Dispensation::where('id', $id)->where('id', $id)->update(['status'=> 1]);
+        $drugId                   = $request->input('drugId');
+        $quantity_dispensed       = $request->input('quantityDispensed');
+        $startDate                = $request->input('startDate');
+        $endDate                  = $request->input('endDate');
 
+        //$quantity_dispensed = DB::table('dispensations')->where('id', $id)->value('quantity_dispensed');
+        $quantity_dispensed = (int)$quantity_dispensed;
 
-        $quantity_dispensed = DB::table('dispensations')->where('id', $id)->value('quantity_dispensed');
         $quantity_inventory = Inventory::where('drugId',$drugId)->value('quantity');
+        $quantity_inventory = (int)$quantity_inventory;
+
+        $quantity_remaining = $quantity_inventory - $quantity_dispensed;
 
         $this->validate($request, [
-                'prescription'             => 'max:256',
-                'description'              => 'max:256',
+                'quantityDispensed'    => 'required|max:20',
+                'startDate'            => 'required|max:20',
+                'endDate'              => 'required|max:20',
         ]);
         
+        Inventory::where('drugId',$drugId)->update(['quantity'=> $quantity_remaining]);
+
+        Dispensation::where('id', $id)->update(['quantity_dispensed'=> $quantity_dispensed]);
+        Dispensation::where('id', $id)->update(['from_date'=> $startDate]);
+        Dispensation::where('id', $id)->update(['to_date'=> $endDate]);
+
+        Dispensation::where('id',$id)->update(['quantity_left'=> $quantity_remaining]);
+
+
         Session::flash('info', 'You have successfully dispensed the drug.');
 
         return redirect()->route('pharmacy-dispensations'); 
