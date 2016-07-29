@@ -206,7 +206,7 @@
                 </div>
                 <div class="modal-footer bg-light lt">
                     <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Go Back</button>
-                    {!! Form::submit('Save Service', ['class' => 'btn btn-info btn-sm pull-right']) !!}
+                    {!! Form::submit('Save Service', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                     {!!Form::close()!!}
                 </div>
             </div>
