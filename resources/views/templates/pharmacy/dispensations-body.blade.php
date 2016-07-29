@@ -73,7 +73,7 @@
                                         <label><strong>Name of Drug:</strong> <i>{{ $dispensation->prescription }}</i></label><br>
                                         <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
                                         <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>
-                                        <label><strong>Created on:</strong> <i>{{ $dispensation->created_at }}</i></label><br>
+                                        <label><strong>Created on:</strong> <i>{{ Carbon\Carbon::parse($dispensation->created_at)->toDayDateTimeString() }}</i></label><br>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,8 @@
                                         <label><strong>Name of Drug:</strong> <i>{{ $dispensation->prescription }}</i></label><br>
                                         <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
                                         <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>
-                                        <label><strong>Created on:</strong> <i>{{ $dispensation->created_at }}</i></label><br><hr>
+                                        <label><strong>Created on:</strong> <i>{{ Carbon\Carbon::parse($dispensation->created_at)->toDayDateTimeString() }}</i></label><br><hr>
+                                        {!! Form::open(['method'=>'PUT','action'=>['Pharmacy\DispensationController@dispenseDrug', $dispensation->id]])!!}
                                                             <div class="input-group m-b col-md-12">
                                                                 <input type="text" class="form-control" name="quantityDispensed" placeholder="Quantity">
                                                             </div>
@@ -199,7 +200,7 @@
                                             </div>
                                             <div class="modal-footer bg-light lt">
                                                 <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Close</button>
-                                                {!! Form::open(['method'=>'PUT','action'=>['Pharmacy\DispensationController@dispenseDrug', $dispensation->id]])!!}
+                                                
                                                 {!! Form::submit('Dispense Drug', ['class' => 'btn btn-sm btn-success pull-right']) !!}
                                                 {!!Form::close()!!}
                                             </div>
