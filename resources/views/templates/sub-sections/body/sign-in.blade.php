@@ -37,7 +37,7 @@
       </div>
       <div class="form-group">
         <!-- <input type="submit" href="" class="btn btn-success btn-md" value="Sign in"></input> -->
-        <button type="submit" class="btn m-b-xs btn-info btn-addon btn-md pull-right">
+        <button type="submit" class="btn m-b-xs btn-success btn-addon btn-md pull-right">
         <i class="fa fa-lock"></i>Sign in</button>
       </div>
       {!! Form::close() !!}
