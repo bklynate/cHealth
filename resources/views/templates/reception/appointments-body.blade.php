@@ -61,8 +61,7 @@
                         <div class="modal-content">
                             <div class="modal-header bg-info dk">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h5 class="blue bigger">
-                                <i class="fa fa-times"></i>
+                                <h5 class="blue bigger text-center">
                                 Cancel Appointment</h5>
                             </div>
                             <div class="modal-body">
@@ -89,18 +88,17 @@
                                 <div class="modal-content">
                                     <div class="modal-header bg-info dk">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="blue bigger text-center">
-                                        <i class="fa fa-pencil"></i>
-                                        Edit Payment</h4>
+                                        <h5 class="blue bigger text-center">
+                                        Edit Payment</h5>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
                                             {!! Form::open(['method'=>'PUT','action'=>['Reception\AppointmentsController@updateAppointment', $appointment->id]])!!}
-                                            <div class="form-group col-md-11 col-md-offset-1">
+                                            <div class="form-group col-md-10 col-md-offset-1">
                                                 <label>
                                                     Edit Appointment Service:
-                                                </label><br>
-                                                <select name="service" class="col-md-6">
+                                                </label><br><br>
+                                                <select class="form-control" name="service">
                                                     @foreach($services as $service)
                                                     <option value="{{ $service->service }}">{{ $service->service }}</option>
                                                     @endforeach
@@ -110,7 +108,7 @@
                                     </div>
                                     <div class="modal-footer bg-light lt">
                                         <button class="btn btn-sm btn-default pull-left" data-dismiss="modal">Go Back</button>
-                                        {!! Form::submit('Update Appointment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
+                                        {!! Form::submit('Save Appointment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                                         {!!Form::close()!!}
                                     </div>
                                 </div>
