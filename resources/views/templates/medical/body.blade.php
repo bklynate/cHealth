@@ -552,10 +552,11 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                                             {{ $medication->description }}
                                                         </td>
                                                         <td>
-                                                            {{ $medication->from_date }}
+                                                            {{ Carbon\Carbon::parse($medication->from_date)->toFormattedDateString() }}
                                                         </td>
                                                         <td>
                                                             {{ $medication->to_date }}
+                                                            {{ Carbon\Carbon::parse($medication->to_date)->toFormattedDateString() }}
                                                         </td>
                                                     </tr>
                                                 @endforeach
