@@ -26,15 +26,8 @@
                         <!-- dropdown -->
                         <ul id="" class="dropdown-menu animated fadeIn w">
                             <li>
-                                <a href="">Profile</a>
+                                <a href="">Change Password</a>
                             </li>
-                            <li>
-                                <a href="">Settings</a>
-                            </li>
-                            <li>
-                                <a href="">Help</a>
-                            </li>
-                            <li class="divider"></li>
                             <li>
                                 <a href="{{ route('log-out') }}">Sign out</a>
                             </li>
