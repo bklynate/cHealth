@@ -29,7 +29,7 @@
                                 <a href="">Change Password</a>
                             </li>
                             <li>
-                                <a href="{{ route('log-out') }}">Sign out</a>
+                                <a href="{{ route('log-out') }}"><i class="fa fa-sign-out text-info"></i> Sign out</a>
                             </li>
                         </ul>
                         <!-- / dropdown -->
