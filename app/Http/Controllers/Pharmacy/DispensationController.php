@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Dispensation;
 use App\Inventory;
+use App\Medication;
 use App\Http\Requests;
 use Auth;
 use Session;
@@ -76,6 +77,9 @@ class DispensationController extends Controller
         Dispensation::where('id', $id)->update(['quantity_dispensed'=> $quantity_dispensed]);
         Dispensation::where('id', $id)->update(['from_date'=> $startDate]);
         Dispensation::where('id', $id)->update(['to_date'=> $endDate]);
+
+        Medication::where('drugId', $drugId)->first()->update(['from_date'=> $startDate]);
+        Medication::where('drugId', $drugId)->first()->update(['to_date'=> $endDate]);
 
         Dispensation::where('id',$id)->update(['quantity_left'=> $quantity_remaining]);
 
