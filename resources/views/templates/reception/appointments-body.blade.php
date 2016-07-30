@@ -49,7 +49,7 @@
                         <span class="text-info">{{ $appointment->status }}</span>
                     </td>
                     <td class="center">
-                        <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".edit-{{$appointment->id}}"><i class="fa fa-pencil"></i> Edit</button>
+                        <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".edit-{{$appointment->id}}"><i class="fa fa-edit"></i> Edit</button>
                         <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".appointment-{{$appointment->id}}">
                         Cancel <i class="fa fa-times"></i>
                         </button>
