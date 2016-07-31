@@ -308,6 +308,7 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                             <!-- End Update Details Modal -->
                             <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in" id="health_vitals">
                                 <h1 class="h6 m-b-sm m-t-sm"></h1>
+                                @if(!$vitals)
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Health Vitals
@@ -345,6 +346,11 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                         <div class="text-center">{{ $vitals->links() }}</div>
                                     </div>
                                 </div>
+
+                                @else
+                                    Sorry. There aren't any Vitals.
+                                    <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".health-vitals"><i class="fa fa-plus"></i> Add Health Vitals</button>
+                                @endif
                             </div>
                             <!--  Health Vitals -->
                             <div class="modal fade health-vitals" tabindex="-1">
