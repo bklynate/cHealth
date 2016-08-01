@@ -58,7 +58,15 @@ class MedicationController extends Controller
                 'status'          => 0,
         ]);
 
-        
+        //Create Payment
+        Payment::create([
+                'medId'               => $patientMedId,
+                'patient'             => $patientName,
+                'status'              => "Not Paid",
+                'cost'                => 100, //TO BE FIXED LATER
+                'serviceType'         => 'Medication',
+                'receivedBy'          => $createdBy,
+        ]);
 
 
         //Get current user staff Id
