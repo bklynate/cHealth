@@ -16,16 +16,16 @@ class DispensationController extends Controller
 {
     public function getHome()
     {
-    	$dispensations = Dispensation::paginate(10);
-        $dispensationsActive = Dispensation::where('status', 0)->get();
+    	$dispensations = Dispensation::where('paid',1)->paginate(10);
+        $dispensationsActive = Dispensation::where('status', 0)->where('paid',1)->get();
         $dispensationsCount  = count($dispensationsActive);
         return view('templates.pharmacy.dashboard', compact('dispensations', 'dispensationsCount'));
     }
 
     public function getDispensation()
     {
-    	$dispensations = Dispensation::paginate(10);
-        $dispensationsActive = Dispensation::where('status', 0)->get();
+    	$dispensations = Dispensation::where('paid',1)->paginate(10);
+        $dispensationsActive = Dispensation::where('status', 0)->where('paid',1)->get();
         $dispensationsCount  = count($dispensationsActive);
         $drugs = DB::table('inventories')->get();
     	return view('templates.pharmacy.dispensations', compact('dispensations', 'dispensationsCount', 'drugs'));

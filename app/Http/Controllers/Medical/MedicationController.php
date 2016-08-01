@@ -10,6 +10,7 @@ use Session;
 use App\Medication;
 use App\Dispensation;
 use App\Vital;
+use App\Payment;
 
 class MedicationController extends Controller
 {

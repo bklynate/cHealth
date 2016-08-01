@@ -16,7 +16,7 @@ class RefillController extends Controller
     {
     	$refills = Refill::paginate(10);
     	$dispensations = Dispensation::paginate(10);
-    	$dispensationsActive = Dispensation::where('status', 0)->get();
+    	$dispensationsActive = Dispensation::where('status', 0)->where('paid',1)->get();
         $dispensationsCount  = count($dispensationsActive);
         return view('templates.pharmacy.refill', compact('dispensations', 'refills','dispensationsCount'));
     }

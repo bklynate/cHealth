@@ -13,8 +13,8 @@ class InventoryController extends Controller
     public function getInventory()
     {
     	$inventories = Inventory::paginate(10);
-    	$dispensations = Dispensation::paginate(10);
-    	$dispensationsActive = Dispensation::where('status', 0)->get();
+    	$dispensations = Dispensation::where('paid',1)->paginate(10);
+    	$dispensationsActive = Dispensation::where('status', 0)->where('paid',1)->get();
         $dispensationsCount  = count($dispensationsActive);
         return view('templates.pharmacy.inventory', compact('inventories', 'dispensations', 'dispensationsCount'));
     }
