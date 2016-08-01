@@ -26,6 +26,7 @@ class CreateDispensationsTable extends Migration
             $table->integer('quantity_dispensed')->nullable();
             $table->integer('quantity_left')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('paid')->default(0);
             $table->string('dispensedBy')->nullable();
             $table->timestamps();
         });

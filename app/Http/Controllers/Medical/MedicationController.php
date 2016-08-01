@@ -58,6 +58,8 @@ class MedicationController extends Controller
                 'status'          => 0,
         ]);
 
+        
+
 
         //Get current user staff Id
         $staffId = Auth::user()->staffId;
