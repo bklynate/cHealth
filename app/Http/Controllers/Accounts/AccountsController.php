@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Appointment;
+use App\Dispensation;
 use Session;
 use Auth;
 
@@ -39,13 +40,32 @@ class AccountsController extends Controller
         return view('templates.accounts.reports');
     }
 
-    public function confirmPayment($medId)
+    public function confirmPayment(Request $request, $medId)
     {
         //Update the appointment status field
         Appointment::where('medId', $medId)->where('status', "Accounts")->update(['status' => "Awaiting Consultation"]);
 
         Payment::where('medId', $medId)->where('status', "Not Paid")->update(['status'=>"Paid"]);
 
+        
+        //$drugId = Payment::`
+        //$drug   = "d".$medId;
+        //$drugId = $request->input("d".$medId);
+        $drugId = "D-1"; 
+
+       /* $payment_medication = Dispensation::where('medId', $medId)
+                                        ->where('drugId', $drugId)
+                                        ->where('status', 0)
+                                        ->get();
+        $payment_medication = count($payment_medication);
+
+        if($payment_medication==1)
+        {*/
+            Dispensation::where('medId', $medId)
+                                        ->where('drugId', $drugId)
+                                        ->where('paid', 0)
+                                        ->update(['paid'=> 1]);  
+        /*}*/
 
         Session::flash('info', 'The payment has been confirmed successfully.');
 

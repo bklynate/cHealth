@@ -63,6 +63,7 @@ class MedicationController extends Controller
         Payment::create([
                 'medId'               => $patientMedId,
                 'patient'             => $patientName,
+                'drugId'              => $drugId,
                 'status'              => "Not Paid",
                 'cost'                => 100, //TO BE FIXED LATER
                 'serviceType'         => 'Medication',

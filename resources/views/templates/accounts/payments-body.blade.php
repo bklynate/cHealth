@@ -48,13 +48,13 @@
                         @endif
                     </td>
                     <td>@if(($payment->insurance)==0 && ($payment->status)==="Not Paid")
-                            Pending
+                        Pending
                         @elseif(($payment->insurance)==0 && ($payment->status)==="Paid")
-                            Cash
+                        Cash
                         @elseif(($payment->insurance)==1 && ($payment->status)==="Paid")
-                            Insurance
+                        Insurance
                         @else
-                            N/A
+                        N/A
                         @endif
                     </td>
                     <td>
@@ -76,6 +76,9 @@
                         <button class="btn btn-default btn-xs col-md-12" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit</button>
                         @endif
                     </td>
+                    <div class="input-group m-b col-md-12">
+                        <input type="hidden" class="form-control" name="{{$payment->medId}}" value="{{$payment->drugId}}">
+                    </div>
                 </tr>
                 <!-- Confirm cash Payment -->
                 <div class="modal fade confirm-cash-{{$payment->id}}" tabindex="-1">
@@ -125,7 +128,7 @@
                                                     <div class="input-group m-b col-md-12">
                                                         <input type="text" class="form-control" name="provider" placeholder="Insurance Provider" required>
                                                     </div>
-                                                     <div class="input-group m-b col-md-12">
+                                                    <div class="input-group m-b col-md-12">
                                                         <input type="text" class="form-control" name="insId" placeholder="Insurance ID. No." required>
                                                     </div>
                                                     <div class="input-group m-b col-md-12">

@@ -21,10 +21,10 @@
             <thead>
                 <tr>
                     <th style="width:10%">Med ID.</th>
-                    <th style="width:20%">Patient Name</th>
-                    <th style="width:20%">Name of Drug</th>
+                    <th style="width:25%">Patient Name</th>
+                    <th style="width:25%">Name of Drug</th>
                     <th style="width:15%">Status</th>
-                    <th style="width:20%">Doctor</th>
+                    <th style="width:10%">Paid</th>
                     <th style="width:20%">Options</th>
                 </tr>
             </thead>
@@ -38,7 +38,7 @@
                         {{ $dispensation->onPatient }}
                     </td>
                     <td>
-                        {{ $dispensation->prescription }}
+                        {{ str_limit($dispensation->prescription, $limit = 25, $end = '...') }}
                     </td>
                     <td>
                         @if(($dispensation->status)==0)
@@ -48,7 +48,11 @@
                         @endif
                     </td>
                     <td>
-                        {{ $dispensation->from_user }}
+                        @if(($dispensation->paid)==0)
+                            <span class="text-danger">Not Paid</span>
+                        @else
+                            Paid
+                        @endif
                     </td>
                     <td class="center">
                         <button class="btn btn-xs btn-default" data-toggle="modal" data-target=".view-{{$dispensation->id}}"><i class="fa fa-eye"></i> </button>
@@ -69,7 +73,8 @@
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <label><strong>Medication ID:</strong> <i>{{ $dispensation->medId }}</i></label><br>
-                                        <label><strong>Patient Name:</strong> <i>{{ $dispensation->onPatient }}</i></label><hr>
+                                        <label><strong>Patient Name:</strong> <i>{{ $dispensation->onPatient }}</i></label>
+                                        <label><strong>Doctor:</strong> <i>{{ $dispensation->from_user }}</i></label><hr>
                                         <label><strong>Name of Drug:</strong> <i>{{ $dispensation->prescription }}</i></label><br>
                                         <label><strong>Description:</strong> <i>{{ $dispensation->description }}</i></label><br><hr>
                                         <label><strong>Prescribed by:</strong> <i>{{ $dispensation->from_user }}</i></label><br>

@@ -16,6 +16,7 @@ class CreatePaymentsTable extends Migration
         {
             $table->increments('id');
             $table->string('medId');
+            $table->string('drugId')->nullable;
             $table->string('patient');
             $table->string('status');
             $table->double('cost');

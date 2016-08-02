@@ -8,7 +8,7 @@ class Payment extends Model
 {
     
 	protected $fillable = [
-        'medId', 'patient', 'status', 'cost', 'serviceType', 'receivedBy'
+        'medId', 'drugId', 'patient', 'status', 'cost', 'serviceType', 'receivedBy'
     ];
 
 }
