@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'      => 'neema001',
+            'username'      => 'reception',
             'staffId'       => '123456',
             'password'      => Hash::make('password')
         ));
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'      => 'neema002',
+            'username'      => 'doctor',
             'staffId'       => '123422',
             'password'      => Hash::make('password')
         ));
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'      => 'neema003',
+            'username'      => 'accounts',
             'staffId'       => '333456',
             'password'      => Hash::make('password')
         ));
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'      => 'neema004',
+            'username'      => 'pharmacy',
             'staffId'       => '223456',
             'password'      => Hash::make('password')
         ));
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'      => 'neema005',
+            'username'      => 'outpatient',
             'staffId'       => '1233456',
             'password'      => Hash::make('password')
         ));
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
 
         $user = User::create(array(
             'fullname'      => 'Valentine Mwangi',
-            'username'      => 'neema006',
+            'username'      => 'laboratory',
             'staffId'       => '1234256',
             'password'      => Hash::make('password')
         ));

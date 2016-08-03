@@ -26,7 +26,7 @@
                         <!-- dropdown -->
                         <ul id="" class="dropdown-menu animated fadeIn w">
                             <li>
-                                <a href="">Change Password</a>
+                                <a href=""><i class="fa fa-gear text-info"></i> Change Password</a>
                             </li>
                             <li>
                                 <a href="{{ route('log-out') }}"><i class="fa fa-sign-out text-info"></i> Sign out</a>
