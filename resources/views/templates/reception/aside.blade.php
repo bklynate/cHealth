@@ -46,14 +46,14 @@
                             <span class="">Registration</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{ route('reception-doctors') }}">
                             <span class="pull-right text-muted">
                             </span>
                             <i class="fa fa-user-md"></i>
                             <span class="">Staff</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
             <!-- nav -->
