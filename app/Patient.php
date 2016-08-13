@@ -36,6 +36,11 @@ class Patient extends Model
         return $this->hasMany('App\Procedure','onPatient');
     }
 
+    public function histories()
+    {
+        return $this->hasMany('App\History','from_user');
+    }
+
     public function medication()
     {
       return $this->hasMany('App\Medication','onPatient');
@@ -46,5 +51,7 @@ class Patient extends Model
     {
         return $this->belongsTo('App\User','id');
     }
+
+
   	
 }

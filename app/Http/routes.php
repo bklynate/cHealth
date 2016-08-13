@@ -76,7 +76,6 @@ Route::put('/checkout/{id}',           ['uses' => 'Doctor\DoctorController@consu
 Route::put('/patient/{id}',               ['uses' => 'Medical\PatientController@updatePatient', 'as' => 'updatePatient']);
 Route::post('/health-vitals',             ['uses' => 'Medical\VitalsController@addVitals', 'as' => 'add-vitals']);
 Route::post('/prescribe-medication',             ['uses' => 'Medical\MedicationController@prescribeMedication', 'as' => '/prescribe-medication']);
-
 Route::post('/diagnosis',             ['uses' => 'Medical\DiagnosisController@addDiagnosis', 'as' => 'add-diagnosis']);
 Route::post('/immunizations',             ['uses' => 'Medical\ImmunizationController@addImmunization', 'as' => 'add-immunization']);
 Route::post('/therapies',             ['uses' => 'Medical\TherapyController@addTherapy', 'as' => 'add-therapy']);

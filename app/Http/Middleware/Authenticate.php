@@ -44,15 +44,11 @@ class Authenticate
                 return redirect()->route('home')->with('info', 'Sorry, kindly log in for further access.');
             } else {
                 return redirect()->route('home')->with('info', 'Sorry, kindly log in for further access.');
-                return response()->view('errors.403', [], 403);
-            } else {
-                return response()->view('errors.403', [], 403);
-            }
+            } 
         }
         if( $this->auth->guest() || !$this->auth->user()->hasRole($role))
         {
             return redirect()->route('home')->with('info', 'Sorry, kindly log in for further access.');
-            return response()->view('errors.403', [], 403);
         }
         return $next($request);
     }
