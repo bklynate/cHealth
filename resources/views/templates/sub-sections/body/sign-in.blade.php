@@ -25,17 +25,10 @@
       ))
       !!}
       <div class="form-group">
-<<<<<<< HEAD
         <input class="form-control username" placeholder="Enter Username" type="text" name="username" required>
       </div>
       <div class="form-group">
         <input class="form-control password" placeholder="Password" type="password" name="password" required>
-=======
-        <input class="form-control" placeholder="Enter Username" type="text" name="username" required>
-      </div>
-      <div class="form-group">
-        <input class="form-control" placeholder="Password" type="password" name="password" required>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
       </div>
       <div class="checkbox">
         <label class="i-checks">

@@ -13,11 +13,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input placeholder="Search payments" name="search" class="form-control" type="text" required>
-<<<<<<< HEAD
                 <div class="input-group-btn"><button class="btn btn-success" type="submit">Search</button></div>
-=======
-                <div class="input-group-btn"><button class="btn btn-info" type="submit">Search</button></div>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
             </div>
         </div>
         {!! Form::close() !!}
@@ -73,13 +69,8 @@
                     <td class="center">
                         @if(($payment->status)==="Not Paid")
                         <div class="btn-group">
-<<<<<<< HEAD
                             <label aria-invalid="false" class="btn btn-xs btn-success" btn-checkbox="" data-toggle="modal" data-target=".confirm-cash-{{$payment->id}}"><i class="fa fa-money"></i> Cash</label>
                             <label style="" aria-invalid="false" class="btn btn-xs btn-info" btn-checkbox="" data-toggle="modal" data-target=".confirm-insurance-{{$payment->id}}"> Insure <i class="fa fa-credit-card"></i></label>
-=======
-                            <label aria-invalid="false" class="btn btn-xs btn-info" btn-checkbox="" data-toggle="modal" data-target=".confirm-cash-{{$payment->id}}"><i class="fa fa-money"></i> Cash</label>
-                            <label style="" aria-invalid="false" class="btn btn-xs btn-primary" btn-checkbox="" data-toggle="modal" data-target=".confirm-insurance-{{$payment->id}}"> Insure <i class="fa fa-credit-card"></i></label>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                         </div>
                         @else
                         <button class="btn btn-default btn-xs col-md-12" data-toggle="modal" data-target=".edit-{{$payment->id}}"><i class="fa fa-pencil"></i> Edit</button>
@@ -93,21 +84,13 @@
                 <div class="modal fade confirm-cash-{{$payment->id}}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
-<<<<<<< HEAD
                             <div class="modal-header bg-info dk text-center">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h5 class="blue bigger">
-=======
-                            <div class="modal-header bg-info dk">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h5 class="blue bigger">
-                                <i class="fa fa-check"></i>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                 Confirm Cash Payment</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-<<<<<<< HEAD
                                     <div class="col-xs-12 col-sm-12 text-center">
                                         <p>Are you sure you want to confirm cash payment of <br><i class="fa fa-money"></i> <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
                                     </div>
@@ -115,15 +98,6 @@
                             </div>
                             <div class="modal-footer bg-light lt">
                                 <button class="btn btn-default btn-sm pull-left"> Go Back</button>
-=======
-                                    <div class="col-xs-12 col-sm-12">
-                                        <p>Are you sure you want to confirm cash payment of <i class="fa fa-money"></i> <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> No, Go Back</button>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                 {!!Form::open(['method'=>'PUT','action'=>['Accounts\AccountsController@confirmPayment',$payment->medId]])!!}
                                 {!! Form::submit('Confirm Payment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
                                 {!!Form::close()!!}
@@ -135,33 +109,18 @@
                         <div class="modal fade confirm-insurance-{{$payment->id}}" tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-<<<<<<< HEAD
                                     <div class="modal-header bg-info dk text-center">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h5 class="blue bigger">
-=======
-                                    <div class="modal-header bg-info dk">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h5 class="blue bigger">
-                                        <i class="fa fa-credit-card"></i>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                         Confirm Insurance Payment</h5>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12">
-<<<<<<< HEAD
                                                 <p class="text-center">Are you sure you want to confirm <i class="fa fa-credit-card"></i> insurance payment of<br> <i class="fa fa-money"></i> <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
                                             </div>
                                             <div class="col-md-12">
                                                 {!! Form::open(['method'=>'POST','url'=>'create-insurance','action'=>['Accounts\InsuranceController@createInsurance']])!!}
-=======
-                                                <p>Are you sure you want to confirm <i class="fa fa-credit-card"></i> insurance payment of <i class="fa fa-money"></i> <strong>Ksh. {{ $payment->cost }}</strong> for <strong>{{ $payment->patient }}</strong>?</p>
-                                            </div>
-                                            <div class="col-md-12">
-                                                {!! Form::open(['method'=>'POST','url'=>'create-insurance','action'=>['Accounts\InsuranceController@createInsurance']])!!}
-                                                <label class="m">Create Insurance</label>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                                 <div class="form-group col-md-12">
                                                     <div class="input-group m-b col-md-12">
                                                         <input type="text" class="form-control" name="provider" placeholder="Insurance Provider" required>
@@ -172,26 +131,16 @@
                                                     <div class="input-group m-b col-md-12">
                                                         <input type="hidden" class="form-control" name="medId" value="{{ $payment->medId }}" required>
                                                     </div>
-<<<<<<< HEAD
                                                     <div class="input-group">
-=======
-                                                    <div class="input-group m-b col-md-12">
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                                         <input type="hidden" class="form-control" name="id" value="{{ $payment->id }}" required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-<<<<<<< HEAD
                                     <div class="modal-footer bg-light lt">
                                         <button class="btn btn-default btn-sm pull-left">Go Back</button>
                                         {!! Form::submit('Insure Payment', ['class' => 'btn btn-success btn-sm pull-right']) !!}
-=======
-                                    <div class="modal-footer">
-                                        <button class="btn btn-default btn-sm pull-left"><i class="fa fa-arrow-left"></i> No, Go Back</button>
-                                        {!! Form::submit('Insure Payment', ['class' => 'btn btn-primary btn-sm pull-right']) !!}
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                         {!!Form::close()!!}
                                     </div>
                                 </div>
@@ -204,14 +153,8 @@
                                         <div class="modal-content">
                                             <div class="modal-header bg-info dk">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<<<<<<< HEAD
                                                 <h5 class="blue bigger text-center">
                                                 Edit Payment</h5>
-=======
-                                                <h4 class="blue bigger text-center">
-                                                <i class="fa fa-pencil"></i>
-                                                Edit Payment</h4>
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">

@@ -16,7 +16,6 @@ class Patient extends Model
     	return $this->hasMany('App\Vital','onPatient');
   	}
 
-<<<<<<< HEAD
     public function diagnosis()
     {
       return $this->hasMany('App\Diagnosis','onPatient');
@@ -37,8 +36,6 @@ class Patient extends Model
         return $this->hasMany('App\Procedure','onPatient');
     }
 
-=======
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
     public function medication()
     {
       return $this->hasMany('App\Medication','onPatient');

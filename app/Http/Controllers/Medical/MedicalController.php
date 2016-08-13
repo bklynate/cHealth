@@ -12,14 +12,10 @@ use Session;
 use App\Http\Requests;
 use App\Vital;
 use App\Medication;
-<<<<<<< HEAD
 use App\Diagnosis;
 use App\Immunization;
 use App\Therapy;
 use App\Procedure;
-=======
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
-
 class MedicalController extends Controller
 {
      //GET HOME PAGE
@@ -37,11 +33,8 @@ class MedicalController extends Controller
         $vitals=0;
         if($patient){
             $patientMedId = $patient->medId;
-<<<<<<< HEAD
             $patientId = $patient->id;
-=======
             $patientId = $patient->medId;
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
 
             //Get vitals records
             $vitals = Vital::where('onPatient', $patientId)->paginate(10);
@@ -51,7 +44,7 @@ class MedicalController extends Controller
                                                 ->where('status','Consultation')->first();
             //Get medications to display on medical profile
             $medications = Medication::where('medId', $patientMedId)->paginate(10);
-<<<<<<< HEAD
+
 
             //Get diagnosis to display on the medical profile
             $diagnosis = Diagnosis::where('onPatient', $patientId)->paginate(10);
@@ -64,9 +57,7 @@ class MedicalController extends Controller
 
             //Get procedures to display on the medical profile
             $procedures = Procedure::where('onPatient', $patientId)->paginate(10);
-            
-=======
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
+
         } 
         
         //Get appointments for the navigation
@@ -75,7 +66,6 @@ class MedicalController extends Controller
                                                   ->paginate(10); 
         $drugs = DB::table('inventories')->get();
 
-<<<<<<< HEAD
         return view('templates.medical.home', 
                 compact(
                         'appointments', 
@@ -89,9 +79,6 @@ class MedicalController extends Controller
                         'therapies',
                         'procedures'
                 ));
-=======
-        return view('templates.medical.home', compact('appointments', 'appointment', 'patient', 'vitals', 'medications', 'drugs'));
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
     }
 
 }

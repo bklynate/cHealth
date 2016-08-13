@@ -41,24 +41,18 @@ class Authenticate
         }
         if ($this->auth->guest()) {
             if ($request->ajax()) {
-<<<<<<< HEAD
                 return redirect()->route('home')->with('info', 'Sorry, kindly log in for further access.');
             } else {
                 return redirect()->route('home')->with('info', 'Sorry, kindly log in for further access.');
-=======
                 return response()->view('errors.403', [], 403);
             } else {
                 return response()->view('errors.403', [], 403);
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
             }
         }
         if( $this->auth->guest() || !$this->auth->user()->hasRole($role))
         {
-<<<<<<< HEAD
             return redirect()->route('home')->with('info', 'Sorry, kindly log in for further access.');
-=======
             return response()->view('errors.403', [], 403);
->>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
         }
         return $next($request);
     }

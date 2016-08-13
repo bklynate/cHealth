@@ -73,7 +73,7 @@
                             <div class="input-group m-b">
                                 <input type="text" class="form-control rounded" placeholder="Search here..." required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-info rounded" type="submit"><i class="fa fa-search"></i> Search</button>
+                                    <button class="btn btn-success rounded" type="submit"><i class="fa fa-search"></i> Search</button>
                                 </span>
                             </div>
                         </div>
