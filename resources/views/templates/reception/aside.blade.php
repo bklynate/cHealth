@@ -46,6 +46,17 @@
                             <span class="">Registration</span>
                         </a>
                     </li>
+<<<<<<< HEAD
+=======
+                    <!-- <li>
+                        <a href="{{ route('reception-doctors') }}">
+                            <span class="pull-right text-muted">
+                            </span>
+                            <i class="fa fa-user-md"></i>
+                            <span class="">Staff</span>
+                        </a>
+                    </li> -->
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                 </ul>
             </nav>
             <!-- nav -->
@@ -64,7 +75,11 @@
                             <div class="input-group m-b">
                                 <input type="text" class="form-control rounded" placeholder="Search here..." required>
                                 <span class="input-group-btn">
+<<<<<<< HEAD
                                     <button class="btn btn-success rounded" type="submit"><i class="fa fa-search"></i> Search</button>
+=======
+                                    <button class="btn btn-info rounded" type="submit"><i class="fa fa-search"></i> Search</button>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                 </span>
                             </div>
                         </div>

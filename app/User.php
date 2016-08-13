@@ -61,6 +61,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Vital','from_user');
     }
 
+<<<<<<< HEAD
     public function diagnosis()
     {
         return $this->hasMany('App\Diagnosis','from_user');
@@ -85,5 +86,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\History','from_user');
     }
+=======
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
 
 }

@@ -96,7 +96,11 @@ class PatientController extends Controller
             ]);
         }
         
+<<<<<<< HEAD
         return redirect()->route('reception-registration')->with('info', 'The patient has been registered successfully.');
+=======
+        return redirect()->route('reception-registration')->with('info', 'The Patient\'s Medical Profile has been created successfully');
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
     }
 
     public function updatePatient($id, Request $request){

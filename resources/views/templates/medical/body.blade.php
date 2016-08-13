@@ -308,7 +308,11 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                             <!-- End Update Details Modal -->
                             <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in" id="health_vitals">
                                 <h1 class="h6 m-b-sm m-t-sm"></h1>
+<<<<<<< HEAD
                                 @if($vitals)
+=======
+                                @if(!$vitals)
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Health Vitals
@@ -346,8 +350,14 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                         <div class="text-center">{{ $vitals->links() }}</div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                                 @else
                                     There is no past vital recorded.
+=======
+
+                                @else
+                                    Sorry. There aren't any Vitals.
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                     <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".health-vitals"><i class="fa fa-plus"></i> Add Health Vitals</button>
                                 @endif
                             </div>
@@ -402,11 +412,18 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                     <!-- Health Vitals -->
                                     <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in" id="medical_history">
                                         <h1 class="h6 m-b-sm m-t-sm"></h1>
+<<<<<<< HEAD
                                         @if($diagnosis)
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 Diagnosis
                                                 <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".diagnosis"><i class="fa fa-plus"></i> Add Diagnosis</button>
+=======
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Active Diagnosis
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Diagnosis</button>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                             </div>
                                             <table class="table m-b-none">
                                                 <thead>
@@ -418,6 +435,7 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+<<<<<<< HEAD
                                                     @foreach($diagnosis->reverse() as $diagnos)
                                                     <tr>
                                                         <td>{{$diagnos->diagnosis}}</td>
@@ -480,6 +498,23 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                             <div class="panel-heading">
                                                 Immunizations
                                                 <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".immunization"><i class="fa fa-plus"></i> Add Immunizations</button>
+=======
+                                                    <tr>
+                                                        <td>Bandage of Wound</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>20/02/2016</td>
+                                                        <td>The patient needs to visit once every three days</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+                                        <div class="line b-b"></div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Immunizations
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Immunizations</button>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                             </div>
                                             <table class="table m-b-none">
                                                 <thead>
@@ -489,6 +524,7 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+<<<<<<< HEAD
                                                     @foreach($immunizations->reverse() as $immunization)
                                                     <tr>
                                                         <td>{{$immunization->vaccine}}</td>
@@ -544,10 +580,26 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                             <div class="panel-heading">
                                                 Injections/ Intravenous Therapies
                                                 <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".therapy"><i class="fa fa-plus"></i> Add Injections/ Therapies</button>
+=======
+                                                    <tr>
+                                                        <td>Hepatitis Kenya</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+                                        <div class="line b-b"></div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Injections/ Intravenous Therapies
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Injections/ Therapies</button>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                             </div>
                                             <table class="table table-striped m-b-none">
                                                 <thead>
                                                     <tr>
+<<<<<<< HEAD
                                                         <th>Name of Therapy</th>
                                                         <th>Date Administered</th>
                                                     </tr>
@@ -602,17 +654,37 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                     </div><!-- /. modal-->
                                         <div class="wrapper"></div>
                                         @if(!$procedures)
+=======
+                                                        <th>Vaccine</th>
+                                                        <th>Date/Time</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Hepatitis Kenya</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="wrapper"></div>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                         <div class="line b-b"></div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 Procedures, Surgeries and Hospitalization
+<<<<<<< HEAD
                                                 <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".procedures"><i class="fa fa-plus"></i> Add Procedures, Surgeries etc.</button>
+=======
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Procedures, Surgeries etc.</button>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                             </div>
                                             <table class="table table-striped m-b-none">
                                                 <thead>
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Type</th>
+<<<<<<< HEAD
                                                         <th>Notes</th>
                                                         <th>From Date</th>
                                                         <th>To Date</th>
@@ -683,12 +755,36 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                     </div>
                                     </div><!-- /. modal dialog -->
                                     </div><!-- /. modal-->
+=======
+                                                        <th>From Date</th>
+                                                        <th>To Date</th>
+                                                        <th>Duration</th>
+                                                        <th>Notes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Left Leg Ankle</td>
+                                                        <td>Light insertion</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>12/02/2016</td>
+                                                        <td>3hrs</td>
+                                                        <td>12/02/2016</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                         <div class="wrapper"></div>
                                         <div class="line b-b"></div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 Family and Social History
+<<<<<<< HEAD
                                                 <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target=".history"><i class="fa fa-plus"></i> Add Family and Social History</button>
+=======
+                                                <button class="btn btn-default btn-xs pull-right"><i class="fa fa-plus"></i> Add Family and Social History</button>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                             </div>
                                             <table class="table table-striped m-b-none">
                                                 <thead>
@@ -714,6 +810,7 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                             </table>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <!--  Add Family and Social History -->
                             <div class="modal fade history" tabindex="-1">
                                 <div class="modal-dialog">
@@ -757,6 +854,8 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                     </div>
                                     </div><!-- /. modal dialog -->
                                     </div><!-- /. modal-->
+=======
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                     <div role="tabpanel" class="tab-pane b-l b-r b-b wrapper fade in lter" id="medication">
                                         <div class="wrapper "></div>
                                         <div class="panel panel-default ">
@@ -798,7 +897,11 @@ Sorry, no medical profile is shown since there isn't any selected appointment.
                                     </div>
                                     
                                     
+<<<<<<< HEAD
                                     <!--  Prescribe Medication -->
+=======
+                                    <!--  Medication Vitals -->
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                             <div class="modal fade medication" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">

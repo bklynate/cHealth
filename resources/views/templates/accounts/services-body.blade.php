@@ -191,6 +191,7 @@
                                     <input type="text" class="form-control" name="service" placeholder="Service Name" required>
                                 </div>
                                 <div class="input-group m-b col-md-12">
+<<<<<<< HEAD
                                     <input type="text" class="form-control" name="cost" placeholder="Cost I.e. 300" required>
                                 </div>
                                 <div class="input-group m-b col-md-12">
@@ -214,6 +215,16 @@
                                                         </div>
                                                     </div>
 
+=======
+                                    <input type="text" class="form-control" name="cost" placeholder="Cost" required>
+                                </div>
+                                <div class="input-group m-b col-md-12">
+                                    <select name="status" required>
+                                        <option value="">Choose service status here...</option>
+                                        <option value="1">Enabled</option>
+                                        <option value="0">Disabled</option>
+                                    </select>
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
                                 </div>
                             </div>
                         </div>

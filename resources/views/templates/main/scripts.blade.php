@@ -19,6 +19,7 @@
 	});
 </script>
 
+<<<<<<< HEAD
 <script type="text/javascript">
 	//Introducting a block history when clicking back button
 	(function (global) { 
@@ -62,5 +63,7 @@
 })(window);
 </script>
 
+=======
+>>>>>>> 049a58764b93aa02d74aceecd65663f5b5f0d074
 
 
